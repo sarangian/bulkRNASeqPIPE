@@ -2,7 +2,7 @@ from __future__ import print_function
 import pandas as pd
 import math
 import gzip
-from itertools import izip,izip_longest
+#from itertools import izip,izip_longest
 import argparse
 from os.path import basename
 import sys
