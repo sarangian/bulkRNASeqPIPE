@@ -275,7 +275,7 @@ clone () {
 # INSTALLING TOOLS FROM PIP
 
 function pip_install {
-  pip3 install --user "$@"
+  sudo python3 -m pip install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
     exit 1
