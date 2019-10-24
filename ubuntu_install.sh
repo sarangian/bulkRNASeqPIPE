@@ -557,6 +557,8 @@ then
 	        if [ $(sudo su - -c "R -e \"library(rnaseqdea)\"" 2>&1 | grep -c "there is no package called") -eq 1 ];
 		then
   		     echo -e "\e[1;31m installing rnaseqdea \e[0m";
+		     rnaseqdea_dir="$build_dir/RNASEQDEA"
+		     echo -e "\e[1;31m installing rnaseqdea from $rnaseqdea_dir\e[0m";
 		     sudo su - -c "R -e \"devtools::install('$rnaseqdea_dir')\""
 		else
   		     echo -e "\e[1;36m RNASeqDEA \tinstalled \e[0m";
