@@ -119,6 +119,7 @@ build_dir=$(pwd)
 #QC
 FASTQC_VERSION=0.11.8
 BBMAP_VERSION=38.61b
+NCBI_BLAST_VERSION=2.9.0
 
 #Assembly
 SPADES_VERSION=3.13.0
@@ -165,7 +166,7 @@ PROKKA_DOWNLOAD_URL="https://github.com/tseemann/prokka.git"
 PRODIGAL_DOWNLOAD_URL="https://github.com/hyattpd/Prodigal/releases/download/v${PRODIGAL_VERSION}/prodigal.linux"
 PPLACER_DOWNLOAD_URL="https://github.com/matsen/pplacer/releases/download/v${PPLACER_VERSION}/pplacer-Linux-v${PPLACER_VERSION}.zip"
 #HMMER_DOWNLOAD_URL="http://eddylab.org/software/hmmer/hmmer-${HMMER_VERSION}.tar.gz"
-
+NCBI_BLAST_DOWNLOAD_URL="ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/${NCBI_BLAST_VERSION}/ncbi-blast-${NCBI_BLAST_VERSION}+-x64-linux.tar.gz"
 #transcript_DE_tools_download_url
 
 
@@ -366,6 +367,15 @@ declare -a piplist=("luigi" "numpy" "scipy" "biopython" "matplotlib" "pandas" "o
 #    fastqc_dir="$build_dir/FastQC"
 #    unzip fastqc_v${FASTQC_VERSION}.zip
 #fi
+if ! [ "$(blastall --help | grep -c "2.8.")" == 1 ] || [ "$(blastall --help | grep -c "2.9.")" == 1 ];
+then
+        echo -e "\e[1;31m makeblastdb --version >=2.8.0 required for running PROKKA. Now downloading and installing NCBI-BLAST-2.9.0 \e[0m"; 
+        download $NCBI_BLAST_DOWNLOAD_URL "BLAST-${NCBI_BLAST_VERSION}.tar.gz"
+        blast_dir="$build_dir/ncbi-blast-2.9.0+/bin"
+        tar -xvzf BLAST-${NCBI_BLAST_VERSION}.tar.gz
+        sudo cp $blast_dir/* /usr/local/bin
+fi
+
 
 #-------------------------BBMAP----------------------------------------------
 if ! [ $(which bbduk.sh 2 > /dev/null) ];then
