@@ -360,13 +360,6 @@ declare -a piplist=("luigi" "numpy" "scipy" "biopython" "matplotlib" "pandas" "o
             fi
     done
 # ----------------------------Downlaod and Install tools---------------------
-# --------------- -------------FastQC ----------------------------------------------
-#if ! [ $(which fastqc >/dev/null) ];then
-#    cd $build_dir
-#    download $FASTQC_DOWNLOAD_URL "fastqc_v${FASTQC_VERSION}.zip"
-#    fastqc_dir="$build_dir/FastQC"
-#    unzip fastqc_v${FASTQC_VERSION}.zip
-#fi
 if ! [ "$(blastall --help | grep -c "2.8.")" == 1 ] || [ "$(blastall --help | grep -c "2.9.")" == 1 ];
 then
         echo -e "\e[1;31m makeblastdb --version >=2.8.0 required for running PROKKA. Now downloading and installing NCBI-BLAST-2.9.0 \e[0m"; 
@@ -547,26 +540,28 @@ then
   #echo -e "\e[1;36m  R version >=3.5 ...installed \e[0m";
   r_version=$(R --version | head -n 1 | cut -f3 -d " ")
     sleep 5s;
-  if [ "$(R --version | grep -c "3.6.")" == 1 ]; 
-  then
-    echo -e "\e[1;36m R-$r_version \tinstalled \e[0m";
+     if [ "$(R --version | grep -c "3.5.")" == 1 ] || [ "$(R --version | grep -c "3.6.")" == 1 ];
+        then
+            echo -e "\e[1;36m R-$r_version \tinstalled \e[0m";
 
   		if [ $(sudo su - -c "R -e \"library(devtools)\"" 2>&1 | grep -c "there is no package called") -eq 1 ];
 			then
-  			echo -e "\e[1;31m installing devtools \e[0m";
+  			echo -e "\e[1;31m package devtools will be installed now...\e[0m";
+			sleep 2s;
 			sudo su - -c "R -e \"install.packages('devtools')\""
 		else
   			echo -e "\e[1;36m devtools \tinstalled \e[0m";
 		fi
 
-        if [ $(sudo su - -c "R -e \"library(rnaseqdea)\"" 2>&1 | grep -c "there is no package called") -eq 1 ];
-			then
-  			echo -e "\e[1;31m installing rnaseqdea \e[0m";
-			sudo su - -c "R -e \"devtools::install('$rnaseqdea_dir')\""
+               
+	        if [ $(sudo su - -c "R -e \"library(rnaseqdea)\"" 2>&1 | grep -c "there is no package called") -eq 1 ];
+		then
+  		     echo -e "\e[1;31m installing rnaseqdea \e[0m";
+		     sudo su - -c "R -e \"devtools::install('$rnaseqdea_dir')\""
 		else
-  			echo -e "\e[1;36m RNASeqDEA \tinstalled \e[0m";
+  		     echo -e "\e[1;36m RNASeqDEA \tinstalled \e[0m";
 		fi
- 	fi	
+     fi	
 
 else
   	echo -e "\e[1;31m  R is not installed. I am going to install R-3.6.1 with rnaseqdea \e[0m"
