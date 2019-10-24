@@ -1,0 +1,12 @@
+#Create Project
+python3 bulkRNASeqWF.py prepareProject --projectName halomicronema --sampleMetadataFile halomicronema_target.txt --sampleHeader samples --groupHeader group --refCondName Control --local-scheduler
+
+#Generate Counts
+python3 bulkRNASeqWF.py featureCounts --projectName halomicronema --domain prokaryote --aligner hisat2 --featureType CDS --readType paired --genomeName hexcentricum --local-scheduler
+
+#Genome based differential expression analysis
+python3 bulkRNASeqWF.py genomeBasedDEA --projectName halomicronema --domain prokaryote --aligner hisat2 --readType paired --genomeName hexcentricum --deaMethod deseq2 --resultTag hexcentricum_treated_vs_control --factorInt group --refCond Control --targetFile halomicronema_target.txt --local-scheduler
+
+#Transcript based differential expression analysis
+python3 bulkRNASeqWF.py transcriptomeBasedDEA --projectName halomicronema/ --domain prokaryote --predTranscript yes --readType paired --quantMethod kallisto --genomeName hexcentricum --transcriptName hexcentricum --deaMethod deseq2 --factorInt group --refCond Control --resultTag hexcentricum_treated_vs_control --targetFile halomicronema_target.txt --local-scheduler
+
