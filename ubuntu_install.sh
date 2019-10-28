@@ -118,6 +118,7 @@ build_dir=$(pwd)
 
 #QC
 FASTQC_VERSION=0.11.8
+QUAST_VERSION=5.0.2
 BBMAP_VERSION=38.61b
 NCBI_BLAST_VERSION=2.9.0
 
@@ -146,6 +147,7 @@ R_VERSION=3.6.1
 
 #ASSEMBLY_tools_download_url
 FASTQC_DOWNLOAD_URL="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${FASTQC_VERSION}.zip"
+QUAST_DOWNLOAD_URL="https://nchc.dl.sourceforge.net/project/quast/quast-{QUAST_VERSION}.tar.gz"
 BBMAP_DOWNLOAD_URL="https://jaist.dl.sourceforge.net/project/bbmap/BBMap_${BBMAP_VERSION}.tar.gz"
 RCORRECTOR_DOWNLOAD_URL="https://github.com/mourisl/Rcorrector.git"
 RNASEQDEA_DOWNLOAD_URL="https://github.com/sarangian/RNASeqDEA.git"
@@ -227,7 +229,7 @@ done
 
 #----packages from git-hub, wget and apt-get 
 #-----------------Checking pre installed tools--------------------------
-declare -a tool_list=("spades.py" "Rockhopper.jar" "pplacer" "featureCounts" "prodigal" "samtools"
+declare -a tool_list=("spades.py" "quast.py" "Rockhopper.jar" "pplacer" "featureCounts" "prodigal" "samtools"
  "corset" "rcorrector" "Lace.py" "bbduk.sh" "STAR" "dart" "hisat2" "salmon" "kallisto" "hmmer")
 ## now loop through the above array
 for package in "${tool_list[@]}"
@@ -369,6 +371,15 @@ then
         sudo cp $blast_dir/* /usr/local/bin
 fi
 
+#-------------------------QUAST----------------------------------------------
+if ! [ $(which quast.py 2 > /dev/null) ];then
+    cd $build_dir
+    download QUAST_DOWNLOAD_URL "QUAST-${QUAST_VERSION}.tar.gz"
+    quast_dir="$build_dir/quast-5.0.2"
+    tar -xvzf QUAST-${QUAST_VERSION}.tar.gz
+    cd $quast_dir
+    ./install.sh
+fi
 
 #-------------------------BBMAP----------------------------------------------
 if ! [ $(which bbduk.sh 2 > /dev/null) ];then
@@ -602,6 +613,10 @@ update_path ()
 #if ! [ $(which fastqc >/dev/null) ];then
 #    update_path ${fastqc_dir}
 #fi
+#......QUAST.......
+if ! [ $(which quast.py >/dev/null) ];then
+    update_path ${quast_dir}
+fi
 
 #......BBDUK.......
 if ! [ $(which bbduk.sh >/dev/null) ];then
