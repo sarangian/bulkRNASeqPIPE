@@ -336,7 +336,7 @@ else
 fi
 
 #----packages from pip-------
-declare -a piplist=("luigi" "numpy" "scipy" "biopython" "matplotlib" "pandas" "optparse" "argparse")
+declare -a piplist=("luigi" "numpy" "scipy" "matplotlib" "pandas" "optparse" "argparse")
 for package in "${piplist[@]}"
     do
       if [ "$(python3 -c "import $package" 2>&1 > /dev/null | grep -c "ModuleNotFoundError")" == 0 ];
@@ -347,10 +347,16 @@ for package in "${piplist[@]}"
       fi
    done
 
+#Check Biopython
+if [ "$(python3 -c "import Bio" 2>&1 > /dev/null | grep -c "ModuleNotFoundError")" == 0 ];
+      then
+          echo -e "\e[1;36m biopython \t installed \e[0m";
+      else
+          echo -e "\e[1;31m biopython \t not in path \e[0m";
+fi
  
 
-
-declare -a piplist=("luigi" "numpy" "scipy" "biopython" "matplotlib" "pandas" "optparse" "argparse")
+declare -a piplist=("luigi" "numpy" "scipy" "matplotlib" "pandas" "optparse" "argparse")
     for package in "${piplist[@]}"
         do
             if python3 -c "import $package" &> /dev/null;
@@ -361,6 +367,13 @@ declare -a piplist=("luigi" "numpy" "scipy" "biopython" "matplotlib" "pandas" "o
             pip_install $package
             fi
     done
+    
+#Install Biopython
+if [ "$(python3 -c "import Bio" 2>&1 > /dev/null | grep -c "ModuleNotFoundError")" == 1 ];
+      then
+          pip_install biopython
+fi
+
 # ----------------------------Downlaod and Install tools---------------------
 if  [ "$(makeblastdb -help | grep -c "2.8.")" == 1 ] || [ "$(makeblastdb -help | grep -c "2.9.")" == 1 ];
 then
