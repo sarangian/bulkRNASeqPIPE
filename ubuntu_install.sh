@@ -147,7 +147,7 @@ R_VERSION=3.6.1
 
 #ASSEMBLY_tools_download_url
 FASTQC_DOWNLOAD_URL="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${FASTQC_VERSION}.zip"
-QUAST_DOWNLOAD_URL="https://nchc.dl.sourceforge.net/project/quast/quast-{QUAST_VERSION}.tar.gz"
+QUAST_DOWNLOAD_URL="https://nchc.dl.sourceforge.net/project/quast/quast-${QUAST_VERSION}.tar.gz"
 BBMAP_DOWNLOAD_URL="https://jaist.dl.sourceforge.net/project/bbmap/BBMap_${BBMAP_VERSION}.tar.gz"
 RCORRECTOR_DOWNLOAD_URL="https://github.com/mourisl/Rcorrector.git"
 RNASEQDEA_DOWNLOAD_URL="https://github.com/sarangian/RNASeqDEA.git"
