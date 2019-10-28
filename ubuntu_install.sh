@@ -574,6 +574,7 @@ then
 			then
   			echo -e "\e[1;31m package devtools will be installed now...\e[0m";
 			sleep 2s;
+			sudo su - -c "R -e \"install.packages('Rcpp')\""
 			sudo su - -c "R -e \"install.packages('devtools')\""
 		else
   			echo -e "\e[1;36m devtools \tinstalled \e[0m";
@@ -604,6 +605,7 @@ else
        download $R_DOWNLOAD_URL r-base-core_3.6.1-3xenial_amd64.deb
        chmod 755 r-base-core_3.6.1-3xenial_amd64.deb
        sudo dpkg -i r-base-core_3.6.1-3xenial_amd64.deb 
+       sudo su - -c "R -e \"install.packages('Rcpp')\""
        sudo su - -c "R -e \"install.packages('devtools')\""
        sudo su - -c "R -e \"devtools::install('$rnaseqdea_dir')\""
 fi
