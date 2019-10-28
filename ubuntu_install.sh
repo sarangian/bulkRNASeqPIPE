@@ -362,7 +362,7 @@ declare -a piplist=("luigi" "numpy" "scipy" "biopython" "matplotlib" "pandas" "o
             fi
     done
 # ----------------------------Downlaod and Install tools---------------------
-if ! [ "$(blastall --help | grep -c "2.8.")" == 1 ] || [ "$(blastall --help | grep -c "2.9.")" == 1 ];
+if ! [ "$(makeblastdb -help | grep -c "2.8.")" == 1 ] || [ "$(makeblastdb -help | grep -c "2.9.")" == 1 ];
 then
         echo -e "\e[1;31m makeblastdb --version >=2.8.0 required for running PROKKA. Now downloading and installing NCBI-BLAST-2.9.0 \e[0m"; 
         download $NCBI_BLAST_DOWNLOAD_URL "BLAST-${NCBI_BLAST_VERSION}.tar.gz"
