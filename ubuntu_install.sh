@@ -210,7 +210,7 @@ fi
 #----minal dependancies------
 declare -a dpkglist=( "libbz2-dev" "libtcl8.6" "gfortran" "libtk8.6" "liblzma-dev" "zlib1g" "zlib1g-dev" "cpanminus" 
 "libdatetime-perl" "libxml-simple-perl" "gcc" "g++" "zlib1g-dev" "liblapack-dev" "libblas-dev" "libxml2-dev" 
-"libssl-dev" "libpcre3-dev" "libboost-dev" "libcurl4-openssl-dev" "libcurl4-gnutls-dev" "wget" "curl" "git" "default-jre" 
+"libssl-dev" "libpcre3-dev" "libboost-dev" "libcurl4-gnutls-dev" "wget" "curl" "git" "default-jre" 
 "python" "python3" "python-docutils" "python-setuptools" "python-testresources" "python3-testresources"
 "hmmer" "bowtie2" "fastqc")
 
@@ -230,7 +230,7 @@ done
 #----packages from git-hub, wget and apt-get 
 #-----------------Checking pre installed tools--------------------------
 declare -a tool_list=("spades.py" "quast.py" "Rockhopper.jar" "pplacer" "featureCounts" "prodigal" "samtools"
- "corset" "rcorrector" "Lace.py" "bbduk.sh" "STAR" "dart" "hisat2" "salmon" "kallisto" "hmmer")
+ "corset" "rcorrector" "Lace.py" "bbduk.sh" "STAR" "dart" "hisat2" "salmon" "kallisto")
 ## now loop through the above array
 for package in "${tool_list[@]}"
 do
@@ -298,7 +298,7 @@ function apt_install {
 #-----------------------------Check and install minimal dependancies-------------------------
 declare -a dpkglist=("libbz2-dev" "libtcl8.6" "gfortran" "libtk8.6" "liblzma-dev" "zlib1g" "zlib1g-dev" "cpanminus" 
 "libdatetime-perl" "libxml-simple-perl" "gcc" "g++" "zlib1g-dev" "liblapack-dev" "libblas-dev" "libxml2-dev" 
-"libssl-dev" "libpcre3-dev" "libboost-dev" "libcurl4-openssl-dev" "libcurl4-gnutls-dev" "wget" "curl" "git" "default-jre" 
+"libssl-dev" "libpcre3-dev" "libboost-dev" "libcurl4-gnutls-dev" "wget" "curl" "git" "default-jre" 
 "python" "python3" "python-docutils" "python-setuptools" "python-testresources" "python3-testresources"
 "hmmer" "bowtie2" "fastqc")
 
@@ -377,7 +377,7 @@ fi
 #-------------------------QUAST----------------------------------------------
 if ! [ $(which quast.py 2 > /dev/null) ];then
     cd $build_dir
-    download QUAST_DOWNLOAD_URL "QUAST-${QUAST_VERSION}.tar.gz"
+    download $QUAST_DOWNLOAD_URL "QUAST-${QUAST_VERSION}.tar.gz"
     quast_dir="$build_dir/quast-5.0.2"
     tar -xvzf QUAST-${QUAST_VERSION}.tar.gz
     cd $quast_dir
