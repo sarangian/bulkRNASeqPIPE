@@ -362,10 +362,13 @@ declare -a piplist=("luigi" "numpy" "scipy" "biopython" "matplotlib" "pandas" "o
             fi
     done
 # ----------------------------Downlaod and Install tools---------------------
-if ! [ "$(makeblastdb -help | grep -c "2.8.")" == 1 ] || [ "$(makeblastdb -help | grep -c "2.9.")" == 1 ];
+if  [ "$(makeblastdb -help | grep -c "2.8.")" == 1 ] || [ "$(makeblastdb -help | grep -c "2.9.")" == 1 ];
 then
+        mbdb_version=$(makeblastdb -help | grep "Application to create BLAST databases" | cut -f10 -d " ")
+        echo -e "\e[1;31m makeblastdb $mbdb_version available in path\e[0m";
+else
         echo -e "\e[1;31m makeblastdb --version >=2.8.0 required for running PROKKA. Now downloading and installing NCBI-BLAST-2.9.0 \e[0m"; 
-        download $NCBI_BLAST_DOWNLOAD_URL "BLAST-${NCBI_BLAST_VERSION}.tar.gz"
+	download $NCBI_BLAST_DOWNLOAD_URL "BLAST-${NCBI_BLAST_VERSION}.tar.gz"
         blast_dir="$build_dir/ncbi-blast-2.9.0+/bin"
         tar -xvzf BLAST-${NCBI_BLAST_VERSION}.tar.gz
         sudo cp $blast_dir/* /usr/local/bin
@@ -405,7 +408,6 @@ if ! [ $(which featureCount_edgeR.r 2>/dev/null) ];then
     rnaseqdea_dir="$build_dir/RNASEQDEA"
     chmod -R 755 $rnaseqdea_dir
 fi
-
 
 # --------------- --------CORSET-----------------------------------------------
 if ! [ $(which corset 2>/dev/null) ];then
