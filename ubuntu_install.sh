@@ -280,7 +280,7 @@ clone () {
 # INSTALLING TOOLS FROM PIP
 
 function pip_install {
-  sudo pip3 install --user "$@"
+  sudo -H pip3 install "$@"
   #sudo python3 -m pip install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
@@ -350,17 +350,8 @@ if  [python3 -c "import pip3" &> /dev/null];
 	     then 
              echo "pip version >=19.3.1 in path"
         else
-             echo "pip 19.3.1 will be installed now"
-             sleep 2s
-    		cd $build_dir
-    		pip_dir="$build_dir/pip-latest"
-    		if [ ! -d "$pip_dir" ]; then
-        	mkdir -p $pip_dir
-    		fi
-    			cd $pip_dir
-    			curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    			chmod 755 get-pip.py
-    			sudo python3 get-pip.py
+             echo "pip version will be updated now"
+             sudo -H pip3 install --upgrade pip
         fi
 else
      echo "pip 19.3.1 will be installed"
