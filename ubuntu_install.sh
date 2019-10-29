@@ -280,8 +280,8 @@ clone () {
 # INSTALLING TOOLS FROM PIP
 
 function pip_install {
-  sudo pip3 install --user "$@"
-  #sudo python3 -m pip install "$@"
+  #sudo pip3 install --user "$@"
+  sudo python3 -m pip install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
     exit 1
@@ -341,28 +341,60 @@ else
      sudo dpkg -i PANDOC-${PANDOC_VERSION}.deb
 fi
 
-#####
-
+#########Pip3 Version
+if  [python3 -c "import pip3" &> /dev/null];
+     then
+        currentver="$(pip3 --version)"
+        requiredver="19.3.1"
+        if [ "$(printf '%s\n' "$requiredver" "$currentver" | sort -V | head -n1)" = "$requiredver" ]; 
+	     then 
+             echo "pip version >=19.3.1 in path"
+        else
+             echo "pip 19.3.1 will be installed now"
+             sleep 2s
+    		cd $build_dir
+    		pip_dir="$build_dir/pip-latest"
+    		if [ ! -d "$pip_dir" ]; then
+        	mkdir -p $pip_dir
+    		fi
+    			cd $pip_dir
+    			curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    			chmod 755 get-pip.py
+    			sudo python3 get-pip.py
+        fi
+else
+     echo "pip 19.3.1 will be installed"
+     cd $build_dir
+     pip_dir="$build_dir/pip-latest"
+    		if [ ! -d "$pip_dir" ]; then
+        	   mkdir -p $pip_dir
+    		fi
+    	         
+		cd $pip_dir
+    		curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    		chmod 755 get-pip.py
+    		sudo python3 get-pip.py
+fi
 
 #####
 # ------------------------Check and install tools from pip --------------------------------
-if [ "$(pip3 --version | grep -c "19.")" == 1 ];
-then
-    pip_version=$(pip3 --version | cut -f2 -d " ")
-    echo -e "\e[1;36m pip-v$pip_version \tinstalled \e[0m";
-else
-    echo -e "\e[1;36m I am going to install latest version of pip \e[0m";
-    sleep 2s
-    cd $build_dir
-    pip_dir="$build_dir/pip-latest"
-    if [ ! -d "$pip_dir" ]; then
-        mkdir -p $pip_dir
-    fi
-    cd $pip_dir
-    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    chmod 755 get-pip.py
-    sudo python3 get-pip.py
-fi
+#if [ "$(pip3 --version | grep -c "19.")" == 1 ];
+#then
+    #pip_version=$(pip3 --version | cut -f2 -d " ")
+    #echo -e "\e[1;36m pip-v$pip_version \tinstalled \e[0m";
+#else
+    #echo -e "\e[1;36m I am going to install latest version of pip \e[0m";
+    #sleep 2s
+    #cd $build_dir
+    #pip_dir="$build_dir/pip-latest"
+    #if [ ! -d "$pip_dir" ]; then
+        #mkdir -p $pip_dir
+    #fi
+    #cd $pip_dir
+    #curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    #chmod 755 get-pip.py
+    #sudo python3 get-pip.py
+#fi
 
 #----packages from pip-------
 declare -a piplist=("luigi" "numpy" "scipy" "matplotlib" "pandas" "optparse" "argparse")
