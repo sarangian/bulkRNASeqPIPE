@@ -1,9 +1,12 @@
 # bulkRNASeqPIPE
 Differential Expression Analysis of bulk-RNASeq data
 
-git clone https://github.com/sarangian/bulkRNASeqPIPE.git \n
-cd bulkRNASeqPIPE \n
-chmod 755 ubuntu_install.sh \n
+git clone https://github.com/sarangian/bulkRNASeqPIPE.git
+
+cd bulkRNASeqPIPE
+
+chmod 755 ubuntu_install.sh
+
 ./ubuntu_install.sh
 
 After successful installation please source ~/.bashrc
