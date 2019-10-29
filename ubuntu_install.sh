@@ -324,8 +324,9 @@ sudo apt-get clean
      then
         currentver="$(pandoc --version)"
         requiredver="1.19.2.1"
-        if [ "$(printf '%s\n' "$requiredver" "$currentver" | sort -V | head -n1)" = "$requiredver" ]; then 
-        echo "pandoc $currentver in path"
+        if [ "$(printf '%s\n' "$requiredver" "$currentver" | sort -V | head -n1)" = "$requiredver" ]; 
+	     then 
+             echo "pandoc version >=1.19.1 in path"
         else
              echo "pandoc 2.7.3 will be installed"
              cd $build_dir
