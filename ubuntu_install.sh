@@ -318,6 +318,28 @@ do
 done
 sudo apt-get update --fix-missing
 sudo apt-get clean
+
+###Installing pandoc
+ if [ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep -c "ok installed") -eq 1 ];
+     then
+        currentver="$(pandoc --version)"
+        requiredver="1.19.2.1"
+        if [ "$(printf '%s\n' "$requiredver" "$currentver" | sort -V | head -n1)" = "$requiredver" ]; then 
+        echo "pandoc $currentver in path"
+        else
+             echo "pandoc 2.7.3 will be installed"
+             cd $build_dir
+             download $PANDOC_DOWNLOAD_URL "PANDOC-${PANDOC_VERSION}.deb"
+             sudo dpkg -i PANDOC-${PANDOC_VERSION}.deb
+        fi
+else
+     echo "pandoc 2.7.3 will be installed"
+     cd $build_dir
+     download $PANDOC_DOWNLOAD_URL "PANDOC-${PANDOC_VERSION}.deb"
+     sudo dpkg -i PANDOC-${PANDOC_VERSION}.deb
+fi
+
+###
 # ------------------------Check and install tools from pip --------------------------------
 if [ "$(pip3 --version | grep -c "19.")" == 1 ];
 then
