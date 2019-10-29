@@ -142,10 +142,12 @@ HISAT2_VERSION=2.1.0
 SAMTOOLS_VERSION=1.9
 SUBREAD_VERSION=1.6.5
 
-#R 
+#R and PANDOC
 R_VERSION=3.6.1
+PANDOC_VERSION=2.7.3
 
 #ASSEMBLY_tools_download_url
+PANDOC_DOWNLOAD_URL="https://github.com/jgm/pandoc/releases/download/${PANDOC_VERSION}/pandoc-${PANDOC_VERSION}-1-amd64.deb"
 FASTQC_DOWNLOAD_URL="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v${FASTQC_VERSION}.zip"
 QUAST_DOWNLOAD_URL="https://nchc.dl.sourceforge.net/project/quast/quast-${QUAST_VERSION}.tar.gz"
 BBMAP_DOWNLOAD_URL="https://jaist.dl.sourceforge.net/project/bbmap/BBMap_${BBMAP_VERSION}.tar.gz"
@@ -210,7 +212,7 @@ fi
 #----minal dependancies------
 declare -a dpkglist=( "libbz2-dev" "libtcl8.6" "gfortran" "libtk8.6" "liblzma-dev" "zlib1g" "zlib1g-dev" "cpanminus" 
 "libdatetime-perl" "libxml-simple-perl" "gcc" "g++" "zlib1g-dev" "liblapack-dev" "libblas-dev" "libxml2-dev" 
-"libssl-dev" "libpcre3-dev" "libboost-dev" "libcurl4-gnutls-dev" "wget" "curl" "git" "default-jre" 
+"libssl-dev" "libpcre3-dev" "libboost-dev" "libcurl4-gnutls-dev" "wget" "curl" "git" "default-jre" "pandoc"
 "python" "python3" "python-docutils" "python-setuptools" "python-testresources" "python3-testresources"
 "hmmer" "bowtie2" "fastqc")
 
