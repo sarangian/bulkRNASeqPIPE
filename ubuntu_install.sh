@@ -280,7 +280,8 @@ clone () {
 # INSTALLING TOOLS FROM PIP
 
 function pip_install {
-  sudo python3 -m pip install "$@"
+  sudo pip3 install --user "$@"
+  #sudo python3 -m pip install "$@"
   if [ $? -ne 0 ]; then
     echo "could not install $p - abort"
     exit 1
@@ -311,13 +312,13 @@ do
   then
   echo -e "installing $package"
   apt_install $package
-  sudo apt-get -f install
-  sudo apt-get -y autoremove
+  #sudo apt-get -f install
+  #sudo apt-get -y autoremove
   #sudo apt-get update --fix-missing
   fi
 done
-sudo apt-get update --fix-missing
-sudo apt-get clean
+#sudo apt-get update --fix-missing
+#sudo apt-get clean
 
 ###Installing pandoc
  if [ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep -c "ok installed") -eq 1 ];
@@ -340,7 +341,10 @@ else
      sudo dpkg -i PANDOC-${PANDOC_VERSION}.deb
 fi
 
-###
+#####
+
+
+#####
 # ------------------------Check and install tools from pip --------------------------------
 if [ "$(pip3 --version | grep -c "19.")" == 1 ];
 then
