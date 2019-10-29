@@ -212,7 +212,7 @@ fi
 #----minal dependancies------
 declare -a dpkglist=( "libbz2-dev" "libtcl8.6" "gfortran" "libtk8.6" "liblzma-dev" "zlib1g" "zlib1g-dev" "cpanminus" 
 "libdatetime-perl" "libxml-simple-perl" "gcc" "g++" "zlib1g-dev" "liblapack-dev" "libblas-dev" "libxml2-dev" 
-"libssl-dev" "libpcre3-dev" "libboost-dev" "libcurl4-gnutls-dev" "wget" "curl" "git" "default-jre" "pandoc"
+"libssl-dev" "libpcre3-dev" "libboost-dev" "libcurl4-gnutls-dev" "libmagick++-dev" "wget" "curl" "git" "default-jre" "pandoc"
 "python" "python3" "python-docutils" "python-setuptools" "python-testresources" "python3-testresources"
 "hmmer" "bowtie2" "fastqc")
 
@@ -300,7 +300,7 @@ function apt_install {
 
 #-----------------------------Check and install minimal dependancies-------------------------
 declare -a dpkglist=("libbz2-dev" "libtcl8.6" "gfortran" "libtk8.6" "liblzma-dev" "zlib1g" "zlib1g-dev" "cpanminus" 
-"libdatetime-perl" "libxml-simple-perl" "gcc" "g++" "zlib1g-dev" "liblapack-dev" "libblas-dev" "libxml2-dev" 
+"libdatetime-perl" "libxml-simple-perl" "gcc" "g++" "zlib1g-dev" "libmagick++-dev" "liblapack-dev" "libblas-dev" "libxml2-dev" 
 "libssl-dev" "libpcre3-dev" "libboost-dev" "libcurl4-gnutls-dev" "wget" "curl" "git" "default-jre" 
 "python" "python3" "python-docutils" "python-setuptools" "python-testresources" "python3-testresources"
 "hmmer" "bowtie2" "fastqc")
