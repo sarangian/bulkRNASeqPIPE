@@ -452,6 +452,7 @@ fi
 #-------------------------BBMAP----------------------------------------------
 if ! [ $(which bbduk.sh 2 > /dev/null) ];then
     cd $build_dir
+    rm -rf $build_dir/bbmap
     download $BBMAP_DOWNLOAD_URL "BBMAP-${BBMAP_VERSION}.tar.gz"
     bbmap_dir="$build_dir/bbmap"
     tar -xvzf BBMAP-${BBMAP_VERSION}.tar.gz
@@ -460,6 +461,7 @@ fi
 #-------------------------RCORRECTOR------------------------------------------
 if ! [ $(which rcorrector 2>/dev/null) ];then
     cd $build_dir
+    rm -rf $build_dir/R-CORRECTOR
     clone $RCORRECTOR_DOWNLOAD_URL "R-CORRECTOR"
     rcorrector_dir="$build_dir/R-CORRECTOR"
     cd $rcorrector_dir
@@ -477,6 +479,7 @@ fi
 # --------------- --------CORSET-----------------------------------------------
 if ! [ $(which corset 2>/dev/null) ];then
     cd $build_dir
+    rm -rf $build_dir/corset-${CORSET_VERSION}-linux64
     download $CORSET_DOWNLOAD_URL "corset-${CORSET_VERSION}-linux64.tar.gz"
     corset_dir="$build_dir/corset-${CORSET_VERSION}-linux64" 
     tar -xvzf corset-${CORSET_VERSION}-linux64.tar.gz
@@ -485,6 +488,7 @@ fi
 # --------------- --------LACE--------------------------------------------------
 if ! [ $(which Lace.py 2>/dev/null) ];then
     cd $build_dir
+    rm -rf $build_dir/Lace-${LACE_VERSION}
     download $LACE_DOWNLOAD_URL "Lace-${LACE_VERSION}.tar.gz" 
     lace_dir="$build_dir/Lace-${LACE_VERSION}" 
     tar -xvzf Lace-${LACE_VERSION}.tar.gz
@@ -493,6 +497,7 @@ fi
 # --------------- -------------spades -------------------------------------------
 if ! [ $(which spades.py 2>/dev/null) ];then
     cd $build_dir
+    rm -rf $build_dir/SPAdes-${SPADES_VERSION}-Linux
     download $SPADES_DOWNLOAD_URL "SPAdes-${SPADES_VERSION}-Linux.tar.gz"
     spades_dir="$build_dir/SPAdes-${SPADES_VERSION}-Linux/bin"
     tar -zxf SPAdes-${SPADES_VERSION}-Linux.tar.gz
@@ -513,6 +518,7 @@ fi
 # --------------- -------------featureCounts -----------------------------------------------
 if ! [ $(which featureCounts 2>/dev/null) ];then
     cd $build_dir
+    rm -rf $build_dir/subread-${SUBREAD_VERSION}-Linux-x86_64
     download $SUBREAD_DOWNLOAD_URL "subread-${SUBREAD_VERSION}-Linux-x86_64.tar.gz"
     featureCounts_dir="$build_dir/subread-${SUBREAD_VERSION}-Linux-x86_64/bin/"
     tar -xvzf subread-${SUBREAD_VERSION}-Linux-x86_64.tar.gz
@@ -521,6 +527,7 @@ fi
 # --------------- -------------pplacer ----------------------------------------------
 if ! [ $(which pplacer 2>/dev/null) ];then
     cd $build_dir
+    rm -rf $build_dir/pplacer-Linux-v${PPLACER_VERSION}
     download $PPLACER_DOWNLOAD_URL "pplacer-Linux-v${PPLACER_VERSION}.zip"
     pplacer_dir="$build_dir/pplacer-Linux-v${PPLACER_VERSION}"
     unzip pplacer-Linux-v${PPLACER_VERSION}.zip
