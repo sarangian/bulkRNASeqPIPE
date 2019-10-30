@@ -442,6 +442,7 @@ fi
 #-------------------------QUAST----------------------------------------------
 if ! [ $(which quast.py 2 > /dev/null) ];then
     cd $build_dir
+    rm -rf $build_dir/quast-5.0.2
     download $QUAST_DOWNLOAD_URL "QUAST-${QUAST_VERSION}.tar.gz"
     quast_dir="$build_dir/quast-5.0.2"
     tar -xvzf QUAST-${QUAST_VERSION}.tar.gz
@@ -548,6 +549,7 @@ fi
 #-------------------------STAR Aligner----------------------------------------------
 if ! [ $(which STAR 2>/dev/null) ];then  
     cd $build_dir
+    rm -rf $build_dir/STAR-${STAR_VERSION}
     download $STAR_DOWNLOAD_URL "STAR-${STAR_VERSION}-Linux.tar.gz"
     star_dir="$build_dir/STAR-${STAR_VERSION}/bin/Linux_x86_64"
     tar -xvzf STAR-${STAR_VERSION}-Linux.tar.gz
@@ -556,6 +558,7 @@ fi
 #-------------------------HISAT2 Aligner----------------------------------------------
 if ! [ $(which hisat2 2>/dev/null) ];then
     cd $build_dir
+    rm -rf $build_dir/hisat2-${HISAT2_VERSION}
     download $HISAT2_DOWNLOAD_URL "hisat2-${HISAT2_VERSION}-Linux_x86_64.zip"
     hisat2_dir="$build_dir/hisat2-${HISAT2_VERSION}"
     unzip hisat2-${HISAT2_VERSION}-Linux_x86_64.zip
@@ -585,6 +588,7 @@ fi
 #-------------------------salmon----------------------------------------------
 if ! [ $(which salmon 2>/dev/null) ];then
     cd $build_dir
+    rm -rf $build_dir/salmon-latest_linux_x86_64
     download $SALMON_DOWNLOAD_URL "salmon-${SALMON_VERSION}_linux_x86_64.tar.gz"
     salmon_dir="$build_dir/salmon-latest_linux_x86_64/bin"
     tar -xvzf salmon-${SALMON_VERSION}_linux_x86_64.tar.gz
@@ -593,6 +597,7 @@ fi
 #-------------------------kallisto----------------------------------------------
 if ! [ $(which kallisto 2>/dev/null) ];then
     cd $build_dir
+    rm -rf $build_dir/kallisto
     download $KALLISTO_DOWNLOAD_URL "kallisto_linux-v${KALLISTO_VERSION}.tar.gz"
     tar -xvzf kallisto_linux-v${KALLISTO_VERSION}.tar.gz
     kallisto_dir="$build_dir/kallisto"
