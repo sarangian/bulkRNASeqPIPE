@@ -2,8 +2,25 @@
 set -e
 
 # Name of application to install
-echo "###########################"
-echo "# Starting bulkRNASeqPIPE installation ..."
+
+echo "# Checking dependencies for bulkRNASeqPIPE installation ..."
+sleep 2s;
+
+declare -a dpkglist=("libssl-dev" "libcurl4-openssl-dev" "libxml2-dev")
+for package in "${dpkglist[@]}";
+	do
+  		if [ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep 
+-c "ok installed") -eq 1 ];
+			then
+  			echo -e "\e[1;36m $package \t...installed \e[0m";
+		else
+  			echo -e "\e[1;31m install $package manually using sudo. 
+The installer will auto exit\e[0m";
+			sleep 5s;
+			exit 0
+		fi
+	done
+
 #Packages through git, wget and Sourseforge
 
 THIS_DIR=$(DIRNAME=$(dirname "$0"); cd "$DIRNAME"; pwd)
@@ -180,6 +197,8 @@ echo "export PATH=\"$rnaseqdea_dir\":\$PATH" >> ~/.bashrc
 
 echo "devtools::install('$rnaseqdea_dir')" | $InstallDir/bin/R --no-save
 
+source $InstallDir/etc/profile.d/conda.sh
+$InstallDir/bin/conda init bash
 echo
 echo "$AppName Install Successfully"
 
