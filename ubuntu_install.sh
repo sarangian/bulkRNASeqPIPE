@@ -10,18 +10,18 @@ PREFIX=$HOME/RNASeqWF/
 
 if [ $(which python3 2>/dev/null) ];
         then
-        if [ "$(python3 --version | grep -c "3.5.")" == 1 ] || [ "$(python3 --version | grep -c "3.6.")" == 1 ];
+        if [ "$(python3 --version | grep -c "3.5.")" == 1 ] || [ "$(python3 --version | grep -c "3.6.")" == 1 ]  || [ "$(python3 --version | grep -c "3.7.")" == 1 ];
                 then
                 echo ""
                 echo -e "\e[1;36m                            Checking DISK USE ....      \e[0m"
 
                 if [ $(which pip3 2>/dev/null) ];
                 then 
-                  if [ "$(pip3 --version | grep -c "19.1")" == 1 ] || [ "$(pip3 --version | grep -c "19.2")" == 1 ];
+                  if [ "$(pip3 --version | grep -c "19.2")" == 1 ] || [ "$(pip3 --version | grep -c "19.3")" == 1 ];
                         then
                            echo ""
                   else 
-                    echo -e "\e[1;36m RNASeq Workflow requires pip3 version to be minimum 19.1. Installer will update $(pip3 --version) to latest \e[0m";
+                    echo -e "\e[1;36m Installer will update $(pip3 --version) to latest \e[0m";
                   fi
                 fi
         fi
