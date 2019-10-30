@@ -9,8 +9,7 @@ sleep 2s;
 declare -a dpkglist=("libssl-dev" "libcurl4-openssl-dev" "libxml2-dev")
 for package in "${dpkglist[@]}";
 	do
-  		if [ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep 
--c "ok installed") -eq 1 ];
+  		if [ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep -c "ok installed") -eq 1 ];
 			then
   			echo -e "\e[1;36m $package \t...installed \e[0m";
 		else
