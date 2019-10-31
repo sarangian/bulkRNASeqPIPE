@@ -24,6 +24,21 @@ if [ -f /etc/lsb-release ]; then
 	    done
 fi
 
+if [ -f /etc/redhat-release ]; then
+    declare -a dpkglist=("libcurl" "openssl-devel")
+    for package in "${dpkglist[@]}";
+	    do
+  		    if rpm -qa | grep $package;
+			    then
+  			    echo -e "\e[1;36m $package \t...installed \e[0m";
+		    else
+  			    echo -e "\e[1;31m install $package manually using \"sudo yum install package-name\" The installer will auto exit now\e[0m";
+			    sleep 5s;
+			    exit 0
+		    fi
+	    done
+fi
+
 #Packages through git, wget and Sourseforge
 
 THIS_DIR=$(DIRNAME=$(dirname "$0"); cd "$DIRNAME"; pwd)
