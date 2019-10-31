@@ -50,7 +50,8 @@ echo -e "Available Memory:\t  $(( ${availableM} )) MB OR $(( ${availableM} / 102
 
 echo -e "\e[1;34m_________________________________________________________________________________\e[0m"
 echo -e "Hello "$USER""
-    printf "Installation RNASeq-Pipe requires at least 5gb free disk space.\\nIf you do not have sufficient disc space, Press CTRL-C to abort the installation.\\nRNASeq Workflow will now be installed into this location:\\n"
+    printf "Installation RNASeq-Pipe requires at least 5gb free disk space.\\nIf you do not have sufficient disc space, Press CTRL-C to abort the installation.\\n\\nRNASeq Workflow will now be installed into this location:\\n"
+    printf "\\n"
     printf "%s\\n" "$PREFIX"
     printf "\\n"
     printf "  - Press ENTER to confirm the location\\n"
