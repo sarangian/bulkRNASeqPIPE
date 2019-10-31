@@ -198,7 +198,7 @@ if [[ $EntryPoint ]]; then
     chmod -R 755 $rnaseqdea_dir
     echo "export PATH=\"$rnaseqdea_dir\":\$PATH" >> ~/.bashrc
 fi
-#echo "devtools::install('$rnaseqdea_dir')" | $InstallDir/bin/R --no-save
+echo "devtools::install('$rnaseqdea_dir')" | $InstallDir/bin/R --no-save
 
 source $InstallDir/etc/profile.d/conda.sh
 $InstallDir/bin/conda init bash
