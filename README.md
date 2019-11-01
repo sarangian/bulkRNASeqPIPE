@@ -26,13 +26,10 @@ and activate bulkRNASeqPIPE environment using command `conda activate`
 ## Input files
 --sampleMetadataFile `halomicronema_target.txt`
 ```
-    Lable	                samples	             group
+Lable	                  samples	              group
 sample_1_replicate_1	  sample_1_replicate_1	  Control
-
 sample_1_replicate_2	  sample_1_replicate_2	  Control
-
 sample_2_replicate_1	  sample_2_replicate_1	  Treated
-
 sample_2_replicate_2	  sample_2_replicate_2	  Treated
 
 ```
