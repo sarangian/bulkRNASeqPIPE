@@ -4,7 +4,7 @@ Differential Expression Analysis of bulk-RNASeq data
 
 ## Dependencies
 
-Installation of bulkRNASeqPIPE, requires libboost-all-dev, libbz2-dev, and liblzma-dev installed in your system.
+Installation of bulkRNASeqPIPE, requires gcc, wget, curl, libssl-dev, libcurl4-openssl-dev, libxml2-dev, libboost-all-dev, libbz2-dev, and liblzma-dev must pre-installed in your system.
 
 
 ## Download and install
@@ -19,10 +19,11 @@ chmod 755 miniconda_x64_bulkRNASeq_install.sh
 
 
 ## Post installation instruction
-
-After successful installation. close the current terminal. In a new terminal please `source ~/.bashrc`
-and activate bulkRNASeqPIPE environment using command `conda activate`
-
+```
+After successful installation, close the current terminal. 
+In a new terminal `source ~/.bashrc`
+Activate bulkRNASeqPIPE environment using command `conda activate`
+```
 ## bulkRNASeqPIPE folder structure
 ```
 .
