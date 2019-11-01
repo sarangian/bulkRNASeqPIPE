@@ -89,7 +89,10 @@ RNASeq folder contains the raw RNASeq reads.
 Reads must be gzipped. 
 - For paired-end RNAseq reads, sample name must be suffixed with _R1.fastq.gz and _R2.fastq.gz. 
   Example: sample_1_replicate_1_R1.fastq.gz 
-         sample_1_replicate_1_R1.fastq.gz
+           sample_1_replicate_1_R2.fastq.gz
+           
+           where: sample_1_replicate_1 is sample name
+                  _R1.fastq.gz and _R2.fastq.gz are sufixes to sample name
        
 - For single-end RNAseq reads sample name must be suffixed with .fastq.gz
   Example: sample_1_replicate_1.fastq.gz
