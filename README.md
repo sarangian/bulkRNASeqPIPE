@@ -4,7 +4,7 @@ Differential Expression Analysis of bulk-RNASeq data
 
 ## Dependencies
 
-Installation of bulkRNASeqPIPE, requires gcc, wget, curl, libssl-dev, libcurl4-openssl-dev, libxml2-dev, libboost-all-dev, libbz2-dev, and liblzma-dev must pre-installed in your system.
+**Installation of bulkRNASeqPIPE, requires gcc, wget, curl, libssl-dev, libcurl4-openssl-dev, libxml2-dev, libboost-all-dev, libbz2-dev, and liblzma-dev must pre-installed in your system.**
 
 
 ## Download and install
