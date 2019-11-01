@@ -45,7 +45,6 @@ sample_2_replicate_2	  sample_2_replicate_2	  Treated
 └── bulkRNASeqPIPE
     ├── bulkRNASeqWF.py
     ├── commands.txt
-    ├── conda_install_bulkRNASeqPipe.sh
     ├── halomicronema_target.txt
     ├── LICENSE
     ├── miniconda_x64_bulkRNASeq_install.sh
