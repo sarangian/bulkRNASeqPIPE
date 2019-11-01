@@ -74,7 +74,7 @@ This file has one row per sample and is composed of at least three columns with 
 - column 2 : name of the samples --must be unique. Header of column 2 is `samples`
 - column 3 : biological conditions associated with the samples. Header of column 3 is `group`
 - column 3 : reference condition name is 'Control'
-- NOTE: each sample must have two replicates
+- NOTE: each sample must have at-least two replicates
 ```
 Lable	                  samples                 group
 sample_1_replicate_1	  sample_1_replicate_1	  Control
@@ -97,6 +97,13 @@ Reads must be gzipped.
        
 - For single-end RNAseq reads sample name must be suffixed with .fastq.gz
   Example: sample_1_replicate_1.fastq.gz
+```
+**genome** folder contains one sub-folder hexcentricum.
+```
+The sub-folder hexcentricum must contain 
+[1] The genome of the organism in fasta format with extension .fna (hexcentricum.fna) 
+[2] The gene annotation of the organism in GTF format (hexcentricum.gtf)
+NOTE: The sub-folder name, genome name and the GTF file name must be same
 ```
 ## Test Installation
 
