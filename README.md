@@ -23,23 +23,7 @@ chmod 755 miniconda_x64_bulkRNASeq_install.sh
 After successful installation. close the current terminal. In a new terminal please `source ~/.bashrc`
 and activate bulkRNASeqPIPE environment using command `conda activate`
 
-## Input files
-###### --sampleMetadataFile `halomicronema_target.txt`
-
-The user has to provide the `sampleMetadataFile` --a tab delimited file which describes the experiment. 
-This file has one row per sample and is composed of at least three columns with headers. 
-- column 1 : sample labels --must be unique. Header of column 1 is `Lable`
-- column 2 : name of the samples --must be unique. Header of column 2 is `samples`
-- column 3 : biological conditions associated with the samples. Header of column 3 is `group`
-- column 3 : reference condition name is 'Control'
-- NOTE: each sample must have two replicates
-```
-Lable	                  samples                 group
-sample_1_replicate_1	  sample_1_replicate_1	  Control
-sample_1_replicate_2	  sample_1_replicate_2	  Control
-sample_2_replicate_1	  sample_2_replicate_1	  Treated
-sample_2_replicate_2	  sample_2_replicate_2	  Treated
-```
+## bulkRNASeqPIPE folder structure
 ```
 .
 └── bulkRNASeqPIPE
@@ -79,6 +63,23 @@ sample_2_replicate_2	  sample_2_replicate_2	  Treated
         │   └── utility.cpython-36.pyc
         ├── utility.py
         └── utility.pyc
+```
+## Input files
+###### --sampleMetadataFile `halomicronema_target.txt`
+
+The user has to provide the `sampleMetadataFile` --a tab delimited file which describes the experiment. 
+This file has one row per sample and is composed of at least three columns with headers. 
+- column 1 : sample labels --must be unique. Header of column 1 is `Lable`
+- column 2 : name of the samples --must be unique. Header of column 2 is `samples`
+- column 3 : biological conditions associated with the samples. Header of column 3 is `group`
+- column 3 : reference condition name is 'Control'
+- NOTE: each sample must have two replicates
+```
+Lable	                  samples                 group
+sample_1_replicate_1	  sample_1_replicate_1	  Control
+sample_1_replicate_2	  sample_1_replicate_2	  Control
+sample_2_replicate_1	  sample_2_replicate_1	  Treated
+sample_2_replicate_2	  sample_2_replicate_2	  Treated
 ```
 
 
