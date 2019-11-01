@@ -9,11 +9,11 @@ Differential Expression Analysis of bulk-RNASeq data
 
 ## Download and install
 
-git clone   https://github.com/sarangian/bulkRNASeqPIPE.git
+git     clone       https://github.com/sarangian/bulkRNASeqPIPE.git
 
-cd  bulkRNASeqPIPE
+cd      bulkRNASeqPIPE
 
-chmod   755 miniconda_x64_bulkRNASeq_install.sh
+chmod       755     miniconda_x64_bulkRNASeq_install.sh
 
 ./miniconda_x64_bulkRNASeq_install.sh
 
