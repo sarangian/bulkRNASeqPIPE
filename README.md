@@ -2,12 +2,12 @@
 Differential Expression Analysis of bulk-RNASeq data
 
 
-# Pre installation checks
+# Dependencies
 
 Installation of bulkRNASeqPIPE, requires libboost-all-dev, libbz2-dev, and liblzma-dev installed in your system.
 
 
-# Installation instruction
+# Download and install
 
 git clone https://github.com/sarangian/bulkRNASeqPIPE.git
 
@@ -16,6 +16,7 @@ cd bulkRNASeqPIPE
 chmod 755 miniconda_x64_bulkRNASeq_install.sh
 
 ./miniconda_x64_bulkRNASeq_install.sh
+
 
 # Post installation instruction
 
