@@ -48,7 +48,6 @@ Activate bulkRNASeqPIPE environment using command `conda activate`
     │       ├── sample_2_replicate_2_R1.fastq.gz
     │       └── sample_2_replicate_2_R2.fastq.gz
     ├── README.md
-    ├── setup.py
     ├── ubuntu_install.sh
     └── utility
         ├── adapters.fasta.gz
