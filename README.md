@@ -32,7 +32,7 @@ This file has one row per sample and is composed of at least three columns with 
 - column 2 : name of the samples --must be unique. Header of column 2 is `samples`
 - column 3 : biological conditions associated with the samples. Header of column 3 is `group`
 - column 3 : reference condition name is 'Control'
-NOTE: each sample must have two replicates
+*NOTE: each sample must have two replicates
 ```
 Lable	                  samples                 group
 sample_1_replicate_1	  sample_1_replicate_1	  Control
