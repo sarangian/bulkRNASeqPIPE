@@ -5,9 +5,9 @@ git clone https://github.com/sarangian/bulkRNASeqPIPE.git
 
 cd bulkRNASeqPIPE
 
-chmod 755 ubuntu_install.sh
+chmod 755 miniconda_x64_bulkRNASeq_install.sh
 
-./ubuntu_install.sh
+./miniconda_x64_bulkRNASeq_install.sh
 
 After successful installation please source ~/.bashrc
 
