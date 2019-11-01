@@ -40,6 +40,48 @@ sample_1_replicate_2	  sample_1_replicate_2	  Control
 sample_2_replicate_1	  sample_2_replicate_1	  Treated
 sample_2_replicate_2	  sample_2_replicate_2	  Treated
 ```
+```
+.
+└── bulkRNASeqPIPE
+    ├── bulkRNASeqWF.py
+    ├── commands.txt
+    ├── conda_install_bulkRNASeqPipe.sh
+    ├── halomicronema_target.txt
+    ├── LICENSE
+    ├── miniconda_x64_bulkRNASeq_install.sh
+    ├── raw_data
+    │   ├── genome
+    │   │   └── hexcentricum
+    │   │       ├── hexcentricum.fna
+    │   │       └── hexcentricum.gtf
+    │   └── RNASeq
+    │       ├── sample_1_replicate_1_R1.fastq.gz
+    │       ├── sample_1_replicate_1_R2.fastq.gz
+    │       ├── sample_1_replicate_2_R1.fastq.gz
+    │       ├── sample_1_replicate_2_R2.fastq.gz
+    │       ├── sample_2_replicate_1_R1.fastq.gz
+    │       ├── sample_2_replicate_1_R2.fastq.gz
+    │       ├── sample_2_replicate_2_R1.fastq.gz
+    │       └── sample_2_replicate_2_R2.fastq.gz
+    ├── README.md
+    ├── setup.py
+    ├── ubuntu_install.sh
+    └── utility
+        ├── adapters.fasta.gz
+        ├── filter_rcorrector_pe.py
+        ├── filter_rcorrector_se.py
+        ├── FormatRockhopTrans.py
+        ├── __init__.py
+        ├── __init__.pyc
+        ├── PlotDESEQ2.Rmd
+        ├── PlotEDGER.Rmd
+        ├── __pycache__
+        │   ├── __init__.cpython-36.pyc
+        │   └── utility.cpython-36.pyc
+        ├── utility.py
+        └── utility.pyc
+```
+
 
 ## Test Installation
 
