@@ -1,6 +1,14 @@
 # bulkRNASeqPIPE
 Differential Expression Analysis of bulk-RNASeq data
 
+
+# Pre installation checks
+
+Installation of bulkRNASeqPIPE, requires libboost-all-dev, libbz2-dev, and liblzma-dev installed in your system.
+
+
+# Installation instruction
+
 git clone https://github.com/sarangian/bulkRNASeqPIPE.git
 
 cd bulkRNASeqPIPE
@@ -9,16 +17,16 @@ chmod 755 miniconda_x64_bulkRNASeq_install.sh
 
 ./miniconda_x64_bulkRNASeq_install.sh
 
-After successful installation please source ~/.bashrc
+# Post installation instruction
 
-Test Installation
------------------
+After successful installation. close the current terminal. In a new terminal please source ~/.bashrc
+and activate bulkRNASeqPIPE environment using command "conda activate"
 
-#Create Project
+# Test Installation
 
+# Create Project
 python3 bulkRNASeqWF.py prepareProject --projectName halomicronema --sampleMetadataFile halomicronema_target.txt --sampleHeader samples --groupHeader group --refCondName Control --local-scheduler
 
 
-#Transcript based differential expression analysis
-
+# Transcript based differential expression analysis
 python3 bulkRNASeqWF.py transcriptomeBasedDEA --projectName halomicronema/ --domain prokaryote --predTranscript yes --readType paired --quantMethod kallisto --genomeName hexcentricum --transcriptName hexcentricum --deaMethod deseq2 --factorInt group --refCond Control --resultTag hexcentricum_treated_vs_control --targetFile halomicronema_target.txt --local-scheduler
