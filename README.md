@@ -100,9 +100,9 @@ Reads must be gzipped.
 ```
 **genome** folder contains one sub-folder (sub-folder name must not contain any gap or special characters)
 ```
-The sub-folder hexcentricum must contain 
-[1] The genome of the organism in fasta format with .fna extension (hexcentricum.fna) 
-[2] The gene annotation of the organism in GTF format (hexcentricum.gtf)
+The sub-folder hexcentricum should contain 
+[1] The genome of the organism in fasta format with .fna extension (hexcentricum.fna) [MANDATORY for both prokaryotes or eukaryotes]
+[2] The gene annotation of the organism in GTF format (hexcentricum.gtf) [MANDATORY for eukaryotes, OPTIONAL for prokaryotes]
 NOTE: The sub-folder name, genome name and the GTF file name must be same
 
 EXAMPLE: If the organism name is XYZ, then the sub-folder name must be XYZ, genome name must be XYZ.fna, annotation file name must be XYZ.gtf
