@@ -19,11 +19,11 @@ chmod 755 miniconda_x64_bulkRNASeq_install.sh
 
 
 ## Post installation instruction
-```
+
 After successful installation, close the current terminal. 
 In a new terminal `source ~/.bashrc`
 Activate bulkRNASeqPIPE environment using command `conda activate`
-```
+
 ## bulkRNASeqPIPE folder structure
 ```
 .
