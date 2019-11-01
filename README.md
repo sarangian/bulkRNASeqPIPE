@@ -98,7 +98,7 @@ Reads must be gzipped.
 - For single-end RNAseq reads sample name must be suffixed with .fastq.gz
   Example: sample_1_replicate_1.fastq.gz
 ```
-**genome** folder contains one sub-folder [Example: hexcentricum i.e name of the genome].
+**genome** folder contains one sub-folder [Example: 'hexcentricum'   i.e name of the organism].
 ```
 The sub-folder hexcentricum must contain 
 [1] The genome of the organism in fasta format with extension .fna (hexcentricum.fna) 
