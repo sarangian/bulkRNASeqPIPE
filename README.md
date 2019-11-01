@@ -82,7 +82,8 @@ sample_1_replicate_2	  sample_1_replicate_2	  Control
 sample_2_replicate_1	  sample_2_replicate_1	  Treated
 sample_2_replicate_2	  sample_2_replicate_2	  Treated
 ```
-
+## Folder Structure
+**raw_data:** The folder raw_data contains two sub-folders [1] RNASeq [2] genome
 
 ## Test Installation
 
