@@ -185,6 +185,7 @@ conda install -y \
 	corset \
 	curl \
 	fastqc \
+	gffutils \
 	git \
 	gxx_linux-64 \
 	hisat2 \
