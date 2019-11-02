@@ -176,7 +176,7 @@ conda config --add channels statiskit
 conda config --add channels r
 #conda install -y r-base=3.6.1 star python=3.6
 #conda install -y -c anaconda -c conda-forge -c bioconda -c defaults -c statiskit -c r r-base=3.6.1 r-rcurl r-devtools pandoc bioconductor-rhdf5lib gxx_linux-64 git libxml2 libcurl libopenblas libboost libtool curl bzip2 wget bbmap fastqc rcorrector spades hisat2 star corset lace salmon kallisto samtools prokka bowtie2 luigi pandas numpy scipy biopython perl-bioperl python=3.6
-conda install -y \
+conda install -y -n $AppName \
 	bbmap \
 	bioconductor-rhdf5lib \
 	biopython \
@@ -264,5 +264,5 @@ echo ""
 echo -e "\e[1;31m ****Post Installation Instructions****\e[0m";
 echo -e "\e[1;36m \t[1]\tRestart the terminal first.  \e[0m";
 echo -e "\e[1;36m \t[2]\tIn the new terminal, source your .bashrc file using command: source ~/.bashrc  \e[0m";
-echo -e "\e[1;36m \t[3]\tActivate conda environment using command: conda activate \e[0m";
+echo -e "\e[1;36m \t[3]\tActivate conda environment using command: conda activate $AppName\e[0m";
 echo -e "\e[1;36m Have a great day --STLab Team \e[0m";
