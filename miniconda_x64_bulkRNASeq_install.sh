@@ -250,6 +250,13 @@ fi
 
 if [[ $EntryPoint ]]; then
     cd $InstallDir
+    git clone "https://github.com/grimbough/rhdf5.git"
+    rhdf5_dir="$InstallDir/rhdf5"
+fi
+echo "devtools::install('$rhdf5_dir')" | $InstallDir/bin/R --no-save
+
+if [[ $EntryPoint ]]; then
+    cd $InstallDir
     git clone "https://github.com/sarangian/RNASeqDEA.git"
     rnaseqdea_dir="$InstallDir/RNASeqDEA"
     chmod -R 755 $rnaseqdea_dir
