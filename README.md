@@ -70,13 +70,13 @@ Activate bulkRNASeqPIPE environment using command `conda activate`
 
 The user has to provide the `sampleMetadataFile` --a tab delimited file which describes the experiment. 
 This file has one row per sample and is composed of at least three columns with headers. 
-- column 1 : sample labels --must be unique. Header of column 1 is `Lable`
-- column 2 : name of the samples --must be unique. Header of column 2 is `samples`
-- column 3 : biological conditions associated with the samples. Header of column 3 is `group`
+- column 1 : sample labels --must be unique. Header of column 1 is `lable`
+- column 2 : name of the samples --must be unique. Header of column 2 *must be* `samples`
+- column 3 : biological conditions associated with the samples. Header of column 3 is `conditions`
 - column 3 : reference condition name is 'Control'
 - NOTE: each sample must have at-least two replicates
 ```
-Lable	                                  Samples                                 Conditions
+lable	                                  samples                                 conditions
 h_excentricum_sample_1_replicate_1	  h_excentricum_sample_1_replicate_1	  Control
 h_excentricum_sample_1_replicate_2	  h_excentricum_sample_1_replicate_2	  Control
 h_excentricum_sample_2_replicate_1	  h_excentricum_sample_2_replicate_1	  Treated
