@@ -76,7 +76,7 @@ This file has one row per sample and is composed of at least three columns with 
 - column 3 : reference condition name is 'Control'
 - NOTE: each sample must have at-least two replicates
 ```
-Lable	                                  Samples                                  Conditions
+Lable	                                  Samples                                 Conditions
 h_excentricum_sample_1_replicate_1	  h_excentricum_sample_1_replicate_1	  Control
 h_excentricum_sample_1_replicate_2	  h_excentricum_sample_1_replicate_2	  Control
 h_excentricum_sample_2_replicate_1	  h_excentricum_sample_2_replicate_1	  Treated
