@@ -76,11 +76,11 @@ This file has one row per sample and is composed of at least three columns with 
 - column 3 : reference condition name is 'Control'
 - NOTE: each sample must have at-least two replicates
 ```
-Lable	                  samples                 group
-sample_1_replicate_1	  sample_1_replicate_1	  Control
-sample_1_replicate_2	  sample_1_replicate_2	  Control
-sample_2_replicate_1	  sample_2_replicate_1	  Treated
-sample_2_replicate_2	  sample_2_replicate_2	  Treated
+Lable	                              Samples                                 Conditions
+h_excentricum_sample_1_replicate_1	  h_excentricum_sample_1_replicate_1	  Control
+h_excentricum_sample_1_replicate_2	  h_excentricum_sample_1_replicate_2	  Control
+h_excentricum_sample_2_replicate_1	  h_excentricum_sample_2_replicate_1	  Treated
+h_excentricum_sample_2_replicate_2	  h_excentricum_sample_2_replicate_2	  Treated
 ```
 ## Folder Structure
 **raw_data:** The folder raw_data contains two sub-folders [1] RNASeq [2] genome.
@@ -89,10 +89,10 @@ sample_2_replicate_2	  sample_2_replicate_2	  Treated
 ```
 Reads must be gzipped. 
 - For paired-end RNAseq reads, sample name must be suffixed with _R1.fastq.gz and _R2.fastq.gz. 
-  Example: sample_1_replicate_1_R1.fastq.gz 
-           sample_1_replicate_1_R2.fastq.gz
+  Example: h_excentricum_sample_1_replicate_1_R1.fastq.gz 
+           h_excentricum_sample_1_replicate_1_R2.fastq.gz
            
-           where: sample_1_replicate_1 is sample name
+           where: h_excentricum_sample_1_replicate_1 is sample name
                   _R1.fastq.gz and _R2.fastq.gz are sufixes to sample name
        
 - For single-end RNAseq reads sample name must be suffixed with .fastq.gz
@@ -110,8 +110,8 @@ EXAMPLE: If the organism name is XYZ, then the sub-folder name must be XYZ, geno
 ## Test Installation
 
 ###### Create Project
-python bulkRNASeqWF.py prepareProject --projectName `halomicronema` --sampleMetadataFile `halomicronema_target.txt` --sampleHeader `samples` --groupHeader `group` --refCondName `Control` --local-scheduler
+python bulkRNASeqWF.py prepareProject --projectName `halomicronema` --sampleMetadataFile `halomicronema_target.txt` --sampleHeader `Samples` --groupHeader `Conditions` --refCondName `Control` --local-scheduler
 
 
 ###### Transcript based differential expression analysis
-python bulkRNASeqWF.py transcriptomeBasedDEA --projectName halomicronema/ --domain prokaryote --predTranscript yes --readType paired --quantMethod kallisto --genomeName hexcentricum --transcriptName hexcentricum --deaMethod deseq2 --factorInt group --refCond Control --resultTag hexcentricum_treated_vs_control --targetFile halomicronema_target.txt --local-scheduler
+python bulkRNASeqWF.py transcriptomeBasedDEA --projectName halomicronema/ --domain prokaryote --predTranscript yes --readType paired --quantMethod kallisto --genomeName hexcentricum --transcriptName hexcentricum --deaMethod deseq2 --factorInt Conditions --refCond Control --resultTag hexcentricum_treated_vs_control --targetFile halomicronema_target.txt --local-scheduler
