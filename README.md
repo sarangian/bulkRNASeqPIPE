@@ -96,7 +96,10 @@ Reads must be gzipped.
                   _R1.fastq.gz and _R2.fastq.gz are sufixes to sample name
        
 - For single-end RNAseq reads sample name must be suffixed with .fastq.gz
-  Example: sample_1_replicate_1.fastq.gz
+  Example: yeast_sample_1_replicate_1.fastq.gz
+  
+           where: yeast_sample_1_replicate_1 is sample name
+                  .fastq.gz is sufixes to sample name
 ```
 **genome** folder contains one sub-folder (sub-folder name must not contain any gap or special characters)
 ```
