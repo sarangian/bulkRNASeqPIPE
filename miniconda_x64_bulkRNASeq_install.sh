@@ -209,9 +209,13 @@ if ! [ $(which Trinity 2>/dev/null) ];then
 	make plugins -C trinityrnaseq-v2.8.6
         echo "export PATH=$PATH:$PWD/bin ; $PWD/trinityrnaseq-v2.8.6/Trinity \$@" > $PWD/bin/Trinity
 	chmod +x $PWD/bin/Trinity
-	echo "TRINITY_HOME=$InstallDir/trinityrnaseq-v2.8.6" >> ~/.bashrc
+	echo "export PATH=\"$(pwd)/trinityrnaseq-v2.8.6\":\$PATH" >> ~/.bashrc
+	echo "export TRINITY_HOME=$InstallDir/trinityrnaseq-v2.8.6" >> ~/.bashrc
     fi
 fi
+
+export PATH=/home/sutripa/software/trinityrnaseq:$PATH
+export TRINITYHOME=/home/sutripa/software/trinityrnaseq
 
 if [[ $EntryPoint ]]; then
     cd $InstallDir
