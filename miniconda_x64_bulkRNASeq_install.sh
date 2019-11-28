@@ -168,6 +168,65 @@ with open(site_file,'w') as fout:
     fout.writelines(lines)
 END
 
+# Add Entry Point to the path
+if [[ $EntryPoint ]]; then
+
+    cd $InstallDir
+    mkdir Scripts
+    ln -s ../bin/$EntryPoint Scripts/$EntryPoint
+
+    echo "$EntryPoint script installed to $(pwd)/Scripts"
+    echo "export PATH=\"$(pwd)/Scripts\":\$PATH" >> ~/.bashrc
+fi
+
+if [[ $EntryPoint ]]; then
+    bin_dir="$InstallDir/bin"
+    cd "$bin_dir"
+    wget "https://cs.wellesley.edu/~btjaden/Rockhopper/download/version_2_0_3/Rockhopper.jar"
+    chmod 755 Rockhopper.jar
+fi
+
+if ! [ $(which dart 2>/dev/null) ];then
+    if [[ $EntryPoint ]]; then
+        cd $InstallDir
+        git clone "https://github.com/hsinnan75/Dart.git"
+        dart_dir="$InstallDir/Dart"
+        bin_dir="$InstallDir/bin"
+        cd $dart_dir
+        mkdir -p bin
+        make
+        cp $dart_dir/bin/bwt_index $bin_dir/
+        cp $dart_dir/bin/dart $bin_dir/
+    fi
+fi
+
+if ! [ $(which Trinity 2>/dev/null) ];then
+    if [[ $EntryPoint ]]; then
+        cd $InstallDir
+        wget https://github.com/trinityrnaseq/trinityrnaseq/releases/download/v2.8.6/trinityrnaseq-v2.8.6.FULL.tar.gz
+	    tar -zxvf trinityrnaseq-v2.8.6.FULL.tar.gz ; rm trinityrnaseq-v2.8.6.FULL.tar.gz
+        make -C trinityrnaseq-v2.8.6
+	    make plugins -C trinityrnaseq-v2.8.6
+        echo "export PATH=$PATH:$PWD/bin ; $PWD/trinityrnaseq-v2.8.6/Trinity \$@" > $PWD/bin/Trinity
+	    chmod +x $PWD/bin/Trinity
+    fi
+fi
+
+if [[ $EntryPoint ]]; then
+    cd $InstallDir
+    git clone "https://github.com/grimbough/rhdf5.git"
+    rhdf5_dir="$InstallDir/rhdf5"
+fi
+
+if [[ $EntryPoint ]]; then
+    cd $InstallDir
+    git clone "https://github.com/sarangian/RNASeqDEA.git"
+    rnaseqdea_dir="$InstallDir/RNASeqDEA"
+    chmod -R 755 $rnaseqdea_dir
+    echo "export PATH=\"$rnaseqdea_dir\":\$PATH" >> ~/.bashrc
+fi
+
+
 conda config --add channels defaults
 conda config --add channels anaconda
 conda config --add channels conda-forge
@@ -176,6 +235,7 @@ conda config --add channels statiskit
 conda config --add channels r
 #conda install -y r-base=3.6.1 star python=3.6
 conda install -y -c anaconda -c conda-forge -c bioconda -c defaults -c statiskit -c r r-base=3.6.1 r-rcurl r-devtools pandoc bioconductor-rhdf5lib gxx_linux-64 git libxml2 libcurl libopenblas libboost libtool curl bzip2 wget bbmap fastqc rcorrector spades hisat2 star corset lace salmon kallisto samtools prokka bowtie2 luigi pandas numpy scipy biopython perl-bioperl python=3.6
+
 <<COMMENT
 conda install -y \
 	bbmap \
@@ -219,64 +279,11 @@ COMMENT
 rm Miniconda_Install.sh
 conda clean -iltp --yes
 
-# Add Entry Point to the path
-if [[ $EntryPoint ]]; then
 
-    cd $InstallDir
-    mkdir Scripts
-    ln -s ../bin/$EntryPoint Scripts/$EntryPoint
 
-    echo "$EntryPoint script installed to $(pwd)/Scripts"
-    echo "export PATH=\"$(pwd)/Scripts\":\$PATH" >> ~/.bashrc
-fi
 
-if [[ $EntryPoint ]]; then
-    bin_dir="$InstallDir/bin"
-    cd "$bin_dir"
-    wget "https://cs.wellesley.edu/~btjaden/Rockhopper/download/version_2_0_3/Rockhopper.jar"
-    chmod 755 Rockhopper.jar
-fi
-
-if ! [ $(which dart 2>/dev/null) ];then
-    if [[ $EntryPoint ]]; then
-        cd $InstallDir
-        git clone "https://github.com/hsinnan75/Dart.git"
-        dart_dir="$InstallDir/Dart"
-	bin_dir="$InstallDir/bin"
-        cd $dart_dir
-        make
-        cp bwt_index $bin_dir/
-        cp dart $bin_dir/
-    fi
-fi
-
-if ! [ $(which Trinity 2>/dev/null) ];then
-    if [[ $EntryPoint ]]; then
-    	bin_dir="$InstallDir/bin"
-        cd $InstallDir
-        wget https://github.com/trinityrnaseq/trinityrnaseq/releases/download/v2.8.6/trinityrnaseq-v2.8.6.FULL.tar.gz
-	tar -zxvf trinityrnaseq-v2.8.6.FULL.tar.gz ; rm trinityrnaseq-v2.8.6.FULL.tar.gz
-        make -C trinityrnaseq-v2.8.6
-	make plugins -C trinityrnaseq-v2.8.6
-        echo "export PATH=$PATH:$PWD/bin ; $PWD/trinityrnaseq-v2.8.6/Trinity \$@" > $PWD/bin/Trinity
-	chmod +x $PWD/bin/Trinity
-    fi
-fi
-
-if [[ $EntryPoint ]]; then
-    cd $InstallDir
-    git clone "https://github.com/grimbough/rhdf5.git"
-    rhdf5_dir="$InstallDir/rhdf5"
-fi
+#Install R package for DEA
 echo "devtools::install('$rhdf5_dir')" | $InstallDir/bin/R --no-save
-
-if [[ $EntryPoint ]]; then
-    cd $InstallDir
-    git clone "https://github.com/sarangian/RNASeqDEA.git"
-    rnaseqdea_dir="$InstallDir/RNASeqDEA"
-    chmod -R 755 $rnaseqdea_dir
-    echo "export PATH=\"$rnaseqdea_dir\":\$PATH" >> ~/.bashrc
-fi
 echo "devtools::install('$rnaseqdea_dir')" | $InstallDir/bin/R --no-save
 
 source $InstallDir/etc/profile.d/conda.sh
