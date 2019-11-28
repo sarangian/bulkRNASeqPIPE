@@ -200,22 +200,6 @@ if ! [ $(which dart 2>/dev/null) ];then
     fi
 fi
 
-if ! [ $(which Trinity 2>/dev/null) ];then
-    if [[ $EntryPoint ]]; then
-        cd $InstallDir
-        wget https://github.com/trinityrnaseq/trinityrnaseq/releases/download/v2.8.6/trinityrnaseq-v2.8.6.FULL.tar.gz
-	tar -zxvf trinityrnaseq-v2.8.6.FULL.tar.gz ; rm trinityrnaseq-v2.8.6.FULL.tar.gz
-        make -C trinityrnaseq-v2.8.6
-	make plugins -C trinityrnaseq-v2.8.6
-        echo "export PATH=$PATH:$PWD/bin ; $PWD/trinityrnaseq-v2.8.6/Trinity \$@" > $PWD/bin/Trinity
-	chmod +x $PWD/bin/Trinity
-	echo "export PATH=\"$(pwd)/trinityrnaseq-v2.8.6\":\$PATH" >> ~/.bashrc
-	echo "export TRINITY_HOME=$InstallDir/trinityrnaseq-v2.8.6" >> ~/.bashrc
-    fi
-fi
-
-export PATH=/home/sutripa/software/trinityrnaseq:$PATH
-export TRINITYHOME=/home/sutripa/software/trinityrnaseq
 
 if [[ $EntryPoint ]]; then
     cd $InstallDir
@@ -239,7 +223,7 @@ conda config --add channels bioconda
 conda config --add channels statiskit
 conda config --add channels r
 #conda install -y r-base=3.6.1 star python=3.6
-conda install -y -c anaconda -c conda-forge -c bioconda -c defaults -c statiskit -c r r-base=3.6.1 r-rcurl r-devtools pandoc bioconductor-rhdf5lib gxx_linux-64 git libxml2 libcurl libopenblas libboost libtool curl bzip2 wget bbmap gffread fastqc rcorrector spades hisat2 star corset lace salmon kallisto samtools prokka bowtie2 luigi pandas numpy scipy biopython perl-bioperl python=3.6
+conda install -y -c anaconda -c conda-forge -c bioconda -c defaults -c statiskit -c r r-base=3.6.1 r-rcurl r-devtools cmake pandoc bioconductor-rhdf5lib gxx_linux-64 git libxml2 libcurl libopenblas libboost libtool curl bzip2 wget bbmap gffread fastqc rcorrector spades hisat2 star corset lace salmon kallisto samtools prokka bowtie2 luigi pandas numpy scipy biopython perl-bioperl python=3.6
 
 <<COMMENT
 conda install -y \
@@ -282,6 +266,23 @@ conda install -y \
 COMMENT
 # Cleanup
 conda clean -iltp --yes
+
+if ! [ $(which Trinity 2>/dev/null) ];then
+    if [[ $EntryPoint ]]; then
+        cd $InstallDir
+        wget https://github.com/trinityrnaseq/trinityrnaseq/releases/download/v2.8.6/trinityrnaseq-v2.8.6.FULL.tar.gz
+	tar -zxvf trinityrnaseq-v2.8.6.FULL.tar.gz ; rm trinityrnaseq-v2.8.6.FULL.tar.gz
+        make -C trinityrnaseq-v2.8.6
+	make plugins -C trinityrnaseq-v2.8.6
+        echo "export PATH=$PATH:$PWD/bin ; $PWD/trinityrnaseq-v2.8.6/Trinity \$@" > $PWD/bin/Trinity
+	chmod +x $PWD/bin/Trinity
+	echo "export PATH=\"$(pwd)/trinityrnaseq-v2.8.6\":\$PATH" >> ~/.bashrc
+	echo "export TRINITY_HOME=$InstallDir/trinityrnaseq-v2.8.6" >> ~/.bashrc
+    fi
+fi
+
+export PATH=/home/sutripa/software/trinityrnaseq:$PATH
+export TRINITYHOME=/home/sutripa/software/trinityrnaseq
 
 
 #Install R package for DEA
