@@ -242,6 +242,7 @@ if ! [ $(which dart 2>/dev/null) ];then
         cd $InstallDir
         git clone "https://github.com/hsinnan75/Dart.git"
         dart_dir="$InstallDir/Dart"
+	bin_dir="$InstallDir/bin"
         cd $dart_dir
         make
         cp bwt_index $bin_dir/
@@ -251,6 +252,7 @@ fi
 
 if ! [ $(which Trinity 2>/dev/null) ];then
     if [[ $EntryPoint ]]; then
+    	bin_dir="$InstallDir/bin"
         cd $InstallDir
         wget https://github.com/trinityrnaseq/trinityrnaseq/releases/download/v2.8.6/trinityrnaseq-v2.8.6.FULL.tar.gz
 	tar -zxvf trinityrnaseq-v2.8.6.FULL.tar.gz ; rm trinityrnaseq-v2.8.6.FULL.tar.gz
