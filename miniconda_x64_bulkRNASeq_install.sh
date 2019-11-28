@@ -148,7 +148,7 @@ fi
 set -e
 
 bash Miniconda_Install.sh -b -f -p $InstallDir
-
+rm Miniconda_Install.sh
 # Activate the new environment
 PATH="$InstallDir/bin":$PATH
 
@@ -276,10 +276,7 @@ conda install -y \
 	wget 
 COMMENT
 # Cleanup
-rm Miniconda_Install.sh
 conda clean -iltp --yes
-
-
 
 
 #Install R package for DEA
