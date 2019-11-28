@@ -213,7 +213,6 @@ conda install -y \
 	scipy \
 	spades \
 	star \
-	trinity \
 	wget 
 COMMENT
 # Cleanup
@@ -247,6 +246,18 @@ if ! [ $(which dart 2>/dev/null) ];then
         make
         cp bwt_index $bin_dir/
         cp dart $bin_dir/
+    fi
+fi
+
+if ! [ $(which Trinity 2>/dev/null) ];then
+    if [[ $EntryPoint ]]; then
+        cd $InstallDir
+        wget https://github.com/trinityrnaseq/trinityrnaseq/releases/download/v2.8.6/trinityrnaseq-v2.8.6.FULL.tar.gz
+	tar -zxvf trinityrnaseq-v2.8.6.FULL.tar.gz ; rm trinityrnaseq-v2.8.6.FULL.tar.gz
+        make -C trinityrnaseq-v2.8.6
+	make plugins -C trinityrnaseq-v2.8.6
+        echo "export PATH=$PATH:$PWD/bin ; $PWD/trinityrnaseq-v2.8.6/Trinity \$@" > $PWD/bin/Trinity
+	chmod +x $PWD/bin/Trinity
     fi
 fi
 
