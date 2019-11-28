@@ -204,11 +204,12 @@ if ! [ $(which Trinity 2>/dev/null) ];then
     if [[ $EntryPoint ]]; then
         cd $InstallDir
         wget https://github.com/trinityrnaseq/trinityrnaseq/releases/download/v2.8.6/trinityrnaseq-v2.8.6.FULL.tar.gz
-	    tar -zxvf trinityrnaseq-v2.8.6.FULL.tar.gz ; rm trinityrnaseq-v2.8.6.FULL.tar.gz
+	tar -zxvf trinityrnaseq-v2.8.6.FULL.tar.gz ; rm trinityrnaseq-v2.8.6.FULL.tar.gz
         make -C trinityrnaseq-v2.8.6
-	    make plugins -C trinityrnaseq-v2.8.6
+	make plugins -C trinityrnaseq-v2.8.6
         echo "export PATH=$PATH:$PWD/bin ; $PWD/trinityrnaseq-v2.8.6/Trinity \$@" > $PWD/bin/Trinity
-	    chmod +x $PWD/bin/Trinity
+	chmod +x $PWD/bin/Trinity
+	echo "TRINITY_HOME=$InstallDir/trinityrnaseq-v2.8.6" >> ~/.bashrc
     fi
 fi
 
