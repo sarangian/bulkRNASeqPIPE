@@ -213,6 +213,7 @@ conda install -y \
 	scipy \
 	spades \
 	star \
+	trinity \
 	wget 
 COMMENT
 # Cleanup
