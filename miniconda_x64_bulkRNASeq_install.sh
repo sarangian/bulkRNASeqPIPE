@@ -186,20 +186,17 @@ if [[ $EntryPoint ]]; then
     chmod 755 Rockhopper.jar
 fi
 
-if ! [ $(which dart 2>/dev/null) ];then
-    if [[ $EntryPoint ]]; then
-        cd $InstallDir
-        git clone "https://github.com/hsinnan75/Dart.git"
-        dart_dir="$InstallDir/Dart"
-        bin_dir="$InstallDir/bin"
-        cd $dart_dir
-        mkdir -p bin
-        make
-        cp $dart_dir/bin/bwt_index $bin_dir/
-        cp $dart_dir/bin/dart $bin_dir/
-    fi
+if [[ $EntryPoint ]]; then
+   cd $InstallDir
+   git clone "https://github.com/hsinnan75/Dart.git"
+   dart_dir="$InstallDir/Dart"
+   bin_dir="$InstallDir/bin"
+   cd $dart_dir
+   mkdir -p bin
+   make
+   cp $dart_dir/bin/bwt_index $bin_dir/
+   cp $dart_dir/bin/dart $bin_dir/
 fi
-
 
 if [[ $EntryPoint ]]; then
     cd $InstallDir
@@ -267,22 +264,17 @@ COMMENT
 # Cleanup
 conda clean -iltp --yes
 
-if ! [ $(which Trinity 2>/dev/null) ];then
-    if [[ $EntryPoint ]]; then
-        cd $InstallDir
-        wget https://github.com/trinityrnaseq/trinityrnaseq/releases/download/v2.8.6/trinityrnaseq-v2.8.6.FULL.tar.gz
-	tar -zxvf trinityrnaseq-v2.8.6.FULL.tar.gz ; rm trinityrnaseq-v2.8.6.FULL.tar.gz
-        make -C trinityrnaseq-v2.8.6
-	make plugins -C trinityrnaseq-v2.8.6
-        echo "export PATH=$PATH:$PWD/bin ; $PWD/trinityrnaseq-v2.8.6/Trinity \$@" > $PWD/bin/Trinity
-	chmod +x $PWD/bin/Trinity
-	echo "export PATH=\"$(pwd)/trinityrnaseq-v2.8.6\":\$PATH" >> ~/.bashrc
-	echo "export TRINITY_HOME=$InstallDir/trinityrnaseq-v2.8.6" >> ~/.bashrc
-    fi
+if [[ $EntryPoint ]]; then
+   cd $InstallDir
+   wget https://github.com/trinityrnaseq/trinityrnaseq/releases/download/v2.8.6/trinityrnaseq-v2.8.6.FULL.tar.gz
+   tar -zxvf trinityrnaseq-v2.8.6.FULL.tar.gz ; rm trinityrnaseq-v2.8.6.FULL.tar.gz
+   make -C trinityrnaseq-v2.8.6
+   make plugins -C trinityrnaseq-v2.8.6
+   echo "export PATH=$PATH:$PWD/bin ; $PWD/trinityrnaseq-v2.8.6/Trinity \$@" > $PWD/bin/Trinity
+   chmod +x $PWD/bin/Trinity
+   echo "export PATH=\"$(pwd)/trinityrnaseq-v2.8.6\":\$PATH" >> ~/.bashrc
+   echo "export TRINITY_HOME=$InstallDir/trinityrnaseq-v2.8.6" >> ~/.bashrc 
 fi
-
-export PATH=/home/sutripa/software/trinityrnaseq:$PATH
-export TRINITYHOME=/home/sutripa/software/trinityrnaseq
 
 
 #Install R package for DEA
