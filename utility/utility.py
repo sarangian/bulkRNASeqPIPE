@@ -81,6 +81,16 @@ def prepare_sample_list(input_file):
 
     return samples
 
+def prepare_trinity_sample(input_file):
+    df = pd.read_table(input_file, sep='\t+', engine='python', header=None)
+    df.columns = ['samples','conditions']
+    df['count'] = df.groupby('conditions').cumcount() + 1
+    df['replicate'] = df["conditions"]+ "_Rep" + df["count"].map(str)
+    df['R1'] = df["samples"]+ "_R1.fastq"
+    df['R2'] = df["samples"]+ "_R2.fastq"
+    df1 = df[['conditions','replicate','R1','R2']]
+    trinity_samples = df1.to_csv('trinity_samples.txt',header=False,index=False)
+    return trinity_samples
 
 def prepare_corset_target(input_file):
     df = pd.read_table(input_file, sep='\t+', engine='python')
