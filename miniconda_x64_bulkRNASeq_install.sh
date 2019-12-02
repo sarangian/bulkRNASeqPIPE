@@ -220,7 +220,7 @@ conda config --add channels bioconda
 conda config --add channels statiskit
 conda config --add channels r
 #conda install -y r-base=3.6.1 star python=3.6
-conda install -y -c anaconda -c conda-forge -c bioconda -c defaults -c statiskit -c r r-base=3.6.1 r-rcurl r-devtools cmake pandoc bioconductor-rhdf5lib gxx_linux-64 git libxml2 libcurl libopenblas libboost libtool curl bzip2 wget bbmap gffread fastqc rcorrector spades hisat2 star corset lace salmon kallisto samtools prokka bowtie2 luigi pandas numpy scipy biopython perl-bioperl python=3.6
+conda install -y -c anaconda -c conda-forge -c bioconda -c defaults -c statiskit -c r r-base=3.6.1 r-rcurl r-devtools cmake pandoc bioconductor-rhdf5lib gxx_linux-64 git libxml2 libcurl libopenblas libboost libtool curl bzip2 wget bbmap qualimap gffread fastqc rcorrector spades hisat2 star corset lace salmon kallisto samtools prokka bowtie2 luigi pandas numpy scipy biopython perl-bioperl python=3.6
 
 <<COMMENT
 conda install -y \
