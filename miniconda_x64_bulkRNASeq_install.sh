@@ -206,7 +206,8 @@ fi
 
 if [[ $EntryPoint ]]; then
     cd $InstallDir
-    git clone "https://github.com/sarangian/RNASeqDEA.git"
+    #git clone "https://github.com/sarangian/RNASeqDEA.git"
+    git clone "https://github.com/computational-genomics-lab/RNASeqDEA.git"
     rnaseqdea_dir="$InstallDir/RNASeqDEA"
     chmod -R 755 $rnaseqdea_dir
     echo "export PATH=\"$rnaseqdea_dir\":\$PATH" >> ~/.bashrc
