@@ -219,48 +219,9 @@ conda config --add channels conda-forge
 conda config --add channels bioconda
 conda config --add channels statiskit
 conda config --add channels r
-#conda install -y r-base=3.6.1 star python=3.6
-conda install -y -c anaconda -c conda-forge -c bioconda -c defaults -c statiskit -c r r-base=3.6.1 r-rcurl r-devtools cmake pandoc bioconductor-rhdf5lib gxx_linux-64 git libxml2 libcurl libopenblas libboost libtool curl bzip2 wget bbmap qualimap gffread fastqc rcorrector spades hisat2 star corset lace salmon kallisto samtools prokka bowtie2 luigi pandas numpy scipy biopython perl-bioperl python=3.6
 
-<<COMMENT
-conda install -y \
-	bbmap \
-	bioconductor-rhdf5lib \
-	biopython \
-	bowtie2 \
-	bzip2 \
-	corset \
-	curl \
-	fastqc \
-	gffutils \
-	git \
-	gxx_linux-64 \
-	hisat2 \
-	kallisto \
-	lace \
-	libboost \
-	libcurl \
-	libopenblas \
-	libtool \
-	libxml2 \
-	luigi \
-	numpy \
-	pandas \
-	pandoc \
-	perl-bioperl \
-	prokka \
-	python=3.6 \
-	r-base=3.6.1 \
-	r-devtools \
-	r-rcurl \
-	rcorrector \
-	salmon \
-	samtools \
-	scipy \
-	spades \
-	star \
-	wget 
-COMMENT
+conda install -y -c anaconda -c conda-forge -c bioconda -c defaults -c statiskit -c r  r-base=3.6.1 r-devtools bioconductor-enhancedvolcano bioconductor-genomicranges r-rcppparallel bioconductor-s4vectors bioconductor-deseq2 bioconductor-rhdf5 bioconductor-rhdf5lib r-optparse bioconductor-edger bioconductor-tximport bioconductor-genomicfeatures bioconductor-regionreport bioconductor-deformats bioconductor-plyranges r-pheatmap r-colorspace r-rcolorbrewer r-dt r-ggplot2 r-stringr r-tidyr r-dplyr r-rcpp r-rcpparmadillo ggplot r-readr cmake pandoc  gxx_linux-64 git libxml2 libcurl libopenblas libboost libtool curl bzip2 wget bbmap qualimap gffread fastqc rcorrector spades hisat2 star corset lace salmon kallisto samtools prokka bowtie2 luigi pandas numpy scipy biopython perl-bioperl python=3.6
+
 # Cleanup
 conda clean -iltp --yes
 
