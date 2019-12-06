@@ -1,6 +1,9 @@
 #Create Project
 python bulkRNASeqWF.py prepareProject --projectName halomicronema --sampleMetadataFile halomicronema_target.txt --sampleHeader samples --groupHeader conditions --refCondName Control --local-scheduler
 
+#Genome Guided Assembly and DE Analysis
+python bulkRNASeqWF.py genomeGuidedDEA --aligner hisat2 --projectName halomicronema --deaMethod deseq2 --resultTag treated_vs_control --readType paired --reportName genomeguided --factorInt conditions --refCond Control --domain prokaryote --targetFile halomicronema_target.txt --genomeName hexcentricum --local-scheduler > log.txt
+
 #Generate Counts
 python bulkRNASeqWF.py featureCounts --projectName halomicronema --domain prokaryote --aligner hisat2 --featureType CDS --readType paired --genomeName hexcentricum --local-scheduler
 
