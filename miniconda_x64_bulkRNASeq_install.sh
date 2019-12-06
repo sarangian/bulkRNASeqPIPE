@@ -205,10 +205,12 @@ if [[ $EntryPoint ]]; then
 fi
 
 if [[ $EntryPoint ]]; then
-    cd $InstallDir
+    #cd $InstallDir
+    cd $THIS_DIR
     #git clone "https://github.com/sarangian/RNASeqDEA.git"
-    git clone "https://github.com/computational-genomics-lab/RNASeqDEA.git"
-    rnaseqdea_dir="$InstallDir/RNASeqDEA"
+    #git clone "https://github.com/computational-genomics-lab/RNASeqDEA.git"
+    mv -r $THIS_DIR/utility/deaRscripts $InstallDir
+    rnaseqdea_dir="$InstallDir/deaRscripts"
     chmod -R 755 $rnaseqdea_dir
     echo "export PATH=\"$rnaseqdea_dir\":\$PATH" >> ~/.bashrc
 fi
