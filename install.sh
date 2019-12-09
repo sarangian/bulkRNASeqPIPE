@@ -25,7 +25,7 @@ if [ -f /etc/lsb-release ]; then
     declare -a dpkglist=("git-all" "zlib1g-dev" "gcc" "cpp")
     for package in "${dpkglist[@]}";
 	    do
-  		    if ![ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep -c "ok installed") -eq 1 ];
+  		    if ! [ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep -c "ok installed") -eq 1 ];
 			    then
   			    exit 0		    			    
 		    fi
