@@ -221,7 +221,7 @@ if [[ $EntryPoint ]]; then
     cd $THIS_DIR
     #git clone "https://github.com/sarangian/RNASeqDEA.git"
     #git clone "https://github.com/computational-genomics-lab/RNASeqDEA.git"
-    mv $THIS_DIR/utility/deaRscripts $InstallDir
+    cp -avr $THIS_DIR/utility/deaRscripts $InstallDir
     rnaseqdea_dir="$InstallDir/deaRscripts"
     chmod -R 755 $rnaseqdea_dir
     echo "export PATH=\"$rnaseqdea_dir\":\$PATH" >> ~/.bashrc
