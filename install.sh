@@ -9,7 +9,7 @@ echo ""
 sleep 2s;
 #Check Ubuntu
 if [ -f /etc/lsb-release ]; then
-    declare -a dpkglist=("zlib1g-dev")
+    declare -a dpkglist=("git-all" "zlib1g-dev")
     for package in "${dpkglist[@]}";
 	    do
   		    if [ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep -c "ok installed") -eq 1 ];
@@ -24,7 +24,7 @@ if [ -f /etc/lsb-release ]; then
 fi
 
 if [ -f /etc/redhat-release ]; then
-    declare -a dpkglist=("zlib-devel")
+    declare -a dpkglist=("git" "zlib-devel")
     for package in "${dpkglist[@]}";
 	    do
   		    if rpm -qa | grep $package;
