@@ -16,15 +16,19 @@ if [ -f /etc/lsb-release ]; then
 			    then
   			    echo -e "\e[1;36m $package \t...installed \e[0m";
 		    else
-  			    echo -e "\e[1;31m install $package manually using \"sudo apt-get install $package\" \e[0m";  
+  			    echo -e "\e[1;31m install $package using \"sudo apt-get install $package\" \e[0m";  
 		    fi
-		    
-		    if ! [ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep -c "ok installed") -eq 1 ];
+	    done
+fi
+
+if [ -f /etc/lsb-release ]; then
+    declare -a dpkglist=("git-all" "zlib1g-dev" "gcc" "cpp")
+    for package in "${dpkglist[@]}";
+	    do
+  		    if ![ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep -c "ok installed") -eq 1 ];
 			    then
-			    exit 0
+  			    exit 0		    			    
 		    fi
-		    
-		    
 	    done
 fi
 
