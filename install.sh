@@ -33,22 +33,31 @@ if [ -f /etc/lsb-release ]; then
 fi
 
 
-
-
 if [ -f /etc/redhat-release ]; then
-    declare -a dpkglist=("git" "zlib-devel")
+    declare -a dpkglist=("git" "zlib-devel" "gcc" "gcc-c++")
     for package in "${dpkglist[@]}";
 	    do
-  		    if rpm -qa | grep $package;
+  		    if [ $(rpm -qa | grep $package 2>/dev/null | grep -c $package) -ge 1 ] ;
 			    then
   			    echo -e "\e[1;36m $package \t...installed \e[0m";
 		    else
-  			    echo -e "\e[1;31m install $package manually using \"sudo yum install $package\" \nThe installer will auto exit now\e[0m";
-			    sleep 5s;
-			    exit 0
-		    fi
+  			    echo -e "\e[1;31m install $package using \"sudo yum install $package\" \e[0m";
+	            fi
 	    done
 fi
+
+if [ -f /etc/redhat-release ]; then
+    declare -a dpkglist=("git" "zlib-devel" "gcc" "gcc-c++")
+    for package in "${dpkglist[@]}";
+	    do
+  		    if ! [ $(rpm -qa | grep $package 2>/dev/null | grep -c $package) -ge 1 ] ;
+			    then
+  			    exit 0
+	            fi
+	    done
+fi
+
+
 
 #Packages through git, wget and Sourseforge
 
