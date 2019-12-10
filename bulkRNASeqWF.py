@@ -1534,21 +1534,14 @@ class mapReadToTans(luigi.Task, TimeTask):
 											  "=MyProject])")
 
 	adapter = luigi.Parameter(default="./utility/adapters.fasta.gz")
-
 	genomeName = luigi.Parameter()
-
 	sampleName = luigi.Parameter()
-
 	readType = luigi.Parameter(description="sequencing read type. (string [=single] OR [=paired]")
-
 	domain = luigi.Parameter(description="domain of the organism . (string [=prokaryote] OR [=eukaryote])")
-
 	aligner = luigi.Parameter(description="""name of the aligner to be used to map clean reads to indexed genome . (
 											 string [=star] OR [=hisat2] OR [=dart] OR [=bowtie2] OR = [segemehl])
 											 NOTE: star and segemehl demands high memory. bowtie2 should not be used 
 											 for domain eukaryote """)
-
-	
 	
 	def requires(self):
 
@@ -1564,10 +1557,7 @@ class mapReadToTans(luigi.Task, TimeTask):
 		gg_transcript_map_folder = os.path.join(GlobalParameter().basefolder, self.projectName, "TransQuant",
 										   "GG_Transcript_bowtie2_map_" + self.readType + "/")
 
-
 		return {'out1': luigi.LocalTarget(gg_transcript_map_folder + "/" + self.sampleName + ".bam")}
-
-
 
 	def run(self):
 
@@ -1868,7 +1858,6 @@ class denovoDEA(luigi.Task, TimeTask):
 									 "_DenovoSalmonQuant_" + self.readType, "Corset/")
 
 		basefol = GlobalParameter().basefolder + "/"
-
 		rmd_DESeq2File = GlobalParameter().utilityFolder + "PlotDESEQ2.Rmd"
 		rmd_edgeRFile = GlobalParameter().utilityFolder + "PlotEDGER.Rmd"
 
@@ -2231,12 +2220,10 @@ class indexTranscript(luigi.Task):
 												name should not contain any spaces or special characters 
 												(string [=MyProject])""")
 	sampleName = luigi.Parameter()
-
 	genomeName = luigi.Parameter(description="""name of the genome file [with out .fna extension] present in 
 											folder /raw_data/genome/ string(=[my_genome]""")
 
 	domain = luigi.Parameter(description="""domain of the organism . (string [=prokaryote] OR [=eukaryote])""")
-
 	transcriptName = luigi.Parameter(description="""name of the predicted transcript, which must be the genome name with
 											out file extension. string[=my_genome]""")
 
@@ -2247,9 +2234,7 @@ class indexTranscript(luigi.Task):
 
 	adapter = luigi.Parameter(default="./utility/adapters.fasta.gz")
 
-	quantMethod = luigi.Parameter(default="salmon", description="""method to be used for quantification of 
-																transcripts. string (=[salmon] OR =[kallisto])""" )
-
+	quantMethod = luigi.Parameter(default="salmon", description="""method to be used for quantification of transcripts. string (=[salmon] OR =[kallisto])""" )
 	Salmon_Index_Parameter = luigi.Parameter(default="--type quasi -k 31")
 	Kallisto_Index_Parameter = luigi.Parameter(default="-k 31")
 
@@ -2345,7 +2330,6 @@ class indexTranscript(luigi.Task):
 			print (run_cmd(cmd_run_kallisto_index_pe))
 
 
-
 		if (self.quantMethod == "kallisto") and (self.readType == "single"):
 			print ("****** NOW RUNNING COMMAND ******: " + cmd_run_kallisto_index_se)
 			print (run_cmd(cmd_run_kallisto_index_se))
@@ -2362,8 +2346,7 @@ class transQuant(luigi.Task, TimeTask):
 
 	readType = luigi.Parameter(description="""sequencing read type. (string [=single] OR [=paired]""")
 
-	quantMethod = luigi.Parameter(description="""method to be used for quantification of 
-																transcripts. string (=[salmon] OR =[kallisto])""")
+	quantMethod = luigi.Parameter(description="""method to be used for quantification of transcripts. string (=[salmon] OR =[kallisto])""")
 
 	genomeName = luigi.Parameter(description="""name of the genome file [with out .fna extension] present in 
 											folder /raw_data/genome/ string(=[my_genome]""")
@@ -2424,22 +2407,22 @@ class transQuant(luigi.Task, TimeTask):
 		transcriptFolder = os.path.join(GlobalParameter().basefolder, "raw_data", "transcriptome",self.transcriptName + "/")
 
 		TranscriptIndexFolder = os.path.join(GlobalParameter().basefolder,
-											 self.projectName,
-											 "TransQuant",
-											 self.quantMethod + "_index_" + self.readType + "/")
+								 self.projectName,
+								     "TransQuant",
+								 self.quantMethod + "_index_" + self.readType + "/")
 
 		TranscriptQuantFolder = os.path.join(GlobalParameter().basefolder,
-											 self.projectName,
-											 "TransQuant",
-											 self.quantMethod + "_quant_" + self.readType,
-											 self.quantMethod + "_" + "quant" + "/")
+								 self.projectName,
+								     "TransQuant",
+						                 self.quantMethod + "_quant_" + self.readType,
+								 self.quantMethod + "_" + "quant" + "/")
 
 		TranscriptQuantSampleFolder = os.path.join(GlobalParameter().basefolder,
-												   self.projectName,
-												   "TransQuant",
-												   self.quantMethod + "_quant_" + self.readType,
-												   self.quantMethod + "_" + "quant",
-												   self.sampleName + "/")
+								       self.projectName,
+									   "TransQuant",
+					   self.quantMethod + "_quant_" + self.readType,
+			                               self.quantMethod + "_" + "quant",
+								  self.sampleName + "/")
 
 		TranscriptMapFolder = os.path.join(GlobalParameter().basefolder,
 										   self.projectName,
@@ -2578,8 +2561,6 @@ class transQuant(luigi.Task, TimeTask):
 			print("****** NOW RUNNING COMMAND ******: " + cmd_move_kallisto_bam_pe)
 			print (run_cmd(cmd_move_kallisto_bam_pe))
 
-
-
 		if (self.readType == "single") and (self.quantMethod == "kallisto"):
 			print("****** NOW RUNNING COMMAND ******: " + cmd_run_mean_sd_se)
 			print (run_cmd(cmd_run_mean_sd_se))
@@ -2617,8 +2598,6 @@ class quantifyTranscripts(luigi.Task, TimeTask):
 	adapter = luigi.Parameter(default="./utility/adapters.fasta.gz")
 
 	def requires(self):
-
-
 		return [transQuant(projectName=self.projectName,
 							   readType=self.readType,
 							   quantMethod=self.quantMethod,
@@ -2634,14 +2613,18 @@ class quantifyTranscripts(luigi.Task, TimeTask):
 
 
 
-	def output(self):
+	'''def output(self):
 		timestamp = time.strftime('%Y%m%d.%H%M%S', time.localtime())
 		return luigi.LocalTarget('workflow.complete.{t}'.format(t=timestamp))
 
 	def run(self):
 		timestamp = time.strftime('%Y%m%d.%H%M%S', time.localtime())
 		with self.output().open('w') as outfile:
-			outfile.write('workflow finished at {t}'.format(t=timestamp))
+			outfile.write('workflow finished at {t}'.format(t=timestamp))'''
+	def output(self):
+		tx2genefolder = os.path.join(GlobalParameter().basefolder, "raw_data", "transcriptome",self.transcriptName + "/")
+
+		
 
 
 #################################################################################################################################
