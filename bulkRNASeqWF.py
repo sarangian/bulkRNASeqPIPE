@@ -2611,8 +2611,6 @@ class quantifyTranscripts(luigi.Task, TimeTask):
 						  for line in
 								open (os.path.join(GlobalParameter().basefolder, self.projectName, "samples.txt"))]]
 
-
-
 	'''def output(self):
 		timestamp = time.strftime('%Y%m%d.%H%M%S', time.localtime())
 		return luigi.LocalTarget('workflow.complete.{t}'.format(t=timestamp))
@@ -2623,8 +2621,19 @@ class quantifyTranscripts(luigi.Task, TimeTask):
 			outfile.write('workflow finished at {t}'.format(t=timestamp))'''
 	def output(self):
 		tx2genefolder = os.path.join(GlobalParameter().basefolder, "raw_data", "transcriptome",self.transcriptName + "/")
-
+		return {'out': luigi.LocalTarget(tx2genefolder +"/"  + "tx2gene.csv")}
+	
+	def run(self):
+		transcriptFolder = os.path.join(GlobalParameter().basefolder, "raw_data", "transcriptome",self.transcriptName + "/")
+		cmd_tx2gene_from_gtf = "[ -d  {transcriptFolder} ] || mkdir -p {transcriptFolder}; " \
+						 "cd {transcriptFolder}; tx2gene.R " \
+						 "-a gtf " \
+						 "-p {transcriptFolder}{transcriptName}.gtf " \
+						 "-o tx2gene.csv".format(transcriptFolder=self.transcriptFolder,
+									   transcriptName=self.transcriptName)
 		
+		print("****** NOW RUNNING COMMAND ******: " + cmd_tx2gene_from_gtf)
+			print (run_cmd(cmd_tx2gene_from_gtf))
 
 
 #################################################################################################################################
