@@ -36,7 +36,8 @@ Suggests:
 biocViews:
     RNASeq,
     Software
-Collate: 
+Collate:
+    'utils.R'
     'tr2g.R'
     'exportResults.DESeq2.R'
     'exportResults.edgeR.R'
