@@ -243,7 +243,7 @@ fi
 if [[ $EntryPoint ]]; then
     #cd $InstallDir
     cd $THIS_DIR
-    gunzip $THIS_DIR/raw_data/genome/arthrinium.fna.gz
+    gunzip $THIS_DIR/raw_data/genome/arthrinium/arthrinium.fna.gz
 fi
 
 conda config --add channels defaults
