@@ -226,7 +226,7 @@ fi
 if [[ $EntryPoint ]]; then
     cd $InstallDir  2>&1 | tee -a $LOGFILE
     git clone "https://github.com/grimbough/rhdf5.git"  2>&1 | tee -a $LOGFILE
-    rhdf5_dir="$InstallDir/rhdf5"  2>&1 | tee -a $LOGFILE
+    rhdf5_dir="$InstallDir/rhdf5"  
 fi
 
 if [[ $EntryPoint ]]; then
@@ -245,8 +245,6 @@ if [[ $EntryPoint ]]; then
     cd $THIS_DIR
     gunzip $THIS_DIR/raw_data/genome/arthrinium.fna.gz
 fi
-
-/home/sutripa/bulkRNASeqPIPE/raw_data/genome/arthrinium
 
 conda config --add channels defaults
 conda config --add channels anaconda
