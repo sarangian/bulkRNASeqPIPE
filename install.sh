@@ -13,7 +13,7 @@ echo ""
 sleep 2s;
 #Check Ubuntu
 if [ -f /etc/lsb-release ]; then
-    declare -a dpkglist=("git-all" "zlib1g-dev" "gcc" "cpp")
+    declare -a dpkglist=("git" "zlib1g-dev" "gcc" "cpp")
     for package in "${dpkglist[@]}";
 	    do
   		    if [ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep -c "ok installed") -eq 1 ];
@@ -26,7 +26,7 @@ if [ -f /etc/lsb-release ]; then
 fi
 
 if [ -f /etc/lsb-release ]; then
-    declare -a dpkglist=("git-all" "zlib1g-dev" "gcc" "cpp")
+    declare -a dpkglist=("git" "zlib1g-dev" "gcc" "cpp")
     for package in "${dpkglist[@]}";
 	    do
   		    if ! [ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep -c "ok installed") -eq 1 ];
