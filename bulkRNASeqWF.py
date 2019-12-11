@@ -2633,7 +2633,7 @@ class quantifyTranscripts(luigi.Task, TimeTask):
 									   transcriptName=self.transcriptName)
 		
 		print("****** NOW RUNNING COMMAND ******: " + cmd_tx2gene_from_gtf)
-			print (run_cmd(cmd_tx2gene_from_gtf))
+		print (run_cmd(cmd_tx2gene_from_gtf))
 
 
 #################################################################################################################################
