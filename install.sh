@@ -245,7 +245,7 @@ conda config --add channels bioconda
 conda config --add channels statiskit
 conda config --add channels r
 
-conda install -y -c anaconda -c conda-forge -c bioconda -c defaults -c statiskit -c r  imagemagick libgcc libcxx  zlib r-base=3.6.1 r-devtools bioconductor-biocparallel bioconductor-enhancedvolcano bioconductor-genomicranges r-rcppparallel bioconductor-s4vectors bioconductor-deseq2 bioconductor-rhdf5 bioconductor-rhdf5lib r-optparse bioconductor-edger bioconductor-tximport bioconductor-genomicfeatures bioconductor-regionreport bioconductor-deformats bioconductor-plyranges r-pheatmap r-colorspace r-rcolorbrewer r-dt r-gplots r-ggplot2 r-stringr r-tidyr r-dplyr r-rcpp r-rcpparmadillo r-readr cmake pandoc  gxx_linux-64 cxx-compiler libxml2 libcurl libopenblas libboost libtool curl bzip2 wget bbmap qualimap gffread fastqc rcorrector spades hisat2 star corset lace salmon kallisto samtools prokka bowtie2 luigi pandas numpy scipy biopython perl-bioperl python=3.6 2>&1 | tee -a $LOGFILE
+conda install -y -c anaconda -c conda-forge -c bioconda -c defaults -c statiskit -c r  imagemagick libgcc libcxx  zlib r-base=3.6.1 r-devtools bioconductor-delayedarray bioconductor-biocparallel bioconductor-enhancedvolcano bioconductor-genomicranges r-rcppparallel bioconductor-s4vectors bioconductor-deseq2 bioconductor-rhdf5 bioconductor-rhdf5lib r-optparse bioconductor-edger bioconductor-tximport bioconductor-genomicfeatures bioconductor-regionreport bioconductor-deformats bioconductor-plyranges r-pheatmap r-colorspace r-rcolorbrewer r-dt r-gplots r-ggplot2 r-stringr r-tidyr r-dplyr r-rcpp r-rcpparmadillo r-readr cmake pandoc  gxx_linux-64 cxx-compiler libxml2 libcurl libopenblas libboost libtool curl bzip2 wget bbmap qualimap gffread fastqc rcorrector spades hisat2 star corset lace salmon kallisto samtools prokka bowtie2 luigi pandas numpy scipy biopython perl-bioperl python=3.6 2>&1 | tee -a $LOGFILE
 
 # Cleanup
 conda clean -iltp --yes 2>&1 | tee -a $LOGFILE
@@ -267,6 +267,9 @@ fi
 #Install R package for DEA
 echo "devtools::install('$rhdf5_dir')" | $InstallDir/bin/R --no-save 2>&1 | tee -a $LOGFILE
 echo "devtools::install('$rnaseqdea_dir')" | $InstallDir/bin/R --no-save 2>&1 | tee -a $LOGFILE
+
+ln -s $InstallDir/lib/R/modules/lapack.so  $InstallDir/lib/libRlapack.so
+ln -s $InstallDir/lib/libblas.so  $InstallDir/lib/libRblas.so
 
 source $InstallDir/etc/profile.d/conda.sh
 $InstallDir/bin/conda init bash
