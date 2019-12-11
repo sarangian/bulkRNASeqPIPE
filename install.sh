@@ -256,7 +256,7 @@ if [[ $EntryPoint ]]; then
    git clone https://github.com/trinityrnaseq/trinityrnaseq.git
    make -C trinityrnaseq 2>&1 | tee -a $LOGFILE
    make plugins -C trinityrnaseq 2>&1 | tee -a $LOGFILE
-   echo "export PATH=$PATH:$InstallDir/bin ; $InstallDir/trinityrnaseq/Trinity \$@" > $InstallDir/trinityrnaseq/Trinity
+   #echo "export PATH=$PATH:$InstallDir/bin ; $InstallDir/trinityrnaseq/Trinity \$@" > $InstallDir/trinityrnaseq/Trinity
    #cp $InstallDir/trinityrnaseq/Trinity $InstallDir/bin/Trinity
    chmod +x $InstallDir/trinityrnaseq/Trinity
    echo "export PATH=\"$InstallDir/trinityrnaseq\":\$PATH" >> ~/.bashrc
