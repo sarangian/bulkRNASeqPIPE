@@ -26,7 +26,7 @@ or gzipped files on the fly, so long as the gzipped files end with 'gz'.
 
 import sys
 import gzip
-from itertools import izip,izip_longest
+#from itertools import izip,izip_longest
 import argparse
 from os.path import basename
 
@@ -72,7 +72,7 @@ if __name__=="__main__":
         for entry in R1:
             counter+=1
             if counter%100000==0:
-                print "%s reads processed" % counter
+                print ("%s reads processed" % counter)
         
             head1,seq1,placeholder1,qual1=[i.strip() for i in entry]
             head2,seq2,placeholder2,qual2=[j.strip() for j in R2.next()]
