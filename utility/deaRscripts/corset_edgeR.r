@@ -24,15 +24,7 @@ suppressMessages(library(colorspace))
 suppressMessages(library(optparse))
 suppressMessages(library(scales))
 suppressMessages(library(readr))
-#library(optparse) 
-#library(readr)  
-#library("pheatmap")
-#library("RColorBrewer")  
-#library(regionReport)
-#library(DESeq2)
-#library(dplyr)
-#library(DEFormats)
-                               # to run the script in command lines
+suppressMessages(library(DelayedArray))
 
 # options list with associated default value.
 option_list <- list( 
@@ -175,22 +167,10 @@ cpmCutoff <- opt$cpmCutoff                             # "median" (default) or "
 ################################################################################
 ###                             running script                               ###
 ################################################################################
-# setwd(workDir)
-#dir.create(projectName, showWarnings = FALSE, recursive = TRUE)
 
-#imageFolder <- paste0(projectName,"/figures/")
-#tableFolder <- paste0(projectName,"/tables/")
-
-#dir.create(imageFolder, showWarnings = FALSE, recursive = TRUE)
 dir.create("tables", showWarnings = FALSE, recursive = TRUE)
 
-
-
-#source("/opt/RNASeqPIPE/tools/utility/load.TargetFile.R")
-#source ("/opt/RNASeqPIPE/tools/utility/run.edgeR.r")
-#source ("/opt/RNASeqPIPE/tools/utility/exportResults.edgeR.R")
-#plots
-					   
+			   
 # loading target file
 target <- loadTargetFile(targetFile=targetFile, varInt=varInt, condRef=condRef, batch=batch)
 
