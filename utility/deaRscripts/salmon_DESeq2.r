@@ -24,6 +24,7 @@ suppressMessages(library(scales))
 suppressMessages(library(readr)) 
 suppressMessages(library(rhdf5))
 suppressMessages(library(tximport))
+suppressMessages(library(DelayedArray))
 # options list with associated default value.
 option_list <- list( 
 make_option(c("-P", "--projectName"),
