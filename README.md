@@ -70,9 +70,7 @@ Activate bulkRNASeqPIPE environment using command `conda activate`
 │       │   ├── arthrinium.ffn
 │       │   └── arthrinium.gtf
 │       └── yeast
-│           ├── tx2gene.csv
 │           ├── yeast.ffn
-│           ├── yeast.gff
 │           └── yeast.gtf
 ├── README.md
 ├── run_arthrinium.sh
@@ -161,7 +159,7 @@ hexcentricum_s2_rep2	  hexcentricum_s2_rep2	  Treated
 
 **Example: sampleMetadataFile: arthrinium_target.txt**
 ```
-Lable	                 samples	              group
+Lable	                    samples	                group
 arthrinium_s1_rep1	     arthrinium_s1_rep1	     control
 arthrinium_s1_rep2	     arthrinium_s1_rep2	     control
 arthrinium_s2_rep1	     arthrinium_s2_rep1	     treated
