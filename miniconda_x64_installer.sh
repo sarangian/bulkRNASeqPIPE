@@ -66,13 +66,16 @@ THIS_DIR=$(DIRNAME=$(dirname "$0"); cd "$DIRNAME"; pwd)
 BASE_DIR=$(DIRNAME=$(dirname "$0"); cd "$DIRNAME"; pwd)
 chmod 755 $BASE_DIR/*.sh
 chmod 755 $BASE_DIR/*.py
-utility_dir=$BASE_DIR/utility
-chmod -R 755 $utility_dir
-echo "export PATH=\$PATH:$utility_dir" >> ~/.bashrc
 
 THIS_FILE=$(basename "$0")
 THIS_PATH="$THIS_DIR/$THIS_FILE"
 PREFIX=$HOME/RNASeqPIPE/
+
+UTILITY = $BASE_DIR/utility
+cp -ar $UTILITY $PREFIX
+utility_dir = $PREFIX/utility
+chmod -R 755 $utility_dir
+echo "export PATH=\$PATH:$utility_dir" >> ~/.bashrc
 
 sleep 2s;
 
