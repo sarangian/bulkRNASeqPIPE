@@ -67,6 +67,9 @@ fi
 
 THIS_DIR=$(DIRNAME=$(dirname "$0"); cd "$DIRNAME"; pwd)
 BASE_DIR=$(DIRNAME=$(dirname "$0"); cd "$DIRNAME"; pwd)
+utility_dir=$BASE_DIR/utility
+echo "export PATH=\$PATH:$utility_dir" >> ~/.bashrc
+
 THIS_FILE=$(basename "$0")
 THIS_PATH="$THIS_DIR/$THIS_FILE"
 PREFIX=$HOME/RNASeqPIPE/
