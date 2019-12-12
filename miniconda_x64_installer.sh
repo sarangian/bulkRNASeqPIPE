@@ -239,7 +239,7 @@ fi
 
 if [[ $EntryPoint ]]; then
     cd $InstallDir  2>&1 | tee -a $LOGFILE
-    git clone "https://github.com/grimbough/rhdf5.git"  2>&1 | tee -a $LOGFILE
+    git clone "https://github.com/grimbough/rhdf5.git" 
     rhdf5_dir="$InstallDir/rhdf5"
 fi
 
