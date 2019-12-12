@@ -4,7 +4,7 @@ Differential Expression Analysis of bulk-RNASeq data
 
 ## Dependencies
 
-**Installation of bulkRNASeqPIPE, requires gcc, wget, curl, libssl-dev, libcurl4-openssl-dev, libxml2-dev, libboost-all-dev, libbz2-dev, and liblzma-dev must pre-installed in your system.**
+**Installation of bulkRNASeqPIPE, requires git, gcc, cpp and zlib1g-dev must be pre-instaled in your system.**
 
 
 ## Download and install
@@ -13,10 +13,9 @@ git   clone   https://github.com/sarangian/bulkRNASeqPIPE.git
 
 cd  bulkRNASeqPIPE
 
-chmod  755  miniconda_x64_bulkRNASeq_install.sh
+chmod  755  miniconda_x64_installer.sh
 
-./miniconda_x64_bulkRNASeq_install.sh
-
+./miniconda_x64_installer.sh
 
 ## Post installation instruction
 
@@ -26,43 +25,118 @@ Activate bulkRNASeqPIPE environment using command `conda activate`
 
 ## bulkRNASeqPIPE folder structure
 ```
-.
-└── bulkRNASeqPIPE
-    ├── bulkRNASeqWF.py
-    ├── commands.txt
-    ├── halomicronema_target.txt
-    ├── LICENSE
-    ├── miniconda_x64_bulkRNASeq_install.sh
-    ├── raw_data
-    │   ├── genome
-    │   │   └── hexcentricum
-    │   │       ├── hexcentricum.fna
-    │   │       └── hexcentricum.gtf
-    │   └── RNASeq
-    │       ├── sample_1_replicate_1_R1.fastq.gz
-    │       ├── sample_1_replicate_1_R2.fastq.gz
-    │       ├── sample_1_replicate_2_R1.fastq.gz
-    │       ├── sample_1_replicate_2_R2.fastq.gz
-    │       ├── sample_2_replicate_1_R1.fastq.gz
-    │       ├── sample_2_replicate_1_R2.fastq.gz
-    │       ├── sample_2_replicate_2_R1.fastq.gz
-    │       └── sample_2_replicate_2_R2.fastq.gz
-    ├── README.md
-    ├── ubuntu_install.sh
-    └── utility
-        ├── adapters.fasta.gz
-        ├── filter_rcorrector_pe.py
-        ├── filter_rcorrector_se.py
-        ├── FormatRockhopTrans.py
-        ├── __init__.py
-        ├── __init__.pyc
-        ├── PlotDESEQ2.Rmd
-        ├── PlotEDGER.Rmd
-        ├── __pycache__
-        │   ├── __init__.cpython-36.pyc
-        │   └── utility.cpython-36.pyc
-        ├── utility.py
-        └── utility.pyc
+..
+├── arthrinium_target.txt
+├── bulkRNASeqWF.py
+├── commands.txt
+├── halomicronema_target.txt
+├── INSTALL.log
+├── LICENSE
+├── miniconda_x64_installer.sh
+├── raw_data
+│   ├── genome
+│   │   ├── arthrinium
+│   │   │   ├── arthrinium.fna.gz
+│   │   │   └── arthrinium.gtf
+│   │   ├── hexcentricum
+│   │   │   ├── hexcentricum.fna
+│   │   │   └── hexcentricum.gtf
+│   │   └── yeast
+│   │       ├── yeast.fna
+│   │       └── yeast.gtf
+│   ├── RNASeq
+│   │   ├── arthrinium_s1_rep1_R1.fastq.gz
+│   │   ├── arthrinium_s1_rep1_R2.fastq.gz
+│   │   ├── arthrinium_s1_rep2_R1.fastq.gz
+│   │   ├── arthrinium_s1_rep2_R2.fastq.gz
+│   │   ├── arthrinium_s2_rep1_R1.fastq.gz
+│   │   ├── arthrinium_s2_rep1_R2.fastq.gz
+│   │   ├── arthrinium_s2_rep2_R1.fastq.gz
+│   │   ├── arthrinium_s2_rep2_R2.fastq.gz
+│   │   ├── hexcentricum_s1_rep1_R1.fastq.gz
+│   │   ├── hexcentricum_s1_rep1_R2.fastq.gz
+│   │   ├── hexcentricum_s1_rep2_R1.fastq.gz
+│   │   ├── hexcentricum_s1_rep2_R2.fastq.gz
+│   │   ├── hexcentricum_s2_rep1_R1.fastq.gz
+│   │   ├── hexcentricum_s2_rep1_R2.fastq.gz
+│   │   ├── hexcentricum_s2_rep2_R1.fastq.gz
+│   │   ├── hexcentricum_s2_rep2_R2.fastq.gz
+│   │   ├── yeast_sample_1_replicate_1.fastq.gz
+│   │   ├── yeast_sample_1_replicate_2.fastq.gz
+│   │   ├── yeast_sample_2_replicate_1.fastq.gz
+│   │   └── yeast_sample_2_replicate_2.fastq.gz
+│   └── transcriptome
+│       ├── arthrinium
+│       │   ├── arthrinium.ffn
+│       │   └── arthrinium.gtf
+│       └── yeast
+│           ├── tx2gene.csv
+│           ├── yeast.ffn
+│           ├── yeast.gff
+│           └── yeast.gtf
+├── README.md
+├── run_arthrinium.sh
+└── utility
+    ├── adapters.fasta.gz
+    ├── deaRscripts
+    │   ├── check.Target.R
+    │   ├── checkTarget.R
+    │   ├── corset_DESeq2.r
+    │   ├── corset_edgeR.r
+    │   ├── dea_tx2gene_from_gff3.R
+    │   ├── DESCRIPTION
+    │   ├── featureCount_DESeq2.r
+    │   ├── featureCount_edgeR.r
+    │   ├── kallisto_DESeq2.r
+    │   ├── kallisto_edgeR.r
+    │   ├── man
+    │   │   ├── exportResults.DESeq2.Rd
+    │   │   ├── exportResults.edgeR.Rd
+    │   │   ├── loadTargetFile.Rd
+    │   │   ├── nDiffTotal.Rd
+    │   │   ├── run.DESeq2_corset.Rd
+    │   │   ├── run.DESeq2_trans.Rd
+    │   │   ├── run.edgeR.Rd
+    │   │   ├── run.edgeR_trans.Rd
+    │   │   ├── summarizeResults.DESeq2.Rd
+    │   │   ├── summarizeResults.edgeR.Rd
+    │   │   ├── tr2g_EnsDb.Rd
+    │   │   ├── tr2g_ensembl.Rd
+    │   │   ├── tr2g_fasta.Rd
+    │   │   ├── tr2g_gff3.Rd
+    │   │   ├── tr2g_GRanges.Rd
+    │   │   ├── tr2g_gtf.Rd
+    │   │   ├── tr2g_junction.Rd
+    │   │   └── tr2g_TxDb.Rd
+    │   ├── PlotDESEQ2.Rmd
+    │   ├── PlotEDGER.Rmd
+    │   ├── R
+    │   │   ├── exportResults.DESeq2.R
+    │   │   ├── exportResults.edgeR.R
+    │   │   ├── load.TargetFile.R
+    │   │   ├── nDiffTotal.r
+    │   │   ├── run.DESeq2_corset.r
+    │   │   ├── run.DESeq2_Salmon.r
+    │   │   ├── run.DESeq2_trans.r
+    │   │   ├── run.edgeR.r
+    │   │   ├── run.edgeR_trans.r
+    │   │   ├── summarizeResults.DESeq2.r
+    │   │   ├── summarizeResults.edgeR.r
+    │   │   ├── tr2g.R
+    │   │   └── utils.R
+    │   ├── README.md
+    │   ├── rnaseqflow.Rproj
+    │   ├── salmon_DESeq2.r
+    │   ├── salmon_edgeR.r
+    │   └── tx2gene.R
+    ├── filter_rcorrector_pe.py
+    ├── filter_rcorrector_se.py
+    ├── FormatRockhopTrans.py
+    ├── __init__.py
+    ├── PlotDESEQ2.Rmd
+    ├── PlotEDGER.Rmd
+    └── utility.py
+
 ```
 ## Input files
 ###### bulkRNASeq pipeline script: `bulkRNASeqWF.py`
@@ -76,11 +150,11 @@ This file has one row per sample and is composed of at least three columns with 
 - **column 3 :** reference condition name is 'Control'
 - **NOTE:** each sample must have at-least two replicates
 ```
-lable	                                  samples                                 conditions
-h_excentricum_sample_1_replicate_1	  h_excentricum_sample_1_replicate_1	  Control
-h_excentricum_sample_1_replicate_2	  h_excentricum_sample_1_replicate_2	  Control
-h_excentricum_sample_2_replicate_1	  h_excentricum_sample_2_replicate_1	  Treated
-h_excentricum_sample_2_replicate_2	  h_excentricum_sample_2_replicate_2	  Treated
+lable	                  samples                 conditions
+hexcentricum_s1_rep1	  hexcentricum_s1_rep1	  Control
+hexcentricum_s1_rep2	  hexcentricum_s1_rep2	  Control
+hexcentricum_s2_rep1	  hexcentricum_s2_rep1	  Treated
+hexcentricum_s2_rep2	  hexcentricum_s2_rep2	  Treated
 ```
 ## Folder Structure
 **raw_data:** The folder raw_data contains two sub-folders [1] RNASeq [2] genome.
