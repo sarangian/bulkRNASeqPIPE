@@ -71,9 +71,9 @@ THIS_FILE=$(basename "$0")
 THIS_PATH="$THIS_DIR/$THIS_FILE"
 PREFIX=$HOME/RNASeqPIPE/
 
-UTILITY = $BASE_DIR/utility
+UTILITY=$BASE_DIR/utility
 cp -ar $UTILITY $PREFIX
-utility_dir = $PREFIX/utility
+utility_dir=$PREFIX/utility
 chmod -R 755 $utility_dir
 echo "export PATH=\$PATH:$utility_dir" >> ~/.bashrc
 
