@@ -253,7 +253,9 @@ conda clean -iltp --yes 2>&1 | tee -a $LOGFILE
 InstallDir=$PREFIX
 if [[ $EntryPoint ]]; then
    cd $InstallDir
-   git clone https://github.com/trinityrnaseq/trinityrnaseq.git
+   wget https://github.com/trinityrnaseq/trinityrnaseq/releases/download/v2.9.0/trinityrnaseq-v2.9.0.FULL.tar.gz
+   tar -xvzf trinityrnaseq-v2.9.0.FULL.tar.gz
+   mv trinityrnaseq-v2.9.0 trinityrnaseq
    make -C trinityrnaseq 2>&1 | tee -a $LOGFILE
    make plugins -C trinityrnaseq 2>&1 | tee -a $LOGFILE
    #echo "export PATH=$PATH:$InstallDir/bin ; $InstallDir/trinityrnaseq/Trinity \$@" > $InstallDir/trinityrnaseq/Trinity
