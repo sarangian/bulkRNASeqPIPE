@@ -61,13 +61,13 @@ if [ -f /etc/redhat-release ]; then
 	    done
 fi
 
-
-
 #Packages through git, wget and Sourseforge
-
 THIS_DIR=$(DIRNAME=$(dirname "$0"); cd "$DIRNAME"; pwd)
 BASE_DIR=$(DIRNAME=$(dirname "$0"); cd "$DIRNAME"; pwd)
+chmod 755 $BASE_DIR/*.sh
+chmod 755 $BASE_DIR/*.py
 utility_dir=$BASE_DIR/utility
+chmod -R 755 $utility_dir
 echo "export PATH=\$PATH:$utility_dir" >> ~/.bashrc
 
 THIS_FILE=$(basename "$0")
