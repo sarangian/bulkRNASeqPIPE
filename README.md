@@ -149,6 +149,8 @@ This file has one row per sample and is composed of at least three columns with 
 - **column 3 :** biological conditions associated with the samples. Header of column 3 is `conditions`
 - **column 3 :** reference condition name is 'Control'
 - **NOTE:** each sample must have at-least two replicates
+
+**Example: sampleMetadataFile: halomicronema_target.txt**
 ```
 lable	                  samples                 conditions
 hexcentricum_s1_rep1	  hexcentricum_s1_rep1	  Control
@@ -156,6 +158,16 @@ hexcentricum_s1_rep2	  hexcentricum_s1_rep2	  Control
 hexcentricum_s2_rep1	  hexcentricum_s2_rep1	  Treated
 hexcentricum_s2_rep2	  hexcentricum_s2_rep2	  Treated
 ```
+
+**Example: sampleMetadataFile: arthrinium_target.txt**
+```
+Lable	                 samples	              group
+arthrinium_s1_rep1	     arthrinium_s1_rep1	     control
+arthrinium_s1_rep2	     arthrinium_s1_rep2	     control
+arthrinium_s2_rep1	     arthrinium_s2_rep1	     treated
+arthrinium_s2_rep2	     arthrinium_s2_rep2	     treated
+```
+
 ## Folder Structure
 **raw_data:** The folder raw_data contains two sub-folders [1] RNASeq [2] genome.
 
