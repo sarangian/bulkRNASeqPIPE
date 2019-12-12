@@ -63,9 +63,11 @@ fi
 
 #Packages through git, wget and Sourseforge
 THIS_DIR=$(DIRNAME=$(dirname "$0"); cd "$DIRNAME"; pwd)
-BASE_DIR=$(DIRNAME=$(dirname "$0"); cd "$DIRNAME"; pwd)
+BASE_DIR=$(pwd)
 chmod 755 $BASE_DIR/*.sh
 chmod 755 $BASE_DIR/*.py
+UTILITY=$BASE_DIR/utility
+DEA_SCRIPTS=$BASE_DIR/utility/deaRscripts
 
 THIS_FILE=$(basename "$0")
 THIS_PATH="$THIS_DIR/$THIS_FILE"
@@ -199,6 +201,10 @@ utility_dir=$PREFIX/utility
 chmod -R 755 $utility_dir
 echo "export PATH=\$PATH:$utility_dir" >> ~/.bashrc
 
+cp -ar $DEA_SCRIPTS $PREFIX
+dea_scripts_dir=$PREFIX/deaRscripts
+chmod -R 755 $dea_scripts_dir
+echo "export PATH=\$PATH:$dea_scripts_dir" >> ~/.bashrc
 
 # Add Entry Point to the path
 if [[ $EntryPoint ]]; then
@@ -237,13 +243,13 @@ if [[ $EntryPoint ]]; then
     rhdf5_dir="$InstallDir/rhdf5"
 fi
 
-if [[ $EntryPoint ]]; then
-    cd $InstallDir
-    git clone "https://github.com/sarangian/deaRscripts.git"
-    rnaseqdea_dir="$InstallDir/deaRscripts"
-    chmod -R 755 $rnaseqdea_dir
-    echo "export PATH=\"$rnaseqdea_dir\":\$PATH" >> ~/.bashrc
-fi
+#if [[ $EntryPoint ]]; then
+    #cd $InstallDir
+    #git clone "https://github.com/sarangian/deaRscripts.git"
+    #rnaseqdea_dir="$InstallDir/deaRscripts"
+    #chmod -R 755 $rnaseqdea_dir
+    #echo "export PATH=\"$rnaseqdea_dir\":\$PATH" >> ~/.bashrc
+#fi
 
 conda config --add channels defaults
 conda config --add channels anaconda
@@ -265,8 +271,6 @@ if [[ $EntryPoint ]]; then
    mv trinityrnaseq-v2.9.0 trinityrnaseq
    make -C trinityrnaseq 2>&1 | tee -a $LOGFILE
    make plugins -C trinityrnaseq 2>&1 | tee -a $LOGFILE
-   #echo "export PATH=$PATH:$InstallDir/bin ; $InstallDir/trinityrnaseq/Trinity \$@" > $InstallDir/trinityrnaseq/Trinity
-   #cp $InstallDir/trinityrnaseq/Trinity $InstallDir/bin/Trinity
    chmod +x $InstallDir/trinityrnaseq/Trinity
    echo "export PATH=\"$InstallDir/trinityrnaseq\":\$PATH" >> ~/.bashrc
    echo "export TRINITY_HOME=$InstallDir/trinityrnaseq" >> ~/.bashrc
@@ -275,7 +279,7 @@ fi
 
 #Install R package for DEA
 echo "devtools::install('$rhdf5_dir')" | $InstallDir/bin/R --no-save 2>&1 | tee -a $LOGFILE
-echo "devtools::install('$rnaseqdea_dir')" | $InstallDir/bin/R --no-save 2>&1 | tee -a $LOGFILE
+echo "devtools::install('$dea_scripts_dir')" | $InstallDir/bin/R --no-save 2>&1 | tee -a $LOGFILE
 
 ln -s $InstallDir/lib/R/modules/lapack.so  $InstallDir/lib/libRlapack.so
 ln -s $InstallDir/lib/libblas.so  $InstallDir/lib/libRblas.so
