@@ -1,6 +1,9 @@
 ##Prepare Project
 python bulkRNASeqWF.py prepareProject --projectName arthrinium --sampleMetadataFile arthrinium_target.txt --sampleHeader samples --groupHeader group --refCondName control --local-scheduler
 
+#Transcriptome Based DE Analysis
+#python bulkRNASeqWF.py denovoDEA --projectName arthrinium --assembler trinity --deaMethod deseq2 --resultTag treated_vs_control --readType paired --reportName denovo_trinity_DESeq2 --factorInt group --refCond control --domain eukaryote --targetFile arthrinium_target.txt --genomeName arthrinium --local-scheduler 2>&1 | tee arthrinium_deovo_DEA_trinity.log
+
 #Genome Guided Assembly and DE Analysis
 #python bulkRNASeqWF.py genomeGuidedDEA --aligner hisat2 --projectName arthrinium --deaMethod deseq2 --resultTag treated_vs_control --readType paired --reportName GGTrinity-DESeq2 --factorInt group --refCond control --domain eukaryote --targetFile arthrinium_target.txt --genomeName arthrinium --local-scheduler 2>&1 | tee arthrinium_genome_guided_deseq2.log
 
