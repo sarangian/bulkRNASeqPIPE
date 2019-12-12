@@ -22,6 +22,7 @@ suppressMessages(library(colorspace))
 suppressMessages(library(optparse))
 suppressMessages(library(scales))
 suppressMessages(library(readr))
+suppressMessages(library(DelayedArray))
 
 # options list with associated default value.
 option_list <- list( 
@@ -160,23 +161,10 @@ cpmCutoff <- opt$cpmCutoff                             # "median" (default) or "
 ################################################################################
 ###                             running script                               ###
 ################################################################################
-# setwd(workDir)
-#dir.create(projectName, showWarnings = FALSE, recursive = TRUE)
 
-#imageFolder <- paste0(projectName,"/figures/")
-#tableFolder <- paste0(projectName,"/tables/")
-
-#dir.create(imageFolder, showWarnings = FALSE, recursive = TRUE)
-#dir.create(tableFolder, showWarnings = FALSE, recursive = TRUE)
 dir.create("tables", showWarnings = FALSE, recursive = TRUE)
 
-
-#source ("/opt/RNASeqPIPE/tools/utility/load.TargetFile.R", chdir=T)
-#source ("/opt/RNASeqPIPE/tools/utility/run.edgeR.r", chdir=T)
-#source ("/opt/RNASeqPIPE/tools/utility/exportResults.edgeR.R", chdir=T)
-
-#plots
-					   
+				   
 # loading target file
 target <- loadTargetFile(targetFile=targetFile, varInt=varInt, condRef=condRef, batch=batch)
 rownames(target) <- as.character(target[,1])
@@ -187,8 +175,6 @@ colnames(countData) <- gsub("\\.[sb]am$", "", colnames(countData))
 colnames(countData) <- lapply(colnames(countData), function(x) sapply(strsplit(x, "\\."), tail, 1))
 colnames(countData)
 countData <- as.matrix(countData)
-
-head (countData)
 
 all(rownames(target) %in% colnames(countData))
 
@@ -212,14 +198,11 @@ dds = as.DESeqDataSet(dge)
 coldata <- colData(dds)
 
 samples <- as.factor(row.names(coldata))
-samples
-
 
 colData(dds) <- cbind(colData(dds), samples)
 
 coldata <- colData(dds)
 intgroup <- colnames(coldata[c(1)])
-intgroup
 
 #summaryResults <- summarizeResults.edgeR(out.edgeR, group=target[,varInt], counts=countdata, alpha=alpha)
 exportResults.edgeR(out.edgeR, group=target[,varInt], counts=countData, alpha=alpha, export=TRUE)
