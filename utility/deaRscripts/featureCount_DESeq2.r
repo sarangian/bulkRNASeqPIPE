@@ -22,6 +22,7 @@ suppressMessages(library(colorspace))
 suppressMessages(library(optparse))
 suppressMessages(library(scales))
 suppressMessages(library(readr))
+suppressMessages(library(DelayedArray))
                                  # to run the script in command lines
 
 # options list with associated default value.
@@ -149,25 +150,9 @@ locfunc <- opt$locfunc                               # "median" (default) or "sh
 ################################################################################
 ###                             running script                               ###
 ################################################################################
-# setwd(workDir)
-#dir.create(projectName, showWarnings = FALSE, recursive = TRUE)
 
-#imageFolder <- paste0(projectName,"/figures/")
-#tableFolder <- paste0(projectName,"/tables/")
-
-#dir.create(imageFolder, showWarnings = FALSE, recursive = TRUE)
-#dir.create(tableFolder, showWarnings = FALSE, recursive = TRUE)
 dir.create("tables", showWarnings = FALSE, recursive = TRUE)
 
-#library(EnhancedVolcano)
-#library(regionReport)
-#library(DESeq2)
-#library(dplyr)
-#source("/opt/RNASeqPIPE/tools/utility/load.TargetFile.R")
-#source("/opt/RNASeqPIPE/tools/utility/run.DESeq2_corset.r")
-#source ("/opt/RNASeqPIPE/tools/utility/exportResults.DESeq2.R")
-
-#plots
 					   
 # loading target file
 target <- loadTargetFile(targetFile=targetFile, varInt=varInt, condRef=condRef, batch=batch)
@@ -180,7 +165,6 @@ colnames(countData) <- lapply(colnames(countData), function(x) sapply(strsplit(x
 colnames(countData)
 countData <- as.matrix(countData)
 
-head (countData)
 
 all(rownames(target) %in% colnames(countData))
 
@@ -207,8 +191,6 @@ dds.rld.trans <- rlog(dds, blind=FALSE)
 
 
 sampleDists <- as.matrix(dist(t(assay(dds.rld.trans))))
-library(gplots)
-
 
 exportResults.DESeq2(out.DESeq2, group=unique(target$group), alpha=alpha)
 
