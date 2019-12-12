@@ -24,8 +24,7 @@ suppressMessages(library(readr))
 suppressMessages(library(rhdf5))
 suppressMessages(library(tximport))suppressMessages(library(rhdf5))
 suppressMessages(library(tximport))
-
-                                   # to run the script in command lines
+suppressMessages(library(DelayedArray))
 
 # options list with associated default value.
 option_list <- list( 
@@ -147,15 +146,6 @@ if ( is.null(opt$condRef) ) {
 }
 
 ################################################################################
-# setwd(workDir)
-
-
-#source ("/opt/RNASeqPIPE/tools/utility/load.TargetFile.R")
-#source ("/opt/RNASeqPIPE/tools/utility/run.edgeR_trans.r")
-#source ("/opt/RNASeqPIPE/tools/utility/exportResults.edgeR.R")
-#source ("/opt/RNASeqPIPE/tools/utility/summarizeResults.edgeR.r")
-#source ("/opt/RNASeqPIPE/tools/utility/nDiffTotal.r")
-#plots
 
 dir.create("tables", showWarnings = FALSE, recursive = TRUE)
 				   
