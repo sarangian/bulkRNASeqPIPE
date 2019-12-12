@@ -24,6 +24,7 @@ suppressMessages(library(scales))
 suppressMessages(library(readr)) 
 suppressMessages(library(rhdf5))
 suppressMessages(library(tximport))
+suppressMessages(library(DelayedArray))
 
                                           # to run the script in command lines
 
