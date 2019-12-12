@@ -71,12 +71,6 @@ THIS_FILE=$(basename "$0")
 THIS_PATH="$THIS_DIR/$THIS_FILE"
 PREFIX=$HOME/RNASeqPIPE/
 
-UTILITY=$BASE_DIR/utility
-cp -ar $UTILITY $PREFIX
-utility_dir=$PREFIX/utility
-chmod -R 755 $utility_dir
-echo "export PATH=\$PATH:$utility_dir" >> ~/.bashrc
-
 sleep 2s;
 
 echo -e "\e[1;34m__________________________________DISK USE SUMMARY______________________________\e[0m"  2>&1 | tee -a $LOGFILE
@@ -198,6 +192,13 @@ lines[user_site_line] = "ENABLE_USER_SITE = False\n"
 with open(site_file,'w') as fout:
     fout.writelines(lines)
 END
+
+#Add Script Directory
+cp -ar $UTILITY $PREFIX
+utility_dir=$PREFIX/utility
+chmod -R 755 $utility_dir
+echo "export PATH=\$PATH:$utility_dir" >> ~/.bashrc
+
 
 # Add Entry Point to the path
 if [[ $EntryPoint ]]; then
