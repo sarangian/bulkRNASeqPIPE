@@ -4,7 +4,7 @@
 
 ## Dependencies
 
-**Installation of bulkRNASeqPIPE, requires git, gcc, cpp and zlib1g-dev must be pre-instaled in your system.**
+**Installation of bulkRNASeqPIPE requires pre-instaled git, gcc, cpp and zlib1g-dev.**
 
 
 ## Download and install
