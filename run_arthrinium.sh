@@ -1,3 +1,5 @@
+#unzip arthrinium genome
+gunzip $(pwd)/raw_data/genome/arthrinium/arthrinium.fna.gz
 ##Prepare Project
 python bulkRNASeqWF.py prepareProject --projectName arthrinium --sampleMetadataFile arthrinium_target.txt --sampleHeader samples --groupHeader group --refCondName control --local-scheduler
 
