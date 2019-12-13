@@ -18,9 +18,10 @@ if [ -f /etc/lsb-release ]; then
 	    do
   		    if [ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep -c "ok installed") -eq 1 ];
 			    then
-  			    echo -e "\e[1;36m $package \t...installed \e[0m";  2>&1 | tee -a $LOGFILE
+  			    echo -e "\e[1;36m $package \t...OK...\tAvailable in PATH \e[0m";  2>&1 | tee -a $LOGFILE
 		    else
-  			    echo -e "\e[1;31m install $package using \"sudo apt-get install $package\" \e[0m";  2>&1 | tee -a $LOGFILE 
+  			    echo -e "\e[1;31m $package \tNot Available in PATH \e[0m";  2>&1 | tee -a $LOGFILE
+			    echo -e "\e[1;33m You need to install $package using: \"sudo apt-get install $package\" \e[0m";  2>&1 | tee -a $LOGFILE 
 		    fi
 	    done
 fi
@@ -43,9 +44,10 @@ if [ -f /etc/redhat-release ]; then
 	    do
   		    if [ $(rpm -qa | grep $package 2>/dev/null | grep -c $package) -ge 1 ] ;
 			    then
-  			    echo -e "\e[1;36m $package \t...installed \e[0m";  2>&1 | tee -a $LOGFILE
+  			    echo -e "\e[1;36m $package \t...OK....\tAvailable in PATH \e[0m";  2>&1 | tee -a $LOGFILE
 		    else
-  			    echo -e "\e[1;31m install $package using \"sudo yum install $package\" \e[0m"; 2>&1 | tee -a $LOGFILE
+  			    echo -e "\e[1;31m $package \tNot Available in PATH \e[0m";  2>&1 | tee -a $LOGFILE
+			    echo -e "\e[1;33m You need to install $package using: \"sudo yum install $package\" \e[0m";  2>&1 | tee -a $LOGFILE 
 	            fi
 	    done
 fi
