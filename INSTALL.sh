@@ -148,7 +148,7 @@ InstallDir=$PREFIX
 EntryPoint="bulkRNASeqPIPE"
 
 echo
-echo "Installing $AppName"  2>&1 | tee -a $LOGFILE
+echo "Installing $AppName"  
 
 echo
 echo "Installing into: $InstallDir"
@@ -245,21 +245,12 @@ if [[ $EntryPoint ]]; then
 fi
 
 if [[ $EntryPoint ]]; then
-    cd $InstallDir  2>&1 | tee -a $LOGFILE
+    cd $InstallDir  
     git clone "https://github.com/grimbough/rhdf5.git" 
     rhdf5_dir="$InstallDir/rhdf5"
 fi
 
-#if [[ $EntryPoint ]]; then
-    #cd $InstallDir
-    #git clone "https://github.com/sarangian/deaRscripts.git"
-    #rnaseqdea_dir="$InstallDir/deaRscripts"
-    #chmod -R 755 $rnaseqdea_dir
-    #echo "export PATH=\"$rnaseqdea_dir\":\$PATH" >> ~/.bashrc
-#fi
-
-
-#conda install -y -c anaconda -c conda-forge -c bioconda -c defaults -c statiskit -c r  subread imagemagick libgcc libcxx  zlib r-base=3.6.1 r-devtools bioconductor-delayedarray bioconductor-biocparallel bioconductor-enhancedvolcano bioconductor-genomicranges r-rcppparallel bioconductor-s4vectors bioconductor-deseq2 bioconductor-rhdf5 bioconductor-rhdf5lib r-optparse bioconductor-edger bioconductor-tximport bioconductor-genomicfeatures bioconductor-regionreport bioconductor-deformats bioconductor-plyranges r-pheatmap r-colorspace r-rcolorbrewer r-dt r-gplots r-ggplot2 r-stringr r-tidyr r-dplyr r-rcpp r-rcpparmadillo r-readr cmake pandoc  gxx_linux-64 cxx-compiler libxml2 libcurl libopenblas libboost libtool curl bzip2 wget bbmap qualimap gffread fastqc rcorrector spades hisat2 star corset lace salmon kallisto samtools prokka bowtie2 luigi pandas numpy scipy biopython perl-bioperl python=3.6 2>&1 | tee -a $LOGFILE
+#Install tools from conda
 conda env update --prefix $PREFIX --file $ENVFILE  --prune
 
 # Cleanup
