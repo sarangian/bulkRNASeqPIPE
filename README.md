@@ -1,5 +1,5 @@
 # bulkRNASeqPIPE
-Differential Expression Analysis of bulk-RNASeq data
+#### Differential Expression Analysis of bulk-RNASeq data
 
 
 ## Dependencies
@@ -8,15 +8,12 @@ Differential Expression Analysis of bulk-RNASeq data
 
 
 ## Download and install
-
+```
 git   clone   https://github.com/sarangian/bulkRNASeqPIPE.git
-
 cd  bulkRNASeqPIPE
-
-chmod  755  miniconda_x64_installer.sh
-
-./miniconda_x64_installer.sh
-
+chmod  755  INSTALL.sh.sh
+./INSTALL.sh.sh
+```
 ## Post installation instruction
 
 After successful installation, close the current terminal. 
@@ -30,7 +27,7 @@ Activate bulkRNASeqPIPE environment using command `conda activate`
 ├── RNASeqPIPE.py
 ├── commands.txt
 ├── halomicronema_target.txt
-├── INSTALL.log
+├── INSTALL.sh
 ├── LICENSE
 ├── miniconda_x64_installer.sh
 ├── raw_data
