@@ -9,10 +9,10 @@
 
 ## Download and install
 ```
-git   clone   https://github.com/sarangian/bulkRNASeqPIPE.git
-cd  bulkRNASeqPIPE
-chmod  755  INSTALL.sh.sh
-./INSTALL.sh.sh
+git clone https://github.com/sarangian/bulkRNASeqPIPE.git
+cd bulkRNASeqPIPE
+chmod 755 INSTALL.sh.sh
+./INSTALL.sh
 ```
 ## Post installation instruction
 
