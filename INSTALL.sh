@@ -67,6 +67,9 @@ BASE_DIR=$(pwd)
 chmod 755 $BASE_DIR/*.sh
 chmod 755 $BASE_DIR/*.py
 UTILITY=$BASE_DIR/utility
+TEMPENVFILE=$BASE_DIR/.conda_environment.yml
+ENVFILE=$BASE_DIR/.environment.yml
+cp $TEMPENVFILE $ENVFILE
 ENVFILE=$BASE_DIR/.environment.yml
 DEA_SCRIPTS=$BASE_DIR/utility/deaRscripts
 
