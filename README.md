@@ -27,7 +27,7 @@ Activate bulkRNASeqPIPE environment using command `conda activate`
 ```
 ..
 ├── arthrinium_target.txt
-├── bulkRNASeqWF.py
+├── RNASeqPIPE.py
 ├── commands.txt
 ├── halomicronema_target.txt
 ├── INSTALL.log
@@ -167,9 +167,9 @@ arthrinium_s2_rep2	  arthrinium_s2_rep2	  treated
 ```
 
 ## Folder Structure
-**raw_data:** The folder raw_data contains two sub-folders [1] RNASeq [2] genome.
+**raw_data:** The folder raw_data contains three sub-folders [1] RNASeq [2] genome and [3] transcriptome.
 
-**RNASeq** folder contains the raw-RNASeq reads. 
+**raw_data/RNASeq** folder contains the raw-RNASeq reads. 
 ```
 Reads must be gzipped. 
 - For paired-end RNAseq reads, sample name must be suffixed with _R1.fastq.gz and _R2.fastq.gz. 
@@ -185,15 +185,24 @@ Reads must be gzipped.
            where: yeast_sample_1_replicate_1 is sample name
                   .fastq.gz is sufixes to sample name
 ```
-**genome** folder contains one sub-folder (sub-folder name must not contain any gap or special characters)
+**raw_data/genome** 
 ```
-The sub-folder hexcentricum should contain 
+The sub-folder hexcentricum contain 
 [1] The genome of the organism in fasta format with .fna extension (hexcentricum.fna) [MANDATORY for both prokaryotes or eukaryotes]
 [2] The gene annotation of the organism in GTF format (hexcentricum.gtf) [MANDATORY for eukaryotes, OPTIONAL for prokaryotes]
 NOTE: The sub-folder name, genome name and the GTF file name must be same
 
 EXAMPLE: If the organism name is XYZ, then the sub-folder name must be XYZ, genome name must be XYZ.fna, annotation file name must be XYZ.gtf
 ```
+**raw_data/transcriptome** 
+```
+The sub-folder hexcentricum contain 
+[1] The transcriptome of the organism in fasta format with .ffn extension (hexcentricum.ffn) [MANDATORY for both prokaryotes or eukaryotes]
+[2] The gene annotation of the organism in GTF format (hexcentricum.gtf) [MANDATORY for eukaryotes, OPTIONAL for prokaryotes]
+NOTE: The sub-folder name, genome name and the GTF file name must be same
+
+EXAMPLE: If the organism name is XYZ, then the sub-folder name must be XYZ, genome name must be XYZ.fna, annotation file name must be XYZ.g
+
 ## Test Installation
 
 ###### ARTHRINIUM
