@@ -134,7 +134,7 @@ Activate bulkRNASeqPIPE environment using command `conda activate`
 
 ```
 ## Input files
-###### bulkRNASeq pipeline script: `bulkRNASeqWF.py`
+###### bulkRNASeq pipeline script: `RNASeqPIPE.py`
 ###### --sampleMetadataFile `halomicronema_target.txt`
 
 The user has to provide the `sampleMetadataFile` --a tab delimited file which describes the experiment. 
