@@ -1,3 +1,5 @@
+https://bulkrnaseqpipe.readthedocs.io/en/latest/inputfiles.html
+
 # bulkRNASeqPIPE
 #### Differential Expression Analysis of bulk-RNASeq data
 
