@@ -4,10 +4,6 @@
 Commands
 ========
 
-.. toctree::
-   :hidden:
-
-
 Major Commnads
 --------------
 
