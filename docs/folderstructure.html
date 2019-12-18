@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>bulkRNASeqPipe folder structure &mdash; Bulk RNASeq Workflow 1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Bulk RNASeq Workflow 1 documentation" href="index.html"/>
+        <link rel="next" title="Input Files" href="inputfiles.html"/>
+        <link rel="prev" title="Installation" href="install.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Bulk RNASeq Workflow
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html"> Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">bulkRNASeqPipe folder structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#bulkrnaseqpipe-sub-folder-structure">bulkRNASeqPipe sub-folder structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inputfiles.html"> Input Files</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Bulk RNASeq Workflow</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>bulkRNASeqPipe folder structure</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/folderstructure.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bulkrnaseqpipe-folder-structure">
+<span id="folderstructure"></span><h1>bulkRNASeqPipe folder structure<a class="headerlink" href="#bulkrnaseqpipe-folder-structure" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre>bulkRNASeqPipe
+├── raw_data     [contains three sub-folders i.e. genome, RNASeq and transcriptome]
+│   ├── genome
+│   │   ├── arthrinium
+│   │   ├── hexcentricum
+│   │   └── yeast
+│   ├── RNASeq   [contains the raw RNASeq Reads]
+│   └── transcriptome
+│       ├── arthrinium
+│       └── yeast
+└── utility      [contains R Scripts for Differential Expression Analysis]
+    └── deaRscripts
+        ├── man
+        └── R
+</pre></div>
+</div>
+</div>
+<div class="section" id="bulkrnaseqpipe-sub-folder-structure">
+<h1>bulkRNASeqPipe sub-folder structure<a class="headerlink" href="#bulkrnaseqpipe-sub-folder-structure" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-none notranslate"><div class="highlight"><pre>bulkRNASeqPipe
+├── arthrinium_target.txt
+├── RNASeqPIPE.py
+├── commands.txt
+├── halomicronema_target.txt
+├── INSTALL.sh
+├── LICENSE
+├── raw_data
+│   ├── genome
+│   │   ├── arthrinium
+│   │   │   ├── arthrinium.fna.gz
+│   │   │   └── arthrinium.gtf
+│   │   ├── hexcentricum
+│   │   │   ├── hexcentricum.fna
+│   │   │   └── hexcentricum.gtf
+│   │   └── yeast
+│   │       ├── yeast.fna
+│   │       └── yeast.gtf
+│   ├── RNASeq
+│   │   ├── arthrinium_s1_rep1_R1.fastq.gz
+│   │   ├── arthrinium_s1_rep1_R2.fastq.gz
+│   │   ├── arthrinium_s1_rep2_R1.fastq.gz
+│   │   ├── arthrinium_s1_rep2_R2.fastq.gz
+│   │   ├── arthrinium_s2_rep1_R1.fastq.gz
+│   │   ├── arthrinium_s2_rep1_R2.fastq.gz
+│   │   ├── arthrinium_s2_rep2_R1.fastq.gz
+│   │   ├── arthrinium_s2_rep2_R2.fastq.gz
+│   │   ├── hexcentricum_s1_rep1_R1.fastq.gz
+│   │   ├── hexcentricum_s1_rep1_R2.fastq.gz
+│   │   ├── hexcentricum_s1_rep2_R1.fastq.gz
+│   │   ├── hexcentricum_s1_rep2_R2.fastq.gz
+│   │   ├── hexcentricum_s2_rep1_R1.fastq.gz
+│   │   ├── hexcentricum_s2_rep1_R2.fastq.gz
+│   │   ├── hexcentricum_s2_rep2_R1.fastq.gz
+│   │   ├── hexcentricum_s2_rep2_R2.fastq.gz
+│   │   ├── yeast_sample_1_replicate_1.fastq.gz
+│   │   ├── yeast_sample_1_replicate_2.fastq.gz
+│   │   ├── yeast_sample_2_replicate_1.fastq.gz
+│   │   └── yeast_sample_2_replicate_2.fastq.gz
+│   └── transcriptome
+│       ├── arthrinium
+│       │   ├── arthrinium.ffn
+│       │   └── arthrinium.gtf
+│       └── yeast
+│           ├── yeast.ffn
+│           └── yeast.gtf
+├── README.md
+├── run_arthrinium.sh
+└── utility
+    ├── adapters.fasta.gz
+    ├── deaRscripts
+    │   ├── check.Target.R
+    │   ├── checkTarget.R
+    │   ├── corset_DESeq2.r
+    │   ├── corset_edgeR.r
+    │   ├── dea_tx2gene_from_gff3.R
+    │   ├── DESCRIPTION
+    │   ├── featureCount_DESeq2.r
+    │   ├── featureCount_edgeR.r
+    │   ├── kallisto_DESeq2.r
+    │   ├── kallisto_edgeR.r
+    │   ├── man
+    │   │   ├── exportResults.DESeq2.Rd
+    │   │   ├── exportResults.edgeR.Rd
+    │   │   ├── loadTargetFile.Rd
+    │   │   ├── nDiffTotal.Rd
+    │   │   ├── run.DESeq2_corset.Rd
+    │   │   ├── run.DESeq2_trans.Rd
+    │   │   ├── run.edgeR.Rd
+    │   │   ├── run.edgeR_trans.Rd
+    │   │   ├── summarizeResults.DESeq2.Rd
+    │   │   ├── summarizeResults.edgeR.Rd
+    │   │   ├── tr2g_EnsDb.Rd
+    │   │   ├── tr2g_ensembl.Rd
+    │   │   ├── tr2g_fasta.Rd
+    │   │   ├── tr2g_gff3.Rd
+    │   │   ├── tr2g_GRanges.Rd
+    │   │   ├── tr2g_gtf.Rd
+    │   │   ├── tr2g_junction.Rd
+    │   │   └── tr2g_TxDb.Rd
+    │   ├── PlotDESEQ2.Rmd
+    │   ├── PlotEDGER.Rmd
+    │   ├── R
+    │   │   ├── exportResults.DESeq2.R
+    │   │   ├── exportResults.edgeR.R
+    │   │   ├── load.TargetFile.R
+    │   │   ├── nDiffTotal.r
+    │   │   ├── run.DESeq2_corset.r
+    │   │   ├── run.DESeq2_Salmon.r
+    │   │   ├── run.DESeq2_trans.r
+    │   │   ├── run.edgeR.r
+    │   │   ├── run.edgeR_trans.r
+    │   │   ├── summarizeResults.DESeq2.r
+    │   │   ├── summarizeResults.edgeR.r
+    │   │   ├── tr2g.R
+    │   │   └── utils.R
+    │   ├── README.md
+    │   ├── rnaseqflow.Rproj
+    │   ├── salmon_DESeq2.r
+    │   ├── salmon_edgeR.r
+    │   └── tx2gene.R
+    ├── FormatRockhopTrans.py
+    ├── __init__.py
+    ├── PlotDESEQ2.Rmd
+    ├── PlotEDGER.Rmd
+    └── utility.py
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="inputfiles.html" class="btn btn-neutral float-right" title="Input Files" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install.html" class="btn btn-neutral" title="Installation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Aditya Narayan Sarangi, Sucheta Tripathy.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
