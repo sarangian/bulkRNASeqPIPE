@@ -2202,7 +2202,7 @@ class makeTx2Gene(luigi.Task):
 								  "cp {draftGenomeFolder}{transcriptName}.gtf {transcriptomeFolder}{transcriptName}.gtf " \
 								  .format(draftGenomeFolder=os.path.join(GlobalParameter().basefolder, "raw_data", "genome", self.genomeName + "/"),
 								  	      transcriptName=self.transcriptName,
-								  	     transcriptomeFolder=s.path.join(GlobalParameter().basefolder, "raw_data", "transcriptome",self.transcriptName + "/"))
+								  	     transcriptomeFolder=os.path.join(GlobalParameter().basefolder, "raw_data", "transcriptome",self.transcriptName + "/"))
 
 
 		cmd_gff2gtf = "[ -d  {transcriptomeFolder} ] || mkdir -p {transcriptomeFolder}; " \
