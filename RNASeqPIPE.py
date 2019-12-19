@@ -2170,6 +2170,70 @@ class indexTranscript(luigi.Task):
 			print ("****** NOW RUNNING COMMAND ******: " + cmd_run_kallisto_index_se)
 			print (run_cmd(cmd_run_kallisto_index_se))
 
+###########################################################################################################################
+class makeTx2Gene(luigi.Task):
+
+	annotFileType = luigi.Parameter(description="Genome annotation file type.  (string [=GFF3] OR [=GTF]")
+
+	genomeName = luigi.Parameter(description="""name of the draft or assembled genome file [with out .fna extension] 
+											present in folder /raw_data/genome string(=[my_genome]""")
+
+	transcriptName = luigi.Parameter(description="""name of the predicted transcript, which must be the genome name with
+												    out file extension. string[=my_genome]""")
+
+	def requires(self):
+		return []
+
+	def output(self):
+
+		transcriptomeFolder = os.path.join(GlobalParameter().basefolder, "raw_data", "transcriptome", self.transcriptName + "/")
+		return {'out1': luigi.LocalTarget(transcriptomeFolder +"/"  + self.transcriptName + ".ffn"),
+				'out2': luigi.LocalTarget(transcriptomeFolder + "/" + "tx2gene.csv")
+				}
+
+	def run(self):
+		
+		transcriptomeFolder = os.path.join(GlobalParameter().basefolder, "raw_data", "transcriptome", self.transcriptName + "/")
+
+		draftGenomeFolder = os.path.join(GlobalParameter().basefolder, "raw_data", "genome", self.genomeName + "/")
+
+
+		cmd_copy_gtf = "[ -d  {transcriptomeFolder} ] || mkdir -p {transcriptomeFolder}; " \
+								  "cp {draftGenomeFolder}{transcriptName}.gtf {transcriptomeFolder}{transcriptName}.gtf " \
+								  .format(draftGenomeFolder=os.path.join(GlobalParameter().basefolder, "raw_data", "genome", self.genomeName + "/"),
+								  	      transcriptName=self.transcriptName,
+								  	     transcriptomeFolder=s.path.join(GlobalParameter().basefolder, "raw_data", "transcriptome",self.transcriptName + "/"))
+
+
+		cmd_gff2gtf = "[ -d  {transcriptomeFolder} ] || mkdir -p {transcriptomeFolder}; " \
+								  "gffread -E  {draftGenomeFolder}{transcriptName}.gff -T -o {transcriptomeFolder}{transcriptName}.gtf " \
+								  .format(transcriptomeFolder=os.path.join(GlobalParameter().basefolder, "raw_data", "transcriptome",self.transcriptName + "/"),
+										  transcriptName=self.transcriptName,
+										  draftGenomeFolder=os.path.join(GlobalParameter().basefolder, "raw_data", "genome", self.genomeName + "/"))
+
+		cmd_tx2gene_from_gtf = "cd {transcriptomeFolder}; tx2gene.R " \
+						       "-a gtf " \
+						       "-p {transcriptomeFolder}{transcriptName}.gtf " \
+						       "-o tx2gene.csv" \
+						       .format(transcriptomeFolder=os.path.join(GlobalParameter().basefolder, "raw_data", "transcriptome",self.transcriptName + "/"),
+									   transcriptName=self.transcriptName)
+
+
+		if (self.annotFileType == "GTF"):
+
+			print ("****** NOW RUNNING COMMAND ******: " + cmd_copy_gtf)
+			print (run_cmd(cmd_copy_gtf))
+
+			print ("****** NOW RUNNING COMMAND ******: " + cmd_tx2gene_from_gtf)
+			print (run_cmd(cmd_tx2gene_from_gtf))
+
+		if (self.annotFileType == "GFF"):
+
+			print ("****** NOW RUNNING COMMAND ******: " + cmd_gff2gtf)
+			print (run_cmd(cmd_gff2gtf))
+
+			print ("****** NOW RUNNING COMMAND ******: " + cmd_tx2gene_from_gtf)
+			print (run_cmd(cmd_tx2gene_from_gtf))
 
 ###########################################################################################################################
 class transQuant(luigi.Task, TimeTask):
