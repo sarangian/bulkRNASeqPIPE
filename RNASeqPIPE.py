@@ -2168,6 +2168,7 @@ class indexTranscript(luigi.Task):
 	predTranscript = luigi.Parameter(description="""for prokaryote, if it is required to predict transcript from genome
 											  using PROKKA. (string [=yes] OR [=no])""")
 
+	annotFileType = luigi.Parameter(description="Genome annotation file type.  (string [=GFF] OR [=GTF] OR [NA]")
 	readType = luigi.Parameter(description="""sequencing read type. (string [=single] OR [=paired]""")
 
 	adapter = luigi.Parameter(default="./utility/adapters.fasta.gz")
@@ -2179,22 +2180,26 @@ class indexTranscript(luigi.Task):
 	def requires(self):
 		if (self.predTranscript == "yes"):
 			return [bbduk(projectName=self.projectName,
-							   sampleName=self.sampleName,
-							   readType=self.readType,
-							   adapter=self.adapter),
+		                      sampleName=self.sampleName,
+				      readType=self.readType,
+				      adapter=self.adapter),
 
-					annotateGenome(projectName=self.projectName,
-								   genomeName=self.genomeName,
-								   transcriptName=self.transcriptName,
-								   readType=self.readType,
-								   adapter=self.adapter)]
+				annotateGenome(projectName=self.projectName,
+					genomeName=self.genomeName,
+					transcriptName=self.transcriptName,
+					readType=self.readType,
+					adapter=self.adapter)]
 
 		if (self.predTranscript == "no"):
 			return [bbduk(projectName=self.projectName,
-							   sampleName=self.sampleName,
-							   readType=self.readType,
-							   adapter=self.adapter)]
-
+				      sampleName=self.sampleName,
+				      readType=self.readType,
+				      adapter=self.adapter),
+				makeTx2Gene(projectName=self.projectName,
+			              annotFileType=self.annotFileType,
+			              genomeName=self.genomeName,
+				      transcriptName=self.transcriptName,
+				      domain=self.domain)]
 
 	def output(self):
 		TranscriptIndexFolder = os.path.join(GlobalParameter().basefolder, self.projectName, "TransQuant", self.quantMethod + "_index_" + self.readType + "/")
@@ -2296,7 +2301,7 @@ class transQuant(luigi.Task, TimeTask):
 
 	predTranscript=luigi.Parameter(description="""for prokaryote, if it is required to predict transcript from genomeName
 											  using PROKKA. (string [=yes] OR [=no])""")
-
+        annotFileType = luigi.Parameter(description="Genome annotation file type.  (string [=GFF] OR [=GTF] OR [NA]")
 	adapter = luigi.Parameter(default="./utility/adapters.fasta.gz")
 
 	quantParameter = luigi.Parameter(default="-p 2")
@@ -2307,6 +2312,7 @@ class transQuant(luigi.Task, TimeTask):
 								readType=self.readType,
 								quantMethod=self.quantMethod,
 								predTranscript=self.predTranscript,
+					                        annotFileType=self.annotFileType,
 								domain = self.domain,
 								transcriptName = self.transcriptName,
 								genomeName=self.genomeName,
@@ -2546,6 +2552,7 @@ class quantifyTranscripts(luigi.Task, TimeTask):
 
 	predTranscript=luigi.Parameter(description="""for prokaryote, if it is required to predict transcript from genomeName
 											  using PROKKA. (string [=yes] OR [=no])""")
+	annotFileType = luigi.Parameter(description="Genome annotation file type.  (string [=GFF] OR [=GTF] OR [NA]")
 
 	readType = luigi.Parameter(description="""sequencing read type. (string [=single] OR [=paired]""")
 
@@ -2559,6 +2566,7 @@ class quantifyTranscripts(luigi.Task, TimeTask):
 							   genomeName=self.genomeName,
 							   domain=self.domain,
 							   predTranscript=self.predTranscript,
+				                           annotFileType
 							   adapter=self.adapter,
 							   sampleName=i)
 				for i in [line.strip()
@@ -2604,6 +2612,7 @@ class transcriptomeBasedDEA(luigi.Task, TimeTask):
 	predTranscript=luigi.Parameter(description="""for prokaryote, if it is required to predict transcript from the draft
 												  OR assembled genome using PROKKA.            
 												  (string [=yes] OR [=no])""")
+        annotFileType = luigi.Parameter(description="Genome annotation file type.  (string [=GFF] OR [=GTF] OR [NA]")
 
 	readType = luigi.Parameter(description="""sequencing read type. 
 											  (string [=single] OR [=paired]""")
@@ -2650,6 +2659,7 @@ class transcriptomeBasedDEA(luigi.Task, TimeTask):
 						   quantMethod=self.quantMethod,
 						   predTranscript=self.predTranscript,
 						   genomeName=self.genomeName,
+					           annotFileType=self.annotFileType,
 						   domain=self.domain,
 						   transcriptName=self.transcriptName,
 						   adapter=self.adapter)]
