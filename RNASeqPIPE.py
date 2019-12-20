@@ -204,7 +204,7 @@ class bbduk(luigi.Task, TimeTask):
 	parameter = luigi.Parameter(default="ktrim=r k=21 tbo=t tpe=t hdist=1 mink=11 qtrim=w trimq=20")
 	Xms = luigi.Parameter(default="2",description="JVM will be started with Xms amount (in GB) of memory. Default: -Xms 2")
 	Xmx = luigi.Parameter(default="20",description="JVM will be able to use a maximum of Xmx (in GB) amount of memory. Default -Xmx 20")
-	cpu = luigi.Parameter(default="2", description="worker thread number. Default: -n_cpu 2")
+	cpu = luigi.Parameter(default="8", description="worker thread number. Default: -n_cpu 2")
 	minL = luigi.Parameter(default="50",description="reads shorter than min_length will be discarded. Default: "
 													"min_length=50")
 	minAQ = luigi.Parameter(default="10", description="Reads with average quality (after trimming) below "
