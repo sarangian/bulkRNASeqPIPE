@@ -174,9 +174,9 @@ fi
 
 # Download and install Miniconda
 set +e
-wget "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh" -O Miniconda_Install.sh  2>&1 | tee -a $LOGFILE
+wget "https://repo.anaconda.com/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh" -O Miniconda_Install.sh  2>&1 | tee -a $LOGFILE
 if [ $? -ne 0 ]; then
-    wget "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh" -O Miniconda_Install.sh  2>&1 | tee -a $LOGFILE
+    wget "https://repo.anaconda.com/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh" -O Miniconda_Install.sh  2>&1 | tee -a $LOGFILE
 fi
 set -e
 
