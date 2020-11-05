@@ -10,13 +10,11 @@ Installation also requires **pre-instaled** ``git``, ``gcc``, ``cpp`` and ``zlib
     
     git clone https://github.com/computational-genomics-lab/bulkRNASeqPIPE.git
     cd bulkRNASeqPIPE
-    chmod 755 install.sh
-    ./install.sh
+    chmod 755 INSTALL.sh
+    ./INSTALL.sh
 
     
 **Post Installation Instructions**
-
-	
 After successful installation, close the current terminal. 
 In a new terminal. source the bashrc file:  ``source ~/.bashrc``
 Activate ``gabtk`` environment using command: ``conda activate`` 
