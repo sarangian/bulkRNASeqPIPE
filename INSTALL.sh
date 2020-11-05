@@ -35,7 +35,7 @@ echo ""
 sleep 2s;
 #Check Ubuntu
 if [ -f /etc/lsb-release ]; then
-    declare -a dpkglist=("git" "zlib1g-dev" "gcc" "cpp" "python")
+    declare -a dpkglist=("make" "cmake" "g++" "gcc" "cpp" "git" "zlib1g-dev"  "python")
     for package in "${dpkglist[@]}";
 	    do
   		    if [ $(dpkg-query -W -f='${Status}' $package 2>/dev/null | grep -c "ok installed") -eq 1 ];
