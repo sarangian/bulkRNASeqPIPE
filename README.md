@@ -98,9 +98,6 @@ To design and perform a RNASeq experiment, a Project need to be prepaired using 
 
 Usage:  projectConfig.py -h
 
-
-.. code-block:: none
-
     prepareProject.py <arguments>
     -h       --help             Show this help message and exit
 
@@ -146,20 +143,18 @@ Usage:  projectConfig.py -h
 
 **Run Example**
 
-.. code-block:: none
+    mkdir RNASeq-Analysis
+    cd RNASeq-Analysis
    
-   mkdir RNASeq-Analysis
-   cd RNASeq-Analysis
-   
-   [RNASeq-Analysis]$ projectConfig.py  -i /path/to/bulkRNASeqPIPE/sample_data/ \
+    [RNASeq-Analysis]$ projectConfig.py  -i /path/to/bulkRNASeqPIPE/sample_data/ \
                       -r paired \
                       -d prokaryote \
                       -p halomicronema \
                       -o halomicronema_symlink
  
-   Running the prepareProject.py script with the above 4 required parameters asks for the individual file types present inside the inputData folder.
+    Running the prepareProject.py script with the above 4 required parameters asks for the individual file types present inside the inputData folder.
 
-   User has to choose  [pe:   paired end
+    User has to choose  [pe:   paired end
                         se:   single end
                         geno: genome fasta file
                         tran: transcriptome fasta file
@@ -170,29 +165,29 @@ Usage:  projectConfig.py -h
 
 **Output**
 
-  Successful run of the projectConfig.py script with appropriate parameters will generate 
+    Successful run of the projectConfig.py script with appropriate parameters will generate 
 
-   1. Luigi Configuration file ``luigi.cfg`` in the parent folder
+    1. Luigi Configuration file ``luigi.cfg`` in the parent folder
        
       Edit the luigi.cfg file if required.
       
       Note:
       It is mandatory to provide the path of the adapter file (default location: bulkRNASeqPipe/tasks/utility/adapter.fastq.gz)
 
-   2. a project folder in the name of ``halomicronema`` containing three files
+    2. a project folder in the name of ``halomicronema`` containing three files
 
-   3. a configuration folder in the name of config containing 3 files   
+    3. a configuration folder in the name of config containing 3 files   
 
       a. group.tsv
       b. pe_samples.lst
       b. samples.txt
       c. target.tsv
 
-The ``target.tsv`` file contains the sample names with their associated biological conditions, which will be used for differential expression analysis. Kindly check the target.tsv file and modify if required
+The ``target.tsv`` file contains the sample names with their associated biological conditions, which will be used for differential expression analysis. Kindly     check the target.tsv file and modify if required
   
 
 Commands to run RNA-Seq Workflow
-------------------------------------
+--------  ----------------------------
  
 
 rnaseq.py <command> - -help
@@ -243,11 +238,12 @@ rnaseq.py <command> - -help
 Quality control analysis of the raw samples can be done using command ``preProcessSamples``
 
   **Requirements**
-  1. Execution of prepareProject.py command 
-  2. Availability of ``luigi.cfg`` file in ``parent folder`` and ``pe_samples.lst`` inside the ``config``.
+  
+    1. Execution of prepareProject.py command 
+    2. Availability of ``luigi.cfg`` file in ``parent folder`` and ``pe_samples.lst`` inside the ``config``.
                                  
 
-   [RNASeq-Analysis]$ rnaseq-wf.py cleanReads <arguments> --local-scheduler
+    [RNASeq-Analysis]$ rnaseq-wf.py cleanReads <arguments> --local-scheduler
     
     arguments               type      Description
       
@@ -316,7 +312,8 @@ Quality control analysis of the raw samples can be done using command ``preProce
 
 
 **Example Run**
-[RNASeq-Analysis]$ python rnaseq.py cleanReads \
+
+      [RNASeq-Analysis]$ python rnaseq.py cleanReads \
                             --bbduk-min-average-quality 15 \
                             --bbduk-mingc 0.20 \
                             --bbduk-maxgc 0.70 \
@@ -355,9 +352,9 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
                                      If no, quality control analysis will not be done, instead re-pair.sh or reformat.sh 
                                      script of bbmap will be run based on paired-end or single-end reads.
 
-   --quantMethod            str       Read quantification method
+    --quantMethod            str       Read quantification method
                                       [salmon / kallisto]
-   --local-scheduler
+    --local-scheduler
 
 
 
@@ -367,7 +364,7 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
   1.  with out read quality control analysis  ``--pre-process-reads no``
   2.  with read quantification method ``salmon``
 
-  [RNASeq-Analysis]$ rnaseq.py  alignmentFreeQuant  --pre-process-reads  ``no`` \
+    [RNASeq-Analysis]$ rnaseq.py  alignmentFreeQuant  --pre-process-reads  ``no`` \
                                    --quantMethod ``salmon`` \
                                    --local-scheduler
 
@@ -379,13 +376,12 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
   1.  with out read quality control analysis  ``--pre-process-reads no``
   2.  with read quantification method ``kallisto``
 
-  [RNASeq-Analysis]$ rnaseq.py  alignmentFreeQuant  --pre-process-reads  ``no`` \
+    [RNASeq-Analysis]$ rnaseq.py  alignmentFreeQuant  --pre-process-reads  ``no`` \
                                    --quantMethod ``kallisto`` \
                                    --local-scheduler
 
 
 4.b. Alignment Free Differential Expression Analysis
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
   Transcript Quantification using ``salmon`` / ``kallisto`` followed by Differential expression analysis with ``DESeq2`` / ``edgeR``
 
@@ -399,7 +395,7 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
 
     argument               type      Description
     
-   [required arguments]  
+    [required arguments]  
 
     --pre-process-reads     str       Run Quality Control Analysis of the RNASeq reads or Not
                                       [yes / no]
@@ -447,8 +443,6 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
 **Example Run**
 **Alignment Free Differential Expression Analysis**
 
-.. code-block:: none 
-
       [RNASeq-Analysis]$ python rnaseq.py alignmentFreeDEA \
                                 --pre-process-reads no \
                                 --dea-method deseq2 \
@@ -466,9 +460,7 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
 
 
 5.a. Index Genome
-^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: none 
 
       [RNASeq-Analysis]$ rnaseq.py indexGenome <arguments> --local-scheduler
       
@@ -482,11 +474,9 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
          
 
 5.b. Generate Gene Counts
-^^^^^^^^^^^^^^^^^^^^^^^^^^
 
      Quantification of the gene can be done using command ``alignmentBasedQuant``
 
-.. code-block:: none 
 
      [required arguments]  
      
@@ -523,35 +513,35 @@ Transcript Quantification using `featureCounts` followed by Differential express
 
 
 
- rnaseq.py alignmentBasedDEA --help
+    rnaseq.py alignmentBasedDEA --help
 
- [required arguments]    
+    [required arguments]    
   
-    --rnaseq-aligner      	str	      Name of the aligner to be used to map clean reads to indexed genome. 
+    --rnaseq-aligner      	str   Name of the aligner to be used to map clean reads to indexed genome. 
                                       Options [star | hisat2 | dart | bowtie2 | segemehl | subread]
                                       NOTE:   star and segemehl demands high memory. 
                                       bowtie2 should not be used for domain eukaryote
 
 
- --pre-process-reads     str          Run Quality Control Analysis of the RNASeq reads or Not
+    --pre-process-reads        str    Run Quality Control Analysis of the RNASeq reads or Not
                                       [yes / no]
 
                                       If yes, cleanReads command will be run with default parameters.
                                       If no, quality control analysis will not be done, instead re-pair.sh or reformat.sh 
                                       script of bbmap will be run based on paired-end or single-end reads.
   
- --dea-method		str           Differential Expression Analysis Method to be used
+    --dea-method		str   Differential Expression Analysis Method to be used
                                       [deseq2 / edger]
    
- --report-name		str	      Name of the html report
+    --report-name		str   Name of the html report
   
   	  
- --reference-condition    str         Reference biological condition. Default: control
+    --reference-condition       str   Reference biological condition. Default: control
 
 
- [optional parameters]
+    [optional parameters]
       
- --result-tag 		  str	      Tag to be appended to the result folder
+    --result-tag 		str   Tag to be appended to the result folder
                                       Default: treated_vs_control
 	
  --alpha                float         Threshold of statistical significance.
