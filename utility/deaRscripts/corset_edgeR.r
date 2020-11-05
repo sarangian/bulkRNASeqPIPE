@@ -174,9 +174,8 @@ dir.create("tables", showWarnings = FALSE, recursive = TRUE)
 # loading target file
 target <- loadTargetFile(targetFile=targetFile, varInt=varInt, condRef=condRef, batch=batch)
 
-countData <- read.delim(corsetQuant,row.names=1)
-
-
+#countData <- read.delim(corsetQuant,row.names=1)
+countData <- read.delim(coresetQuant,header=TRUE,check.names=FALSE,sep="\t",row.names=1)
 head (countData)
 
 all(rownames(target) %in% colnames(countData))
