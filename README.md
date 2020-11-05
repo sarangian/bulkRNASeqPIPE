@@ -28,10 +28,8 @@ Input Files
 Raw RNASeq Reads
 ----------------
 
-.. code-block:: none
-
   The raw-RNASeq reads in FASTQ format must be placed inside a folder with read permission
-   Allowed ``extension`` for FASTQ reads: ``fq`` , ``fq.gz`` , ``fastq``, ``fastq.gz``
+  Allowed ``extension`` for FASTQ reads: ``fq`` , ``fq.gz`` , ``fastq``, ``fastq.gz``
  
    For **paired-end** RNAseq reads, sample name must be suffixed with _R1. ``extension`` and _R2. ``extension`` for forward and reverse reads respectively
 
@@ -93,8 +91,7 @@ Reference / draft genome of the organism along with gene annotation files (optio
 Commands
 ========
 
-1. Prepare Project
--------------------
+**1. Prepare Project**
 
 To design and perform a RNASeq experiment, a Project need to be prepaired using the ``projectConfig.py`` script. Conda environment must be activated before running the script.
 
@@ -188,10 +185,8 @@ Usage:  projectConfig.py -h
 The ``target.tsv`` file contains the sample names with their associated biological conditions, which will be used for differential expression analysis. Kindly     check the target.tsv file and modify if required
   
 
-Commands to run RNA-Seq Workflow
---------  ----------------------------
+**Commands to run RNA-Seq Workflow**
  
-
 rnaseq.py <command> - -help
 
     Command                      Description   
@@ -233,9 +228,7 @@ rnaseq.py <command> - -help
       which contains the FASTQC reports of the raw paired-end fastq files
 
 
-
-
-3. Raw samples quality control
+**3. Raw samples quality control**
 ------------------------------
 Quality control analysis of the raw samples can be done using command ``preProcessSamples``
 
@@ -329,7 +322,7 @@ Quality control analysis of the raw samples can be done using command ``preProce
 **4. Alignment Free Differential Expression Analysis [salmon / kallisto]**
 -----------------------------------------------------------------------
 
-4.a. Quantify transcripts
+**4.a. Quantify transcripts**
 
 
 Quantification of the transcripts can be done using command ``alignmentFreeQuant``
@@ -359,9 +352,7 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
     --local-scheduler
 
 
-
-
-  **Example Run 1**
+**Example Run 1**
   **quantifyTranscripts** 
   1.  with out read quality control analysis  ``--pre-process-reads no``
   2.  with read quantification method ``salmon``
@@ -369,7 +360,6 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
     [RNASeq-Analysis]$ rnaseq.py  alignmentFreeQuant  --pre-process-reads  ``no`` \
                                    --quantMethod ``salmon`` \
                                    --local-scheduler
-
 
 
   **Example Run 2**
@@ -383,9 +373,9 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
                                    --local-scheduler
 
 
-4.b. Alignment Free Differential Expression Analysis
+**4.b. Alignment Free Differential Expression Analysis**
 
-  Transcript Quantification using ``salmon`` / ``kallisto`` followed by Differential expression analysis with ``DESeq2`` / ``edgeR``
+ Transcript Quantification using ``salmon`` / ``kallisto`` followed by Differential expression analysis with ``DESeq2`` / ``edgeR``
 
 
   **Requirements**
@@ -452,8 +442,8 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
                                 --local-scheduler
 
 
-5. Alignment based Differential Expression Analysis
-----------------------------------------------------
+**5. Alignment based Differential Expression Analysis**
+--------------------------------------------------------
 
   **Requirements**
   1. Pre execution of prepareProject.py command 
@@ -461,8 +451,7 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
   3. Raw Read Quality Assessemnt and Quality Control Analysis as described in step 2 and 3 respectively.
 
 
-5.a. Index Genome
-
+**5.a. Index Genome**
 
       [RNASeq-Analysis]$ rnaseq.py indexGenome <arguments> --local-scheduler
       
@@ -473,9 +462,8 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
       --rnaseq-aligner       str      Name of the aligner to map RNASeq reads to genome FASTA file
                                       [bowtie2, dart, subread, star, segemehl, hisat2]
                                        
-         
-
-5.b. Generate Gene Counts
+       
+**5.b. Generate Gene Counts**
 
      Quantification of the gene can be done using command ``alignmentBasedQuant``
 
@@ -502,7 +490,7 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
 
 
 
-5.c. Alignment Based Differential Expression Analysis
+**5.c. Alignment Based Differential Expression Analysis**
 
 
 Transcript Quantification using `featureCounts` followed by Differential expression analysis with ``DESeq2`` / ``edgeR``
@@ -687,9 +675,6 @@ Cluster of Denovo assembled transcript can be done using command ``clusterDAT``
   3. Only paired-end RNASeq reads are used for Denovo Transcript Assembly
   4. Rockhopper Assembler must be used for prokaryotic RNASeq reads and Trinity (or) spades assemblers must be used for eukaryotic RNASeq reads
  
-
-
-.. code-block:: none   
 
     [RNASeq-Analysis]$ rnaseq.py clusterDAT <arguments> --local-scheduler
 
