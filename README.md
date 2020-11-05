@@ -501,7 +501,7 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
 
 
 5.c. Alignment Based Differential Expression Analysis
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Transcript Quantification using `featureCounts` followed by Differential expression analysis with ``DESeq2`` / ``edgeR``
 
@@ -541,23 +541,23 @@ Transcript Quantification using `featureCounts` followed by Differential express
 
     [optional parameters]
       
-    --result-tag 		str   Tag to be appended to the result folder
+    --result-tag 	     str      Tag to be appended to the result folder
                                       Default: treated_vs_control
 	
- --alpha                float         Threshold of statistical significance.
+    --alpha                float      Threshold of statistical significance.
 	                              Default: 0.05
   
- --p-adjust-method        str         p-value adjustment method. [BH | BY ]
+    --p-adjust-method        str      p-value adjustment method. [BH | BY ]
                                       Default [Benjamini & Hochberg(BH)]
 					
- --factor-of-intrest      str	      Factor of intrest column of the target file 
+    --factor-of-intrest      str      Factor of intrest column of the target file 
                                       [=conditions]
   
- --fit-type      	  str	      Mean-variance relationship. 
+    --fit-type      	     str      Mean-variance relationship. 
 				      [parametric | local | mean]
                                       Default: parametric
   
- --size-factor            str         Method to estimate the size factors. 
+    --size-factor            str      Method to estimate the size factors. 
 				      [median / short]
                                       Default: median
 
@@ -570,7 +570,7 @@ Transcript Quantification using `featureCounts` followed by Differential express
  1. Pre execution of prepareProject.py command
  2. Availability of luigi.cfg file in parent folder and samples.txt inside the project folder
 
-  [RNASeq-Analysis]$ rnaseq.py alignmentBasedDEA \
+        [RNASeq-Analysis]$ rnaseq.py alignmentBasedDEA \
                                --pre-process-reads yes \
                                --rnaseq-aligner hisat2  \
 			       --dea-method deseq2  \
@@ -603,10 +603,10 @@ Denovo assembly of the RNASeq can be done using command ``dnTransAssemble``
                                      If no, quality control analysis will not be done, instead re-pair.sh or reformat.sh 
                                      script of bbmap will be run based on paired-end or single-end reads.
 
-   --rnaseq-assembler      str       choose from [spades, rockhopper, trinity]
+    --rnaseq-assembler      str       choose from [spades, rockhopper, trinity]
                                      Note: please choose rockhopper if domain is prokaryote
                                            choose trinity / spades if domain is eukaryote
-   --local-scheduler
+    --local-scheduler
 
    Note: 
    To use rockhopper as assembler, domain must be prokaryote in luigi.cfg file 
@@ -614,7 +614,6 @@ Denovo assembly of the RNASeq can be done using command ``dnTransAssemble``
 
 
 6.b. Quantify De-novo Assembled Transcripts
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Quantification of Denovo assembled transcript can be done using command ``quantifyDAT``
 
@@ -625,23 +624,22 @@ Quantification of Denovo assembled transcript can be done using command ``quanti
  3. Only paired-end RNASeq reads are used for Denovo Transcript Assembly
  4. Rockhopper Assembler must be used for prokaryotic RNASeq reads and Trinity (or) spades assemblers must be used for eukaryotic RNASeq reads
 
-.. code-block:: none   
 
-    [RNASeq-Analysis]$ rnaseq.py quantifyDAT <arguments> --local-scheduler
+        [RNASeq-Analysis]$ rnaseq.py quantifyDAT <arguments> --local-scheduler
 
-    argument               type      Description
+        argument               type      Description
 
-    --pre-process-reads    str       Run Quality Control Analysis of the RNASeq reads or Not
-                                     [yes / no]
+        --pre-process-reads    str       Run Quality Control Analysis of the RNASeq reads or Not
+                                         [yes / no]
 
-                                     If yes, cleanReads command will be run with default parameters.
-                                     If no, quality control analysis will not be done, instead re-pair.sh or reformat.sh 
-                                     script of bbmap will be run based on paired-end or single-end reads.
+                                         If yes, cleanReads command will be run with default parameters.
+                                         If no, quality control analysis will not be done, instead re-pair.sh or reformat.sh 
+                                         script of bbmap will be run based on paired-end or single-end reads.
 
-   --rnaseq-assembler      str       choose from [spades, rockhopper, trinity]
-                                     Note: please choose rockhopper if domain is prokaryote
-                                           choose trinity / spades if domain is eukaryote
-   --local-scheduler
+        --rnaseq-assembler      str       choose from [spades, rockhopper, trinity]
+                                          Note: please choose rockhopper if domain is prokaryote
+                                          choose trinity / spades if domain is eukaryote
+        --local-scheduler
 
    Note: 
    To use rockhopper as assembler, domain must be prokaryote in luigi.cfg file 
