@@ -5,9 +5,7 @@ To install RNASeq Analysis Toolkit, you must have a minimum of 6 GiB free disk s
 
 To provide an easier way to install, we provide a miniconda based installer.
 Installation also requires **pre-instaled** ``git``, ``gcc``, ``cpp`` and ``zlib1g-dev``.
-
-.. code-block:: none
-    
+  
     git clone https://github.com/computational-genomics-lab/bulkRNASeqPIPE.git
     cd bulkRNASeqPIPE
     chmod 755 INSTALL.sh
