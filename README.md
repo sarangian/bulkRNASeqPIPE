@@ -6,7 +6,7 @@ To install RNASeq Analysis Toolkit, you must have a minimum of 6 GiB free disk s
 To provide an easier way to install, we provide a miniconda based installer.
 Installation also requires **pre-instaled** ``git``, ``gcc``, ``cpp`` and ``zlib1g-dev``.
   
-    git clone https://github.com/computational-genomics-lab/bulkRNASeqPIPE.git
+    git clone https://github.com/sarangian/bulkRNASeqPIPE.git
     cd bulkRNASeqPIPE
     chmod 755 INSTALL.sh
     ./INSTALL.sh
@@ -66,20 +66,22 @@ Raw RNASeq Reads
 Genome FASTA and annotation files
 ----------------------------------
 
- Required Files
+**Required Files**
+Reference / draft genome of the organism along with gene annotation files (optional for prokaryotes mandatory for eukaryotes)  transcriptome of the organism in FASTA format with ``.ffn , .fa or .fasta`` extension (optional for prokaryotes eukaryotes) must be made available in the same folder containing RNASeq reads.
 
  1. The reference genome or assembly of the organism in FASTA format with ``.fna , .fa or .fasta`` extention
- 2. Gene Annotation files in GFF3/GTF format 
-    Note: GFF3/GTF file is optional if domain is prokaryote and differential expression analysis method is Alignment Free (Salmon/Kallisto)
-          GFF3/GTF file is mandatory if differential expression analysis method is Alignment Based (STAR, hisat2, dart, bowtie2, subread)
+ 2. Gene Annotation files in GFF3 or GTF format 
+    Note: 1.  GFF3 or GTF files must be obtained form NCBI
+          2.  GFF3/GTF file is optional if domain is prokaryote and differential expression analysis method is Alignment Free (Salmon/Kallisto)
+          3.  GFF3/GTF file is mandatory if differential expression analysis method is Alignment Based (STAR / hisat2 / dart / bowtie2 /subread)
 
  3. The transcriptome of the organism in FASTA format with ``.ffn , .fa or .fasta`` extension (optional for both Prokaryotes and eukaryotes)
-   
-For prokaryotes, if user provides the reference genome/assembly of the organism in FASTA format, the pipeline will trigger    prokka to annotate the reference      genome and the corresponding transcriptome, gff, gtf and tx2gene files will be made available for downstream analysis.
+    Note: 1.  For prokaryotes, if user provides the GTF/GFF file and the corresponding transcriptome file, then pipeline will not run PROKKA annotation.
+          2.  The user provided transcriptome file and corresponding GTF file will be used for transcript quantification using SALMON/KAllisto
+	  3.  For prokaryotes, if user provides the reference genome/assembly of the organism in FASTA format, the pipeline will trigger prokka to annotate the reference                       genome and the corresponding transcriptome, gff, gtf and tx2gene files will be made available for downstream analysis.
+	  4.  For eukaryotes, user need to provide the gene annotation file in GTF/GFF3 format along with the corresponding reference genome or genome assembly. The pipeline                   will use gffread program to extract transcript form the genome using the GFF3/GTF file, which will be used for Alignment Free Differential Expression Analysis.
 
-For eukaryotes, user need to provide the gene annotation file in GTF/GFF3 format along with the corresponding reference genome   or genome assembly. The pipeline  will use gffread program to extract transcript form the genome using the GFF3/GTF file, which will be used for Alignment Free Differential Expression Analysis.
 
-Reference / draft genome of the organism along with gene annotation files (optional for prokaryotes mandatory for eukaryotes)  transcriptome of the organism in FASTA format with ``.ffn , .fa or .fasta`` extension (optional for prokaryotes eukaryotes) must be made available in the same folder containing RNASeq reads.
 
  Allowed ``externsion`` for 
      a. genome FASTA file: ``.fna, .fa , .fasta``
