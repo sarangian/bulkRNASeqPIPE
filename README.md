@@ -654,7 +654,7 @@ Quantification of Denovo assembled transcript can be done using command ``quanti
   1.  with out read quality control analysis  ``--pre-process-reads no`` and ``--rnaseq-assembler rockhopper``
      Note: To use rockhopper as assembler, domain must be prokaryote in luigi.cfg file 
 
- [RNASeq-Analysis]$ rnaseq.py  quantifyDAT \
+     [RNASeq-Analysis]$ rnaseq.py  quantifyDAT \
                                 ``--pre-process-reads  no`` \
                                 ``--rnaseq-assembler rockhopper`` \
                                 ``--local-scheduler``
@@ -668,7 +668,7 @@ Quantification of Denovo assembled transcript can be done using command ``quanti
   1.  with out read quality control analysis  ``--pre-process-reads yes`` and ``--rnaseq-assembler trinity``
       Note: To use trinity as assembler, domain must be eukaryote in luigi.cfg file 
 
-  [RNASeq-Analysis]$ rnaseq.py  quantifyDAT \
+     [RNASeq-Analysis]$ rnaseq.py  quantifyDAT \
                                 ``--pre-process-reads  yes`` \
                                 ``--rnaseq-assembler spades`` \
                                 ``--local-scheduler``
@@ -702,10 +702,10 @@ Cluster of Denovo assembled transcript can be done using command ``clusterDAT``
                                      If no, quality control analysis will not be done, instead re-pair.sh or reformat.sh 
                                      script of bbmap will be run based on paired-end or single-end reads.
 
-   --rnaseq-assembler      str       choose from [spades, rockhopper, trinity]
+    --rnaseq-assembler      str      choose from [spades, rockhopper, trinity]
                                      Note: please choose rockhopper if domain is prokaryote
                                            choose trinity / spades if domain is eukaryote
-   --local-scheduler
+    --local-scheduler
 
    Note: 
    To use rockhopper as assembler, domain must be prokaryote in luigi.cfg file 
@@ -718,7 +718,7 @@ Cluster of Denovo assembled transcript can be done using command ``clusterDAT``
   1.  with out read quality control analysis  ``--pre-process-reads no`` and ``--rnaseq-assembler rockhopper``
       Note: To use rockhopper as assembler, domain must be prokaryote in luigi.cfg file 
 
-  [RNASeq-Analysis]$ rnaseq.py  clusterDAT \
+    [RNASeq-Analysis]$ rnaseq.py  clusterDAT \
                                 ``--pre-process-reads  no`` \
                                 ``--rnaseq-assembler rockhopper`` \
                                 ``--local-scheduler``
@@ -726,10 +726,10 @@ Cluster of Denovo assembled transcript can be done using command ``clusterDAT``
   **Example Run 2**
   **cluster De-novo Assembled Transcripts (eukaryotes)** 
 
-  1.  with out read quality control analysis  ``--pre-process-reads yes`` and ``--rnaseq-assembler trinity``
-      Note: To use trinity as assembler, domain must be eukaryote in luigi.cfg file 
+    1.  with out read quality control analysis  ``--pre-process-reads yes`` and ``--rnaseq-assembler trinity``
+        Note: To use trinity as assembler, domain must be eukaryote in luigi.cfg file 
 
-  [RNASeq-Analysis]$ rnaseq.py  clusterDAT \
+        [RNASeq-Analysis]$ rnaseq.py  clusterDAT \
                                 ``--pre-process-reads  yes`` \
                                 ``--rnaseq-assembler spades`` \
                                 ``--local-scheduler``
@@ -737,9 +737,8 @@ Cluster of Denovo assembled transcript can be done using command ``clusterDAT``
 
 
 6.d. Denovo transcript assembly Based Differential Expression Analysis
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Transcript Quantification using ``salmon`` Clustering using ``Corset`` followed by Differential expression analysis with ``DESeq2`` / ``edgeR``
+    Transcript Quantification using ``salmon`` Clustering using ``Corset`` followed by Differential expression analysis with ``DESeq2`` / ``edgeR``
 
 
   **Requirements**
@@ -748,47 +747,46 @@ Transcript Quantification using ``salmon`` Clustering using ``Corset`` followed 
   3. Raw Read Quality Assessemnt and Quality Control Analysis as described in step 2 and 3 respectively.
  
 
- rnaseq.py denovoDEA --help
+    rnaseq.py denovoDEA --help
 
- [required arguments]    
+    [required arguments]    
   
- --rnaseq-assembler       str         Choose from [spades, rockhopper, trinity]
+    --rnaseq-assembler       str     Choose from [spades, rockhopper, trinity]
                                      Note: please choose rockhopper if domain is prokaryote
                                            choose trinity / spades if domain is eukaryote
 
- --pre-process-reads      str          Run Quality Control Analysis of the RNASeq reads or Not
+    --pre-process-reads      str      Run Quality Control Analysis of the RNASeq reads or Not
                                       [yes / no]
 
                                       If yes, cleanReads command will be run with default parameters.
                                       If no, quality control analysis will not be done, instead re-pair.sh or reformat.sh 
                                       script of bbmap will be run based on paired-end or single-end reads.
   
- --dea-method             str         Differential Expression Analysis Method to be used
+    --dea-method             str      Differential Expression Analysis Method to be used
                                       [deseq2 / edger]
    
      
- --reference-condition    str         Reference biological condition. Default: control
+    --reference-condition    str      Reference biological condition. Default: control
                                       Note: please check ``target.tsv`` file inside ``config`` folder for `` --reference-condition``
 
-
- [optional parameters]
+    [optional parameters]
       
- --result-tag             str         Tag to be appended to the result folder
+    --result-tag             str      Tag to be appended to the result folder
                                       Default: treated_vs_control
   
- --alpha                  float       Threshold of statistical significance.
+    --alpha                  float    Threshold of statistical significance.
                                       Default: 0.05
   
- --p-adjust-method        str         p-value adjustment method. [BH | BY ]
+    --p-adjust-method        str      p-value adjustment method. [BH | BY ]
                                       Default [Benjamini & Hochberg(BH)]
           
- --factor-of-intrest      str         Factor of intrest column of the target file 
+    --factor-of-intrest      str      Factor of intrest column of the target file 
                                       [=conditions]
   
- --fit-type               str         Mean-variance relationship. 
+    --fit-type               str      Mean-variance relationship. 
                                       [parametric | local | mean]
                                       Default: parametric
   
- --size-factor            str         Method to estimate the size factors. 
+    --size-factor            str      Method to estimate the size factors. 
                                       [median / short]
                                       Default: median
