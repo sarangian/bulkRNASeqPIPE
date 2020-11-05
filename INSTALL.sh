@@ -92,14 +92,7 @@ chmod 755 $BASE_DIR/*.sh
 chmod 755 $BASE_DIR/*.py
 echo "export PATH=\$PATH:$BASE_DIR" >> ~/.bashrc
 UTILITY=$BASE_DIR/utility
-#TEMPENVFILE=$BASE_DIR/.conda_environment.yml
-#ENVFILE=$BASE_DIR/.environment.yml
-
-#RNASeqENV=$BASE_DIR/.rnaseq.txt
-#cp $TEMPENVFILE $ENVFILE
-#ENVFILE=$BASE_DIR/.environment.yml
-DEA_SCRIPTS=$BASE_DIR/tasks/deaRscripts
-
+DEA_SCRIPTS=$BASE_DIR/utility/deaRscripts
 THIS_FILE=$(basename "$0")
 THIS_PATH="$THIS_DIR/$THIS_FILE"
 PREFIX=$THIS_DIR/tools
@@ -178,8 +171,7 @@ InstallDir=$PREFIX
 #EntryPoint="YourApplicationName"
 EntryPoint="RNASeqPIPE"
 
-echo
-#echo "Installing $AppName"  
+echo "Installing $AppName"  
 
 sleep 2s;
 
@@ -239,8 +231,6 @@ END
 
 #Add Script Directory
 
-#Add Prefix to env file
-#echo "prefix: $PREFIX" >> $ENVFILE
 cp -ar $UTILITY $PREFIX
 utility_dir=$PREFIX/utility
 chmod -R 755 $utility_dir
@@ -319,40 +309,6 @@ echo -e "\n"
 
 ln -s $InstallDir/lib/R/modules/lapack.so  $InstallDir/lib/libRlapack.so
 ln -s $InstallDir/lib/libblas.so  $InstallDir/lib/libRblas.so
-
-
-InstallDir=$PREFIX
-if [[ $EntryPoint ]]; then
-   cd $InstallDir
-   echo -e `date` "\tDownloading Trinity 2.9.0"
-   echo -e "\n"
-   (wget https://github.com/trinityrnaseq/trinityrnaseq/releases/download/v2.9.0/trinityrnaseq-v2.9.0.FULL.tar.gz >> /dev/null 2>&1) & 
-   spinner $!
-   echo -e "\n"
-   echo -e `date`  "\e[1;34m\tTrinity Downloaded..\e[0m"
-   echo -e "\n"
-   tar -xvzf trinityrnaseq-v2.9.0.FULL.tar.gz >> /dev/null 2>&1
-   mv trinityrnaseq-v2.9.0 trinityrnaseq
-
-   echo -e `date` "\tInstalling Trinity 2.9.0"
-   echo -e "\n"
-   (make -C trinityrnaseq >> /dev/null 2>&1) &
-   spinner $!
-   echo -e "\n"
-   echo -e `date`  "\e[1;34m\tTrinity Installed..\e[0m"
-   echo -e "\n"
-
-   echo `date` "\tInstalling Trinity 2.9.0 Plugins"
-   echo -e "\n"
-   (make plugins -C trinityrnaseq >> /dev/null 2>&1)
-   spinner $!
-   echo -e "\n"
-   echo -e `date`  "\e[1;34m\tTrinity Plugins Installed..\e[0m"
-   echo -e "\n"
-   chmod 755 $InstallDir/trinityrnaseq/Trinity
-   echo "export PATH=\"$InstallDir/trinityrnaseq\":\$PATH" >> ~/.bashrc
-   echo "export TRINITY_HOME=$InstallDir/trinityrnaseq" >> ~/.bashrc
-fi
 
 
 source $InstallDir/etc/profile.d/conda.sh
