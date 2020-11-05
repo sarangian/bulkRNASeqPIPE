@@ -1,5 +1,0 @@
-lable	samples	conditions
-hexcentricum_s1_rep1	hexcentricum_s1_rep1	Control
-hexcentricum_s1_rep2	hexcentricum_s1_rep2	Control
-hexcentricum_s2_rep1	hexcentricum_s2_rep1	Treated
-hexcentricum_s2_rep2	hexcentricum_s2_rep2	Treated
