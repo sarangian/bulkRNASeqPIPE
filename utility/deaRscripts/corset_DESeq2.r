@@ -148,22 +148,10 @@ locfunc <- opt$locfunc                               # "median" (default) or "sh
 ################################################################################
 ###                             running script                               ###
 ################################################################################
-# setwd(workDir)
-#dir.create(projectName, showWarnings = FALSE, recursive = TRUE)
 
-#imageFolder <- paste0(projectName,"/figures/")
-#tableFolder <- paste0(projectName,"/tables/")
-
-#dir.create(imageFolder, showWarnings = FALSE, recursive = TRUE)
 dir.create("tables", showWarnings = FALSE, recursive = TRUE)
 
-#library(regionReport)
-#library(DESeq2)
-#library(dplyr)
 
-#source("/opt/RNASeqPIPE/tools/utility/load.TargetFile.R")
-#source("/opt/RNASeqPIPE/tools/utility/run.DESeq2_corset.r")
-#source("/opt/RNASeqPIPE/tools/utility/exportResults.DESeq2.R")
 
 #plots
 					   
@@ -191,7 +179,7 @@ target <- loadTargetFile(targetFile=targetFile, varInt=varInt, condRef=condRef, 
 #colnames(subCount) = rname
 #write.table(subCount,opt$out, row.names = F, col.names = T, quote = F, sep = '\t')
 #countfile <- as.matrix(read.table(coresetQuant, header=TRUE, sep="\t", na.strings="")
-countData <- read.delim(coresetQuant,row.names=1)
+countData <- read.delim(coresetQuant,header=TRUE,check.names=FALSE,sep="\t",row.names=1)
 #head (countData)
 
 all(rownames(target) %in% colnames(countData))
