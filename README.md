@@ -210,9 +210,9 @@ rnaseq.py <command> - -help
     7. alignmentBasedDEA            Genome alignment based differential expression analysis
 
     8. dnTransAssemble              Denovo Assembly of Prokaryotic and Eukaryotic Transcripts
-    9. quantifyDAT                  Quantify denovo assembled transcripts using Salmon 
-   10. clusterDAT                   Clustred Assembled transcripts based on equivalence class
-   11. denovoDEA                    denovo transcriptome assembly based differential expression analysis
+    9. quantifyDAT                  Quantify denovo assembled transcripts using Salmon
+    10. clusterDAT                  Clustred Assembled transcripts based on equivalence class
+    11. denovoDEA                   denovo transcriptome assembly based differential expression analysis
 
 
 
@@ -314,11 +314,9 @@ Quality control analysis of the raw samples can be done using command ``preProce
     --local-scheduler
 
 
+
 **Example Run**
-
-.. code-block:: none
-
-   [RNASeq-Analysis]$ python rnaseq.py cleanReads \
+[RNASeq-Analysis]$ python rnaseq.py cleanReads \
                             --bbduk-min-average-quality 15 \
                             --bbduk-mingc 0.20 \
                             --bbduk-maxgc 0.70 \
@@ -329,11 +327,11 @@ Quality control analysis of the raw samples can be done using command ``preProce
       /path/to/ProjectFolder/ReadQC/Cleaned_PE_Reads --contains the processed FastQ-reads
 
 
-4. Alignment Free Differential Expression Analysis [salmon / kallisto]
+**4. Alignment Free Differential Expression Analysis [salmon / kallisto]**
 -----------------------------------------------------------------------
 
 4.a. Quantify transcripts
-^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Quantification of the transcripts can be done using command ``alignmentFreeQuant``
 
@@ -409,40 +407,39 @@ Quantification of the transcripts can be done using command ``alignmentFreeQuant
                                       If yes, cleanReads command will be run with default parameters.
                                       If no, quality control analysis will not be done, instead re-pair.sh or reformat.sh 
                                       script of bbmap will be run based on paired-end or single-end reads.
-
-   --quant-method           str       Read quantification method
+    --quant-method           str       Read quantification method
                                       [salmon / kallisto]
 
-   --dea-method             str       Method to be used for differential expression analysis. 
+    --dea-method             str       Method to be used for differential expression analysis. 
                                       [deseq2 / edger]
 
-   --reference-condition    str       Reference biological condition. 
+    --reference-condition    str       Reference biological condition. 
                                       example: control
 
-   --local-scheduler
+    --local-scheduler
 
     [optional arguments] 
 
-   --attribute-type        str       Atrribute type in GTF annotation
+    --attribute-type        str       Atrribute type in GTF annotation
                                      choose from {gene_id, transcript_id}
 
-   --strand-type           int       perform strand-specific read counting.
+    --strand-type           int       perform strand-specific read counting.
                                      choose from [0: unstranded,
                                                   1: stranded,
                                                   2: reversely-stranded]
 
-   --report-name           str       Name of the differential expression analysis report
+    --report-name           str       Name of the differential expression analysis report
                                      Default: DEA_Report
 
-   --factor-of-intrest     str       Factor of intrest column of the target file
+    --factor-of-intrest     str       Factor of intrest column of the target file
                                      Default: conditions
 
-   --fit-type              str       mean-variance relationship. 
+    --fit-type              str       mean-variance relationship. 
                                      Choices: {local, parametric, mean}
 
-   --size-factor           str       method to estimate the size factors. Choices: {shorth, median} 
+    --size-factor           str       method to estimate the size factors. Choices: {shorth, median} 
 
-  --result-tag            str       Tag need to be apended to result file
+    --result-tag            str       Tag need to be apended to result file
                                      Default: treated_vs_control
     
     
@@ -526,13 +523,11 @@ Transcript Quantification using `featureCounts` followed by Differential express
 
 
 
-.. code-block:: none 
-
  rnaseq.py alignmentBasedDEA --help
 
  [required arguments]    
   
- --rnaseq-aligner      	str	      Name of the aligner to be used to map clean reads to indexed genome. 
+    --rnaseq-aligner      	str	      Name of the aligner to be used to map clean reads to indexed genome. 
                                       Options [star | hisat2 | dart | bowtie2 | segemehl | subread]
                                       NOTE:   star and segemehl demands high memory. 
                                       bowtie2 should not be used for domain eukaryote
