@@ -93,6 +93,7 @@ chmod 755 $BASE_DIR/*.py
 echo "export PATH=\$PATH:$BASE_DIR" >> ~/.bashrc
 UTILITY=$BASE_DIR/utility
 DEA_SCRIPTS=$BASE_DIR/utility/deaRscripts
+
 THIS_FILE=$(basename "$0")
 THIS_PATH="$THIS_DIR/$THIS_FILE"
 PREFIX=$THIS_DIR/tools
@@ -231,6 +232,8 @@ END
 
 #Add Script Directory
 
+#Add Prefix to env file
+#echo "prefix: $PREFIX" >> $ENVFILE
 cp -ar $UTILITY $PREFIX
 utility_dir=$PREFIX/utility
 chmod -R 755 $utility_dir
@@ -309,7 +312,21 @@ echo -e "\n"
 
 ln -s $InstallDir/lib/R/modules/lapack.so  $InstallDir/lib/libRlapack.so
 ln -s $InstallDir/lib/libblas.so  $InstallDir/lib/libRblas.so
-
+######
+InstallDir=$PREFIX
+if [[ $EntryPoint ]]; then
+   cd $InstallDir
+   (wget https://github.com/trinityrnaseq/trinityrnaseq/releases/download/v2.9.0/trinityrnaseq-v2.9.0.FULL.tar.gz  >> /dev/null 2>&1) & 
+   spinner $!
+   tar -xvzf trinityrnaseq-v2.9.0.FULL.tar.gz
+   mv trinityrnaseq-v2.9.0 trinityrnaseq
+   make -C trinityrnaseq 
+   make plugins -C trinityrnaseq 
+   chmod +x $InstallDir/trinityrnaseq/Trinity
+   echo "export PATH=\"$InstallDir/trinityrnaseq\":\$PATH" >> ~/.bashrc
+   echo "export TRINITY_HOME=$InstallDir/trinityrnaseq" >> ~/.bashrc
+fi
+#####
 
 source $InstallDir/etc/profile.d/conda.sh
 $InstallDir/bin/conda init bash
